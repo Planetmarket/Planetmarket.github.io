@@ -2269,7 +2269,7 @@ textarea {
 @media (max-width: 768px) {
     .hero__content h1 {
         font-size: 38px;
-        margin: 100px 30px;/* mobile / portrait */
+        margin: 100px 10px;/* mobile / portrait */
     }
 }
 /* Hero section with background color and spacing */
