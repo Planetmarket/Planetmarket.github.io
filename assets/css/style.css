@@ -2326,10 +2326,9 @@ body.page-template {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 80vh;
+    height: 70vh;
     background: linear-gradient(135deg, #E7F8ED 0%, #D1F4E0 100%);
     text-align: center;
-    padding: 80px 40px 60px;
     overflow: hidden;
 }
 
@@ -2366,25 +2365,27 @@ body.page-template {
 .hero__content {
     position: relative;
     z-index: 10;
-    max-width: 900px;
+    max-width: 1400px;
+    width: 90%;
 }
 
 .hero__content h1 {
-    font-size: 6rem;
+    font-size: clamp(3rem, 12vh, 10rem);
     font-weight: 700;
     line-height: 1.1;
     color: #1f2937;
-    margin-bottom: 24px;
+    margin-block-end: 3vh;
     letter-spacing: -0.02em;
 }
 
 .hero__content p {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    max-width: 700px;
-    margin: 0 auto 40px;
+    font-size: clamp(1.2rem, 2.5vh, 2.5rem);
+    max-width: 80%;
+    margin-inline: auto;
+    margin-block-end: 4vh;
     color: #4b5563;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 /* CTA Button in Hero */
@@ -2394,11 +2395,12 @@ body.page-template {
     gap: 10px;
     background: #25D366;
     color: white;
-    font-size: 18px;
+    font-size: clamp(1rem, 2vh, 1.5rem);
     font-weight: 600;
-    padding: 16px 32px;
+    padding-block: 2vh;
+    padding-inline: 4vw;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -2580,8 +2582,7 @@ body.page-template {
     }
     
     .hero {
-        min-height: 40vh;
-        padding: 40px 24px 40px;
+        height: 40vh;
         background: #25D366;
     }
     
@@ -2590,23 +2591,29 @@ body.page-template {
         display: none;
     }
     
+    .hero__content {
+        width: 95%;
+    }
+    
     .hero__content h1 { 
-        font-size: 3rem;
-        margin-bottom: 16px;
+        font-size: clamp(2rem, 10vh, 6rem);
+        margin-block-end: 2vh;
         color: #ffffff;
-        line-height: 1.2;
+        line-height: 1.1;
     }
     
     .hero__content p { 
-        font-size: clamp(0.95rem, 3.5vw, 1.1rem);
-        margin-bottom: 24px;
+        font-size: clamp(0.9rem, 3vh, 2rem);
+        margin-block-end: 3vh;
         color: rgba(255, 255, 255, 0.95);
-        line-height: 1.5;
+        line-height: 1.4;
+        max-width: 90%;
     }
     
     .hero__cta {
-        font-size: 15px;
-        padding: 12px 28px;
+        font-size: clamp(0.9rem, 2.5vh, 1.3rem);
+        padding-block: 1.5vh;
+        padding-inline: 6vw;
         background: #ffffff;
         color: #25D366;
     }
