@@ -2326,31 +2326,31 @@ body.page-template {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70vh;
-    background: linear-gradient(135deg, #E7F8ED 0%, #D1F4E0 100%);
     text-align: center;
     overflow: hidden;
+    height: 70vh; /* Desktop default */
+    background: linear-gradient(135deg, #E7F8ED 0%, #D1F4E0 100%);
+}
+
+.hero::before,
+.hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37, 211, 102, 0.15) 0%, transparent 70%);
 }
 
 .hero::before {
-    content: '';
-    position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(37, 211, 102, 0.15) 0%, transparent 70%);
-    border-radius: 50%;
     top: -200px;
     right: -200px;
     animation: float 15s ease-in-out infinite;
 }
 
 .hero::after {
-    content: '';
-    position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(37, 211, 102, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
     bottom: -150px;
     left: -150px;
     animation: float 18s ease-in-out infinite;
@@ -2369,8 +2369,9 @@ body.page-template {
     width: 90%;
 }
 
+/* FIXED H1 SIZE */
 .hero__content h1 {
-    font-size: clamp(3rem, 12vh, 10rem);
+    font-size: 80px; /* Desktop */
     font-weight: 700;
     line-height: 1.1;
     color: #1f2937;
@@ -2379,7 +2380,7 @@ body.page-template {
 }
 
 .hero__content p {
-    font-size: clamp(1.2rem, 2.5vh, 2.5rem);
+    font-size: 1.5rem;
     max-width: 80%;
     margin-inline: auto;
     margin-block-end: 4vh;
@@ -2395,9 +2396,9 @@ body.page-template {
     gap: 10px;
     background: #25D366;
     color: white;
-    font-size: clamp(1rem, 2vh, 1.5rem);
+    font-size: 1.2rem;
     font-weight: 600;
-    padding-block: 2vh;
+    padding-block: 1.5vh;
     padding-inline: 4vw;
     border: none;
     border-radius: 50px;
@@ -2446,7 +2447,7 @@ body.page-template {
     display: block;
 }
 
-/* Feature Cards (if needed) */
+/* Feature Cards (optional) */
 .features-section {
     background: #f9fafb;
     padding: 80px 40px;
@@ -2545,186 +2546,55 @@ body.page-template {
 }
 
 /* =========================
-   RESPONSIVE STYLES
+   RESPONSIVE STYLES (<1200px)
 ========================= */
 @media (max-width: 1200px) {
-    .hero__content h1 { font-size: 4rem; }
-    .hero__content p { font-size: 1.3rem; }
-}
-
-@media (max-width: 992px) {
-    .hero__content h1 { font-size: 3.5rem; }
-    .hero__content p { font-size: 1.2rem; }
-    .content { padding: 60px 40px; }
-}
-
-@media (max-width: 768px) {
-    .top {
-        flex-direction: row;
-        align-items: center;
-        padding: 16px 24px;
-        gap: 0;
-    }
-    
-    .logo {
-        font-size: 26px;
-    }
-    
-    .navbar__menu {
-        flex-direction: row;
-        gap: 24px;
-        align-items: center;
-        width: auto;
-    }
-    
-    .navbar__menu li a {
-        font-size: 14px;
-    }
-    
     .hero {
-        height: 40vh;
-        background: #25D366;
+        height: 40vh; /* mobile/tablet hero height */
     }
-    
-    .hero::before,
-    .hero::after {
-        display: none;
+
+    .hero__content h1 {
+        font-size: 48px; /* fixed H1 for smaller devices */
     }
-    
-    .hero__content {
-        width: 95%;
+
+    .hero__content p {
+        font-size: 1.2rem;
     }
-    
-    .hero__content h1 { 
-        font-size: clamp(2rem, 10vh, 6rem);
-        margin-block-end: 2vh;
-        color: #ffffff;
-        line-height: 1.1;
+
+    .content {
+        padding: 50px 24px;
     }
-    
-    .hero__content p { 
-        font-size: clamp(0.9rem, 3vh, 2rem);
-        margin-block-end: 3vh;
-        color: rgba(255, 255, 255, 0.95);
-        line-height: 1.4;
-        max-width: 90%;
+
+    .content__entry p {
+        font-size: 1rem;
+        margin-bottom: 24px;
     }
-    
-    .hero__cta {
-        font-size: clamp(0.9rem, 2.5vh, 1.3rem);
-        padding-block: 1.5vh;
-        padding-inline: 6vw;
-        background: #ffffff;
-        color: #25D366;
-    }
-    
-    .hero__cta:hover {
-        background: #f9fafb;
-        color: #20BD5C;
-    }
-    
-    .content { 
-        padding: 50px 24px; 
-    }
-    
-    .content__entry p { 
-        font-size: 1rem; 
-        margin-bottom: 24px; 
-    }
-    
+
     .post__image {
         margin: 40px 0;
         border-radius: 12px;
     }
-    
+
     .features-section {
         padding: 60px 24px;
     }
-    
+
     .features-grid {
         gap: 24px;
     }
-    
-    .footer {
-        padding: 50px 24px;
-    }
-}
 
-@media (max-width: 480px) {
-    .logo {
-        font-size: 24px;
-    }
-    
-    .navbar__menu {
-        gap: 16px;
-    }
-    
-    .navbar__menu li a {
-        font-size: 13px;
-    }
-    
-    .hero {
-        min-height: 40vh;
-        padding: 35px 20px 35px;
-        background: #25D366;
-    }
-    
-    .hero__content h1 { 
-        font-size: 3rem;
-        margin-bottom: 14px;
-        color: #ffffff;
-        line-height: 1.2;
-    }
-    
-    .hero__content p { 
-        font-size: clamp(0.9rem, 4vw, 1rem);
-        margin-bottom: 20px;
-        color: rgba(255, 255, 255, 0.95);
-        line-height: 1.4;
-    }
-    
-    .hero__cta {
-        font-size: 14px;
-        padding: 11px 24px;
-        background: #ffffff;
-        color: #25D366;
-    }
-    
-    .content { 
-        padding: 40px 20px; 
-    }
-    
-    .content__entry p { 
-        font-size: 0.95rem; 
-        margin-bottom: 20px; 
-    }
-    
-    .content__share-button {
-        font-size: 15px;
-        padding: 12px 24px;
-    }
-    
-    .post__image {
-        margin: 32px 0;
-        border-radius: 10px;
-    }
-    
-    .features-section {
-        padding: 50px 20px;
-    }
-    
     .feature-card {
         padding: 24px;
     }
-    
+
     .footer {
-        padding: 40px 20px;
+        padding: 50px 24px;
     }
-    
+
     .footer p {
         font-size: 14px;
     }
-    
+
     .footer__bttop {
         font-size: 18px;
         padding: 12px 16px;
