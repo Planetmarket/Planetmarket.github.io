@@ -2257,19 +2257,21 @@ textarea {
          img.is-loaded {
                opacity: 1;
                transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1); 
-         }.hero__content h1 {
-    font-size: 80px !important;
-   
-}
-/* Desktop - fixed 80px */
+         }/* Desktop - fixed 80px */
 .hero__content h1 {
-    font-size: 80px !important;
+    padding: 80px 0px !important;
+    background-color:#25D366 !important;
+}
+/* Green background for the page */
+.content {
+    background-color: #25D366; /* green */
 }
 
-/* Devices smaller than 1200px - responsive scaling */
-@media (max-width: 720px) {
-    .hero__content h1 {
-        font-size: 48px !important;
-        /* 48px minimum, scales with viewport (6vw), maximum 80px */
-    }
+/* Full width images */
+.post__image,
+.hero__image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto; /* maintain aspect ratio */
+  
 }
