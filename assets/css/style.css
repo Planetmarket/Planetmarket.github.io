@@ -2268,7 +2268,7 @@ textarea {
 /* For portrait / smaller screens */
 @media (max-width: 768px) {
     .hero__content h1 {
-        font-size: 38px;
+        font-size: 33px;
         margin: 100px 10px;/* mobile / portrait */
     }
 }
