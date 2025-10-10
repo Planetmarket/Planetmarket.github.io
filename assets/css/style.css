@@ -1,6 +1,6 @@
     
     :root {
-      --page-margin:        10PX;
+      --page-margin:        0px;
       --page-width:         100%;
       --entry-width:        100%; 
       --navbar-height:      4.4rem; 
@@ -2257,43 +2257,119 @@ textarea {
          img.is-loaded {
                opacity: 1;
                transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1); 
-         }.hero__content h1 {
-    margin: 100px 30px;
-   
-    font-size: 80px; /* desktop default */
-    color: green;
-    
+         }/* Reset & base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
 }
 
-/* For portrait / smaller screens */
-@media (max-width: 768px) {
-    .hero__content h1 {
-        font-size: 32px;
-        margin: 40px 0px;/* mobile / portrait */
-    }
-}
-/* Hero section with background color and spacing */
-.hero.hero--noimage {
-    background-color: #f0f8ff; /* background for H1 */
-    padding-bottom: 40px;      /* space below H1 */
-    text-align: center;
-    padding: 60px 20px 40px 20px;
+body.page-template {
+  background-color: #f8f9fa;
+  color: #212529;
+  line-height: 1.6;
 }
 
-
-   .post__image img {
-    border-radius: 5px;   /* adjust px for more or less rounding */
-    max-width: 100%;       /* ensures image stays responsive */
-    height: auto;
-    display: block;
-     margin-top: 10px; /* removes small gap below image */
+/* Header */
+.top {
+  background: #ffffff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
-/* pushes image down */
+.logo {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+.navbar__menu {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.navbar__menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+.navbar__toggle {
+  display: none; /* Show only for mobile */
 }
 
-.entry-wrapper.content__entry p{
-    background-color: #000;  /* light gray background */
-    padding: 40px 20px;          /* space inside content */
-    border-radius: 10px;         /* optional: rounded corners */
-    max-width: 800px;            /* optional: limit width */
-    margin: 40px auto 0 auto; 
+/* Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  background: linear-gradient(to right, #0261f7, #00c6ff);
+  color: #fff;
+  text-align: center;
+}
+.hero__content h1 {
+  font-size: 5rem;
+  font-weight: 700;
+    color:#fff;
+}
+
+/* Main content */
+.content__entry {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.post__image img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+.align-left {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+/* Share buttons */
+.content__share-button {
+  background: #0261f7;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.content__share-popup a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #0261f7;
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(to left, #0261f7, #00c6ff);
+  color: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.footer__bttop {
+  background: #0261f7;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* Utility classes */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
