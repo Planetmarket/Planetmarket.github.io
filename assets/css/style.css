@@ -2258,9 +2258,10 @@ textarea {
                opacity: 1;
                transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1); 
          }/* Desktop - fixed 80px */
-.hero__content h1 {
+.hero__content h1 { 
     padding: 80px 0px !important;
     background-color:#25D366 !important;
+    font-size : 48px;
 }
 /* Green background for the page */
 .content {
