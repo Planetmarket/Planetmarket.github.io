@@ -2282,17 +2282,17 @@ textarea {
 
 
    .post__image img {
-    border-radius: 20px;   /* adjust px for more or less rounding */
+    border-radius: 5px;   /* adjust px for more or less rounding */
     max-width: 100%;       /* ensures image stays responsive */
     height: auto;
     display: block;
-     margin-top: 40px; /* removes small gap below image */
+     margin-top: 10px; /* removes small gap below image */
 }
 /* pushes image down */
 }
 
 .entry-wrapper.content__entry p{
-    background-color: #ff0000;  /* light gray background */
+    background-color: #000;  /* light gray background */
     padding: 40px 20px;          /* space inside content */
     border-radius: 10px;         /* optional: rounded corners */
     max-width: 800px;            /* optional: limit width */
