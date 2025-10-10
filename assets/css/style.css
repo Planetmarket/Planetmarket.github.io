@@ -2258,10 +2258,11 @@ textarea {
                opacity: 1;
                transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1); 
          }.hero__content h1 {
-    margin-bottom: 100px;
-    margin-top: 100px;
+    margin: 100px 50px;
+   
     font-size: 80px; /* desktop default */
     color: green;
+    
 }
 
 /* For portrait / smaller screens */
