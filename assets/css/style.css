@@ -2258,7 +2258,7 @@ textarea {
                opacity: 1;
                transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1); 
          }.hero__content h1 {
-    margin: 100px 50px;
+    margin: 100px 30px;
    
     font-size: 80px; /* desktop default */
     color: green;
@@ -2270,4 +2270,16 @@ textarea {
     .hero__content h1 {
         font-size: 32px; /* mobile / portrait */
     }
+}
+/* Hero section with background color and spacing */
+.hero.hero--noimage {
+    background-color: #f0f8ff; /* background for H1 */
+    padding-bottom: 40px;      /* space below H1 */
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+}
+
+/* Space between H1 and image */
+.post__image {
+    margin-top: 40px;          /* pushes image down */
 }
