@@ -2261,12 +2261,12 @@ textarea {
     margin-bottom: 100px;
     margin-top: 100px;
     font-size: 80px; /* desktop default */
-    color: blue;
+    color: green;
 }
 
 /* For portrait / smaller screens */
 @media (max-width: 768px) {
     .hero__content h1 {
-        font-size: 36px; /* mobile / portrait */
+        font-size: 32px; /* mobile / portrait */
     }
 }
