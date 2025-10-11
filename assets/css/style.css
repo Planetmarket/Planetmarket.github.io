@@ -2318,34 +2318,65 @@ body.page-template {
   color:#fff;
 }
 
-/* Make main content images full-width, edge-to-edge */
-.content__entry,
-.entry-wrapper,
+/* Main content wrapper */
+.content__entry {
+  max-width: 900px;
+  margin: 3rem auto; /* add spacing from top/bottom */
+  padding: 0 1rem;
+  font-size: 20px; /* main text size */
+  line-height: 1.8;
+  color: #212529;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* spacing between image and paragraphs */
+}
+
+/* Featured / post images */
 .post__image {
-  margin: 0;
+  margin: 0; 
   padding: 0;
+  width: 100%; 
+  overflow: hidden;
+  border-radius: 16px; /* soft rounded corners */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* subtle shadow */
 }
 
 .post__image img {
   display: block;
-  width: 100vw; /* full viewport width */
+  width: 100%;
   height: auto;
   margin: 0;
   padding: 0;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  transform: translateX(-50%); /* center image horizontally */
-  border-radius: 0; /* remove any corner rounding */
+  transition: transform 0.5s ease, filter 0.5s ease;
 }
 
-/* Remove default spacing from paragraphs near the image */
+/* Image hover effect */
+.post__image img:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+/* Paragraph styling */
+.content__entry p {
+  margin: 0;
+  color: #333;
+  line-height: 1.8;
+  font-size: 1.25rem; /* ≈ 20px */
+  letter-spacing: 0.5px;
+}
+
+/* Optional: first paragraph standout */
 .content__entry p:first-of-type {
-  margin-top: 0;
+  font-weight: 600;
+  font-size: 1.35rem; /* slightly bigger */
 }
-.content__entry p:last-of-type {
-  margin-bottom: 0;
+
+/* Optional: highlight colored text */
+.content__entry span {
+  color: #0261f7;
+  font-weight: 500;
 }
+
 
 /* Share buttons */
 .content__share-button {
