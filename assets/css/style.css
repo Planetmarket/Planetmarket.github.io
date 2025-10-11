@@ -2308,14 +2308,15 @@ body.page-template {
   align-items: center;
   justify-content: center;
   height: 80vh;
-  background: linear-gradient(to right, #009743, #009743 );
+  background: linear-gradient(to right,#009743 ,#009743);
   color: #fff;
   text-align: center;
 }
 .hero__content h1 {
   font-size: 5rem;
   font-weight: 700;
-    color:#fff;
+  color:#fff;
+  margin : 10px 10px ;
 }
 
 /* Main content */
