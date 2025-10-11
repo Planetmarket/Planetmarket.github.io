@@ -2374,3 +2374,16 @@ body.page-template {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+
+@media (max-width: 768px) {
+  .hero__content h1 {
+    font-size: 2.5rem; /* ≈ 32px */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__content h1 {
+    font-size: 1.6rem; /* ≈ 26px */
+  }
+}
