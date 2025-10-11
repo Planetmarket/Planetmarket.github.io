@@ -2308,7 +2308,7 @@ body.page-template {
   align-items: center;
   justify-content: center;
   height: 80vh;
-  background: linear-gradient(to right,#25D366 ,#25D366);
+  background: linear-gradient(to right,#009743 ,#009743);
   color: #fff;
   text-align: center;
 }
@@ -2353,7 +2353,7 @@ body.page-template {
 
 /* Footer */
 .footer {
-  background: linear-gradient(to left, #25D366, #25D366);
+  background: linear-gradient(to left, #009743, #009743);
   color: #fff;
   padding: 2rem 1rem;
   text-align: center;
