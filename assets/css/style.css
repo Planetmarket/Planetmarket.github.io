@@ -2316,7 +2316,6 @@ body.page-template {
   font-size: 5rem;
   font-weight: 700;
   color:#fff;
-  padding : 10px 10px ;
 }
 
 /* Main content */
@@ -2327,7 +2326,7 @@ body.page-template {
 }
 .post__image img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 10px;
   margin-bottom: 1rem;
 }
 .align-left {
@@ -2378,7 +2377,7 @@ body.page-template {
 
 @media (max-width: 768px) {
   .hero__content h1 {
-    font-size: 4rem; /* ≈ 32px */
+    font-size: 4.5rem; /* ≈ 32px */
   }
 }
 
