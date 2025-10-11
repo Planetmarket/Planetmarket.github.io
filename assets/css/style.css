@@ -2315,8 +2315,8 @@ body.page-template {
 .hero__content h1 {
   font-size: 5rem;
   font-weight: 700;
-  color:#ff0000;
-  margin : 10px 10px ;
+  color:#fff;
+  padding : 10px 10px ;
 }
 
 /* Main content */
