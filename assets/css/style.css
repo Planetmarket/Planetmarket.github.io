@@ -2318,23 +2318,33 @@ body.page-template {
   color:#fff;
 }
 
-/* Main content */
-.content__entry {
-  max-width: 900px;
-  margin: 0rem;
-  padding: 0rem;
-    
-}
-.post__image img {
-  width: 100%;
-  border-radius: 0px;
-
+/* Make main content images full-width, edge-to-edge */
+.content__entry,
+.entry-wrapper,
+.post__image {
   margin: 0;
   padding: 0;
 }
-.align-left {
-  text-align: left;
-  margin-bottom: 1rem;
+
+.post__image img {
+  display: block;
+  width: 100vw; /* full viewport width */
+  height: auto;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%); /* center image horizontally */
+  border-radius: 0; /* remove any corner rounding */
+}
+
+/* Remove default spacing from paragraphs near the image */
+.content__entry p:first-of-type {
+  margin-top: 0;
+}
+.content__entry p:last-of-type {
+  margin-bottom: 0;
 }
 
 /* Share buttons */
