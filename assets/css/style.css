@@ -9,7 +9,7 @@
       --gallery-gap:        calc(var(--baseline) * 1.5); 
       --body-font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       --heading-font:       -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      --logo-font:          var(--body-font);
+      --logo-font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       --menu-font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       --font-size:          clamp(1rem, 1rem + (0 * ((100vw - 20rem) / 70)), 1rem);
       --font-weight-normal: 200; 
@@ -2303,6 +2303,7 @@ body.page-template {
 }
 
 /* Hero */
+/* Hero */
 .hero {
   display: flex;
   align-items: center;
@@ -2312,33 +2313,52 @@ body.page-template {
   color: #fff;
   text-align: center;
 }
+
 .hero__content h1 {
   font-size: 5rem;
   font-weight: 700;
   color:#fff;
+  /* Transition for smooth zoom */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Zoom effect on hover */
+.hero__content h1:hover {
+  transform: scale(1.1); /* Zoom in */
 }
 
 /* Main content wrapper */
 .content__entry {
   max-width: 900px;
-  margin: 3rem auto; /* add spacing from top/bottom */
-  padding: 0 1rem;
-  font-size: 20px; /* main text size */
+  margin: 4rem auto; /* spacing from top/bottom */
+  padding: 2rem 2rem; /* inner padding */
+  font-size: 20px;
   line-height: 1.8;
   color: #212529;
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* spacing between image and paragraphs */
+  gap: 2.5rem;
+  background: linear-gradient(135deg, #ffffff, #f0f4f8); /* soft gradient background */
+  border-radius: 20px; /* rounded corners */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* deep soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for content block */
+.content__entry:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
 }
 
 /* Featured / post images */
 .post__image {
   margin: 0; 
   padding: 0;
-  width: 100%; 
+  width: 100%;
   overflow: hidden;
-  border-radius: 16px; /* soft rounded corners */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* soft shadow for images */
+  transition: transform 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease;
 }
 
 .post__image img {
@@ -2347,35 +2367,51 @@ body.page-template {
   height: auto;
   margin: 0;
   padding: 0;
-  transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 /* Image hover effect */
-.post__image img:hover {
-  transform: scale(1.03);
-  filter: brightness(1.05);
+.post__image:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
 }
 
 /* Paragraph styling */
 .content__entry p {
   margin: 0;
   color: #333;
-  line-height: 1.8;
-  font-size: 1.25rem; /* ≈ 20px */
+  line-height: 1.9;
+  font-size: 1.25rem;
   letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
-/* Optional: first paragraph standout */
+/* Highlight first paragraph or key info */
 .content__entry p:first-of-type {
   font-weight: 600;
-  font-size: 1.35rem; /* slightly bigger */
+  font-size: 1.35rem;
+  color: #0261f7;
 }
 
-/* Optional: highlight colored text */
+/* Optional: links or highlighted text */
 .content__entry span {
   color: #0261f7;
   font-weight: 500;
 }
+
+/* Optional: responsive adjustments */
+@media (max-width: 768px) {
+  .content__entry {
+    padding: 1.5rem 1rem;
+  }
+  .content__entry p {
+    font-size: 1.1rem;
+  }
+  .content__entry p:first-of-type {
+    font-size: 1.2rem;
+  }
+}
+
 
 
 /* Share buttons */
@@ -2425,4 +2461,104 @@ body.page-template {
   }
 }
 
+}
+
+
+/* Main content wrapper with interactive background and shadow */
+.content__entry {
+  max-width: 900px;
+  margin: 4rem auto; 
+  padding: 3rem 2rem;
+  font-size: 20px;
+  line-height: 1.8;
+  color: #212529;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  
+  /* Background with soft gradient + subtle texture */
+  background: linear-gradient(145deg, #ffffff, #e6f0fa);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 97, 247, 0.1);
+  
+  /* Hover effect for interactive feel */
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+.content__entry:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 15px 25px rgba(0, 97, 247, 0.2);
+  background: linear-gradient(145deg, #f0f7ff, #d0e4ff);
+}
+
+/* Featured / post images with depth */
+.post__image {
+  margin: 0; 
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease;
+}
+
+.post__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Image hover effect */
+.post__image:hover img {
+  transform: scale(1.06) rotate(-0.5deg);
+  filter: brightness(1.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* Paragraph styling for clarity and elegance */
+.content__entry p {
+  margin: 0;
+  color: #212529;
+  line-height: 1.9;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+/* Highlight first paragraph */
+.content__entry p:first-of-type {
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: #0261f7;
+}
+
+/* Span highlights */
+.content__entry span {
+  color: #0261f7;
+  font-weight: 500;
+}
+
+/* Optional: subtle floating animation for content block */
+@keyframes floatBlock {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+.content__entry {
+  animation: floatBlock 6s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content__entry {
+    padding: 2rem 1rem;
+  }
+  .content__entry p {
+    font-size: 1.15rem;
+  }
+  .content__entry p:first-of-type {
+    font-size: 1.25rem;
+  }
 }
