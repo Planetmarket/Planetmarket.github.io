@@ -1,130 +1,249 @@
-<svg width="500" height="320" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <style>
-      @keyframes flow { to { stroke-dashoffset:-20; } }
-      .line { stroke:#000; stroke-width:1.5; fill:none; stroke-linecap:round; stroke-dasharray:5 5; animation:flow 2s linear infinite; }
-      .btn { cursor:pointer; transition: transform 0.15s ease; }
-      .btn:hover { transform: scale(1.05); }
-      .btn-text { font-family: sans-serif; font-size: 10px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
-    </style>
-    
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFB900;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FFC84D;stop-opacity:1" />
-    </linearGradient>
-    
-    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ff6b42;stop-opacity:1" />
-    </linearGradient>
-    
-    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#107C10;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#3aa64a;stop-opacity:1" />
-    </linearGradient>
-    
-    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#006ee6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#3b9fff;stop-opacity:1" />
-    </linearGradient>
-    
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
-    </filter>
-  </defs>
-  
-  <rect width="500" height="320" fill="url(#bgGrad)"/>
-  <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" style="stop-color:#e6f4ea;stop-opacity:1" />
-    <stop offset="100%" style="stop-color:#c6e0c3;stop-opacity:1" />
-  </linearGradient>
-  
-  <!-- Connection Lines -->
-  <!-- Row 2 to Row 1 (center: y=40 for row1, y=120 for row2) -->
-  <line class="line" x1="50" y1="120" x2="250" y2="40"/>
-  <line class="line" x1="150" y1="120" x2="250" y2="40"/>
-  <line class="line" x1="250" y1="120" x2="250" y2="40"/>
-  <line class="line" x1="350" y1="120" x2="250" y2="40"/>
-  <line class="line" x1="450" y1="120" x2="250" y2="40"/>
-  
-  <!-- Row 2 to Row 3 (y=120 to y=200) -->
-  <line class="line" x1="50" y1="120" x2="50" y2="200"/>
-  <line class="line" x1="150" y1="120" x2="150" y2="200"/>
-  <line class="line" x1="250" y1="120" x2="250" y2="200"/>
-  <line class="line" x1="350" y1="120" x2="350" y2="200"/>
-  <line class="line" x1="450" y1="120" x2="450" y2="200"/>
-  
-  <!-- Row 3 to Row 4 (y=200 to y=280) -->
-  <line class="line" x1="250" y1="200" x2="350" y2="280"/>
-  <line class="line" x1="350" y1="200" x2="350" y2="280"/>
-  <line class="line" x1="450" y1="200" x2="350" y2="280"/>
-  
-  <!-- Row 1: Agriculture Income (y=20 to 60, center=40) -->
-  <g class="btn">
-    <rect x="210" y="20" width="80" height="40" rx="8" fill="url(#grad1)" filter="url(#shadow)"/>
-    <text x="250" y="36" class="btn-text" fill="#000">Agriculture</text>
-    <text x="250" y="48" class="btn-text" fill="#000">Income</text>
-  </g>
-  
-  <!-- Row 2: Problems (y=100 to 140, center=120) -->
-  <g class="btn">
-    <rect x="10" y="100" width="80" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-    <text x="50" y="120" class="btn-text" fill="#fff">Weather</text>
-  </g>
-  
-  <g class="btn">
-    <rect x="110" y="100" width="80" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-    <text x="150" y="120" class="btn-text" fill="#fff">Pest</text>
-  </g>
-  
-  <g class="btn">
-    <rect x="210" y="100" width="80" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-    <text x="250" y="116" class="btn-text" fill="#fff">Small</text>
-    <text x="250" y="128" class="btn-text" fill="#fff">Farms</text>
-  </g>
-  
-  <g class="btn">
-    <rect x="310" y="100" width="80" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-    <text x="350" y="120" class="btn-text" fill="#fff">Price</text>
-  </g>
-  
-  <g class="btn">
-    <rect x="410" y="100" width="80" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-    <text x="450" y="120" class="btn-text" fill="#fff">Intermediaries</text>
-  </g>
-  
-  <!-- Row 3: Solutions (y=180 to 220, center=200) -->
-  <g class="btn">
-    <rect x="10" y="180" width="80" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-    <text x="50" y="200" class="btn-text" fill="#fff">Uncontrollable</text>
-  </g>
-  
-  <g class="btn">
-    <rect x="110" y="180" width="80" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-    <text x="150" y="200" class="btn-text" fill="#fff">Pesticides</text>
-  </g>
-  
-  <g class="btn">
-    <rect x="210" y="180" width="80" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-    <text x="250" y="196" class="btn-text" fill="#fff">Finished</text>
-    <text x="250" y="208" class="btn-text" fill="#fff">Products</text>
-  </g>
-  
-  <g class="btn">
-    <rect x="310" y="180" width="80" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-    <text x="350" y="196" class="btn-text" fill="#fff">Demand</text>
-    <text x="350" y="208" class="btn-text" fill="#fff">Data</text>
-  </g>
-  
-  <g class="btn">
-    <rect x="410" y="180" width="80" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-    <text x="450" y="200" class="btn-text" fill="#fff">Avoidable</text>
-  </g>
-  
-  <!-- Row 4: Planet Market (y=260 to 300, center=280) -->
-  <g class="btn">
-    <rect x="310" y="260" width="80" height="40" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
-    <text x="350" y="276" class="btn-text" fill="#fff">Planet</text>
-    <text x="350" y="288" class="btn-text" fill="#fff">Market</text>
-  </g>
-</svg>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JohnDeer Agriculture Income Cycles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #e0f7e9, #c8f0d4);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #107C10;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #3a3a3a;
+      margin-top: 8px;
+    }
+    .diagram-container {
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 30px;
+      overflow-x: auto;
+    }
+    svg { width: 100%; height: auto; display: block; }
+    .details {
+      max-width: 900px;
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+    .details p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+    .circle-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      background-color: #fff;
+    }
+    .circle-btn img { width: 30px; height: 30px; }
+    .circle-btn:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .details p { font-size: 0.95rem; }
+      .circle-btn { width: 50px; height: 50px; }
+      .circle-btn img { width: 24px; height: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>JohnDeer</h1>
+    <p>Understanding Agriculture Income Cycles</p>
+  </header>
+
+  <div class="diagram-container">
+    <!-- Responsive SVG -->
+    <svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          @keyframes flow { to { stroke-dashoffset:-20; } }
+          @keyframes ripple { 0% { r: 0; opacity: 0.6; } 100% { r: 50; opacity: 0; } }
+          .line { stroke:#000; stroke-width:1.5; fill:none; stroke-linecap:round; stroke-dasharray:5 5; animation:flow 2s linear infinite; }
+          .btn { cursor:pointer; transition: all 0.05s ease; }
+          .btn:hover { transform: translateY(-1px); filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25)); }
+          .btn:active { transform: translateY(0) scale(0.99); }
+          .btn-rect { transition: all 0.05s ease; }
+          .btn:hover .btn-rect { filter: brightness(1.1); }
+          .btn-text { font-family: sans-serif; font-size: 9px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+          .ripple-circle { fill: rgba(255,255,255,0.5); pointer-events: none; }
+        </style>
+        <!-- Gradients -->
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#FFB900;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#FFC84D;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#ff6b42;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#107C10;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#3aa64a;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#006ee6;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#3b9fff;stop-opacity:1" />
+        </linearGradient>
+        <filter id="shadow">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+          <feOffset dx="0" dy="3" result="offsetblur"/>
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.3"/>
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <rect width="520" height="380" fill="none"/>
+      
+      <!-- Connection Lines -->
+      <line class="line" x1="52" y1="140" x2="260" y2="38"/>
+      <line class="line" x1="156" y1="140" x2="260" y2="38"/>
+      <line class="line" x1="260" y1="140" x2="260" y2="38"/>
+      <line class="line" x1="364" y1="140" x2="260" y2="38"/>
+      <line class="line" x1="468" y1="140" x2="260" y2="38"/>
+      <line class="line" x1="52" y1="140" x2="52" y2="242"/>
+      <line class="line" x1="156" y1="140" x2="156" y2="242"/>
+      <line class="line" x1="260" y1="140" x2="260" y2="242"/>
+      <line class="line" x1="364" y1="140" x2="364" y2="242"/>
+      <line class="line" x1="468" y1="140" x2="468" y2="242"/>
+      <line class="line" x1="260" y1="242" x2="364" y2="344"/>
+      <line class="line" x1="364" y1="242" x2="364" y2="344"/>
+      <line class="line" x1="468" y1="242" x2="364" y2="344"/>
+
+      <!-- Buttons (same as original, scaled by viewBox) -->
+      <g class="btn" onclick="createRipple(evt, 260, 38)">
+        <rect class="btn-rect" x="212" y="16" width="96" height="44" rx="6" fill="url(#grad1)" filter="url(#shadow)"/>
+        <text x="260" y="38" class="btn-text" fill="#000">Agriculture Income</text>
+      </g>
+
+      <!-- Row 2: Problems -->
+      <g class="btn" onclick="createRipple(evt, 52, 140)">
+        <rect class="btn-rect" x="4" y="118" width="96" height="44" rx="6" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="52" y="140" class="btn-text" fill="#fff">Weather</text>
+      </g>
+      <g class="btn" onclick="createRipple(evt, 156, 140)">
+        <rect class="btn-rect" x="108" y="118" width="96" height="44" rx="6" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="156" y="140" class="btn-text" fill="#fff">Pest</text>
+      </g>
+      <g class="btn" onclick="createRipple(evt, 260, 140)">
+        <rect class="btn-rect" x="212" y="118" width="96" height="44" rx="6" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="260" y="140" class="btn-text" fill="#fff">Small Farms</text>
+      </g>
+      <g class="btn" onclick="createRipple(evt, 364, 140)">
+        <rect class="btn-rect" x="316" y="118" width="96" height="44" rx="6" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="364" y="140" class="btn-text" fill="#fff">Price</text>
+      </g>
+      <g class="btn" onclick="createRipple(evt, 468, 140)">
+        <rect class="btn-rect" x="420" y="118" width="96" height="44" rx="6" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="468" y="140" class="btn-text" fill="#fff">Intermediaries</text>
+      </g>
+
+      <!-- Row 3: Solutions -->
+      <g class="btn" onclick="createRipple(evt, 52, 242)">
+        <rect class="btn-rect" x="4" y="220" width="96" height="44" rx="6" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="52" y="242" class="btn-text" fill="#fff">Uncontrollable</text>
+      </g>
+      <g class="btn" onclick="createRipple(evt, 156, 242)">
+        <rect class="btn-rect" x="108" y="220" width="96" height="44" rx="6" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="156" y="242" class="btn-text" fill="#fff">Pesticides</text>
+      </g>
+      <g class="btn" onclick="createRipple(evt, 260, 242)">
+        <rect class="btn-rect" x="212" y="220" width="96" height="44" rx="6" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="260" y="242" class="btn-text" fill="#fff">Finished Products</text>
+      </g>
+      <g class="btn" onclick="createRipple(evt, 364, 242)">
+        <rect class="btn-rect" x="316" y="220" width="96" height="44" rx="6" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="364" y="242" class="btn-text" fill="#fff">Demand Data</text>
+      </g>
+      <g class="btn" onclick="createRipple(evt, 468, 242)">
+        <rect class="btn-rect" x="420" y="220" width="96" height="44" rx="6" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="468" y="242" class="btn-text" fill="#fff">Avoidable</text>
+      </g>
+
+      <!-- Row 4: Planet Market -->
+      <g class="btn" onclick="createRipple(evt, 364, 344)">
+        <rect class="btn-rect" x="316" y="322" width="96" height="44" rx="6" fill="url(#grad4)" filter="url(#shadow)"/>
+        <text x="364" y="344" class="btn-text" fill="#fff">Planet Market</text>
+      </g>
+
+      <g id="rippleContainer"></g>
+
+      <script type="text/javascript">
+      <![CDATA[
+        function createRipple(evt, cx, cy) {
+          var svg = document.querySelector('svg');
+          var rippleContainer = document.getElementById('rippleContainer');
+          var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('class', 'ripple-circle');
+          circle.setAttribute('cx', cx);
+          circle.setAttribute('cy', cy);
+          circle.setAttribute('r', '0');
+          rippleContainer.appendChild(circle);
+          var anim = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+          anim.setAttribute('attributeName', 'r'); anim.setAttribute('from', '0'); anim.setAttribute('to', '50'); anim.setAttribute('dur', '0.6s'); anim.setAttribute('begin', 'indefinite'); circle.appendChild(anim);
+          var animOpacity = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+          animOpacity.setAttribute('attributeName', 'opacity'); animOpacity.setAttribute('from', '0.6'); animOpacity.setAttribute('to', '0'); animOpacity.setAttribute('dur', '0.6s'); animOpacity.setAttribute('begin', 'indefinite'); circle.appendChild(animOpacity);
+          anim.beginElement(); animOpacity.beginElement();
+          setTimeout(function() { rippleContainer.removeChild(circle); }, 600);
+        }
+      ]]>
+      </script>
+    </svg>
+  </div>
+
+  <div class="details">
+    <p>
+      Agriculture income cycles are influenced by weather, pests, market price fluctuations, and farm management. Understanding these factors helps farmers optimize yield, reduce losses, and ensure sustainable growth for their farms.
+    </p>
+  </div>
+
+  <div class="buttons">
+    <div class="circle-btn" onclick="window.open('https://wa.me/your-number','_blank')">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </div>
+    <div class="circle-btn" onclick="window.location.href='mailto:example@gmail.com'">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Gmail">
+    </div>
+    <div class="circle-btn" onclick="navigator.share ? navigator.share({ title: 'JohnDeer Agriculture', text: 'Check this agriculture income cycle diagram', url: window.location.href }) : alert('Share not supported')">
+      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="Share">
+    </div>
+  </div>
+
+</body>
+</html>
