@@ -15,7 +15,6 @@ body {
     align-items: center;
     color: #000;
     min-width: 320px;
-    max-width: 1920px;
 }
 
 /* Header */
@@ -33,34 +32,35 @@ header p {
     margin-top: clamp(5px, 1vw, 15px); 
 }
 
-/* Diagram Grid */
+/* Diagram Wrapper and Scaling */
+.diagram-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .diagram-container {
+    width: 500px;   /* base size for scaling */
+    height: 400px;  /* base size */
     display: grid;
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: repeat(4,1fr);
-    width: clamp(300px, 90vw, 1400px);
-    max-height: clamp(240px, 75vh, 1120px);
-    aspect-ratio: 5 / 4;
-    gap: clamp(5px, 1.5vw, 15px);
+    gap: 10px;
     position: relative;
-}
-.diagram-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: clamp(4px, 1.5vw, 12px);
-    position: relative;
+    transform-origin: top center;
 }
 
 /* Buttons */
 button {
-    font-size: clamp(0.6rem, 1.5vw, 1rem);
-    width: 90%;
-    min-width: 60px;
-    max-width: 250px;
+    width: 100%;
+    height: 100%;
     min-height: 40px;
     max-height: 100px;
+    font-size: clamp(0.6rem, 1.2vw, 1rem);
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    padding: clamp(4px, 1vw, 10px);
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -118,6 +118,7 @@ button:active { transform: translateY(0) scale(0.97); box-shadow:0 3px 6px rgba(
 </header>
 
 <main>
+<div class="diagram-wrapper">
 <div class="diagram-container" id="diagramContainer">
     <svg id="diagramConnections" viewBox="0 0 500 400" preserveAspectRatio="none"></svg>
 
@@ -148,6 +149,7 @@ button:active { transform: translateY(0) scale(0.97); box-shadow:0 3px 6px rgba(
     <div class="diagram-cell"></div>
     <div class="diagram-cell"><button class="btn-platform" data-row="3" data-col="3" data-description="Planet Market technologies facilitate applying solutions.">Planet Market</button></div>
     <div class="diagram-cell"></div>
+</div>
 </div>
 
 <div class="details-panel" id="detailsPanel">Click a button to see insights here.</div>
@@ -212,11 +214,19 @@ document.querySelectorAll('button').forEach(btn => {
     });
 });
 
-// Initial draw and responsive
-window.addEventListener('load', drawConnections);
-window.addEventListener('resize', drawConnections);
-const resizeObserver = new ResizeObserver(drawConnections);
-resizeObserver.observe(document.getElementById('diagramContainer'));
+// Initial draw and proportional scaling
+function scaleDiagram() {
+    const container = document.getElementById('diagramContainer');
+    const wrapper = document.querySelector('.diagram-wrapper');
+    const scaleX = wrapper.clientWidth / 500;
+    const scaleY = window.innerHeight * 0.7 / 400; // 70% of viewport height
+    const scale = Math.min(scaleX, scaleY, 1);
+    container.style.transform = `scale(${scale})`;
+    drawConnections();
+}
+
+window.addEventListener('load', scaleDiagram);
+window.addEventListener('resize', scaleDiagram);
 </script>
 
 </body>
