@@ -13,17 +13,34 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     padding: 20px;
     color: #000;
 }
 
-header { text-align: center; margin-bottom: 20px; }
-header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: #000; }
-header p { font-size: clamp(1rem, 2vw, 1.3rem); color: #000; margin-top: 5px; font-style: italic; }
+header, main, footer {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-main { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 900px; }
+header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: #000; text-align: center; }
+header p { font-size: clamp(1rem, 2vw, 1.3rem); color: #000; margin-top: 5px; font-style: italic; text-align: center; }
 
-.grid-container { display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(4, 1fr); gap:0; position: relative; width:100%; max-width:95vw; aspect-ratio:5/4; margin-bottom:20px; }
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap:0;
+    position: relative;
+    width:100%;
+    max-width:95vw;
+    aspect-ratio:5/4;
+}
+
 .grid-cell { display:flex; justify-content:center; align-items:center; position:relative; text-align:center; padding:clamp(4px,2vw,10px); }
 
 button {
@@ -75,27 +92,48 @@ svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; 
     min-height: 120px;
     font-size: 1rem;
     color: #333;
-    font-family: 'Comic Neue', cursive; /* only here */
+    font-family: 'Comic Neue', cursive;
     white-space: pre-line;
     line-height: 1.5;
+    text-align: center;
 }
 
+/* Footer logos with captions */
 footer {
-    margin-top: 30px;
     display: flex;
+    flex-direction: row;
     gap: 50px;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
 }
 
-footer a img {
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #000;
+    text-align: center;
+}
+
+.footer-item img {
     width: 50px;
     height: 50px;
     object-fit: contain;
     transition: transform 0.2s;
+    margin-bottom: 5px;
 }
 
-footer a img:hover { transform: scale(1.2); }
+.footer-item img:hover {
+    transform: scale(1.2);
+}
+
+.footer-item span {
+    font-size: 0.9rem;
+    margin-top: 2px;
+}
 
 @media (max-width:768px) { button { font-size: clamp(0.45rem,2.2vw,0.75rem); min-height: clamp(38px,9vw,52px); } .line { stroke-width:1.2; } }
 @media (max-width:480px) { .grid-container{max-width:99vw; aspect-ratio:5/4.2;} button{font-size:clamp(0.4rem,2.5vw,0.65rem); min-height:clamp(35px,9vw,45px);} .line{stroke-width:1;} }
@@ -105,7 +143,7 @@ footer a img:hover { transform: scale(1.2); }
 <body>
 
 <header>
-    <h1>Agriculture Flow Dashboard</h1>
+    <h1>PLANET MARKET</h1>
     <p>Explore goals, problems, solutions, and technologies interactively</p>
 </header>
 
@@ -148,9 +186,18 @@ footer a img:hover { transform: scale(1.2); }
 </main>
 
 <footer>
-    <a href="https://wa.me/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
-    <a href="mailto:example@gmail.com"><img src="https://www.google.com/s2/favicons?domain=gmail.com&sz=48" alt="Gmail"></a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Share"></a>
+    <div class="footer-item">
+        <a href="https://wa.me/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
+        <span>Join Group</span>
+    </div>
+    <div class="footer-item">
+        <a href="mailto:example@gmail.com"><img src="https://www.google.com/s2/favicons?domain=gmail.com&sz=48" alt="Gmail"></a>
+        <span>Send Email</span>
+    </div>
+    <div class="footer-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Share"></a>
+        <span>Share Friend</span>
+    </div>
 </footer>
 
 <script>
@@ -198,23 +245,17 @@ document.querySelectorAll('button').forEach(btn=>{
         const circle = document.createElement('span');
         circle.classList.add('ripple');
         const rect = btn.getBoundingClientRect();
-```
+        const size = Math.max(rect.width, rect.height);
+        circle.style.width = circle.style.height = size + 'px';
+        circle.style.left = (e.clientX - rect.left - size/2)+'px';
+        circle.style.top = (e.clientY - rect.top - size/2)+'px';
+        btn.appendChild(circle);
+        setTimeout(()=>circle.remove(),600);
 
-
-```
-    const size = Math.max(rect.width, rect.height);
-    circle.style.width = circle.style.height = size + 'px';
-    circle.style.left = (e.clientX - rect.left - size/2)+'px';
-    circle.style.top = (e.clientY - rect.top - size/2)+'px';
-    btn.appendChild(circle);
-    setTimeout(()=>circle.remove(),600);
-
-    // Show details
-    detailsPanel.textContent = btn.dataset.description;
+        // Show details
+        detailsPanel.textContent = btn.dataset.description;
+    });
 });
-```
-
-}); </script>
-
+</script>
 </body>
 </html>
