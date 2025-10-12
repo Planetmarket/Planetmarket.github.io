@@ -25,48 +25,39 @@ header {
 }
 header h1 {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: #000;
 }
 header p {
     font-size: clamp(1rem, 2vw, 1.3rem);
-    color: #000;
     margin-top: 5px;
     font-style: italic;
 }
 
-/* Main Layout */
-main {
+/* Grid Wrapper to center */
+.grid-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     width: 100%;
+    overflow-x: hidden; /* prevent horizontal scroll */
 }
 
-/* Grid */
+/* Grid Container */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, auto);
-    justify-content:center;
     gap: 6px;
     position: relative;
     width: 100%;
     max-width: 60vw;
-    margin-bottom: 20px;
-    overflow: visible;
-    height:60vh;
+    height: 60vh;
 }
 
-@media (max-width: 1400px) {
-    .grid-container {
-        max-width: 98vw
-        width:100%;
-        min-width:0;
-    }
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .grid-container { max-width: 98vw; }
 }
 
-
-
+/* Grid Cells */
 .grid-cell {
     display: flex;
     justify-content: center;
@@ -88,28 +79,21 @@ button {
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-width:0;
+    min-width: 0;
     min-height: 40px;
-    height:auto;
+    height: auto;
     padding: 6px 8px;
     position: relative;
     line-height: 1.2;
     color: #fff;
-    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+button:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
+button:active { transform: translateY(0) scale(0.97); box-shadow: 0 3px 6px rgba(0,0,0,0.2); }
 
-button:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-}
-button:active {
-    transform: translateY(0) scale(0.97);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-}
-
+/* Ripple effect */
 .ripple {
     position: absolute;
     border-radius: 50%;
@@ -119,9 +103,7 @@ button:active {
     pointer-events: none;
     z-index: 20;
 }
-@keyframes ripple {
-    to { transform: scale(4); opacity: 0; }
-}
+@keyframes ripple { to { transform: scale(4); opacity: 0; } }
 
 /* Button Colors */
 .row1-btn { background: linear-gradient(145deg, #FFB900, #FFC84D); color: #000; }
@@ -129,7 +111,7 @@ button:active {
 .row5-btn { background: linear-gradient(145deg, #107C10, #3aa64a); color: #fff; }
 .row7-btn { background: linear-gradient(145deg, #006ee6, #3b9fff); color: #fff; }
 
-/* Lines */
+/* SVG Lines */
 svg {
     position: absolute;
     inset: 0;
@@ -147,9 +129,7 @@ svg {
     animation: flow 2s linear infinite;
     transition: stroke 0.3s ease;
 }
-@keyframes flow {
-    to { stroke-dashoffset: -20; }
-}
+@keyframes flow { to { stroke-dashoffset: -20; } }
 .grid-container:hover .line {
     stroke: #00f;
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
@@ -170,12 +150,7 @@ svg {
     white-space: pre-line;
     line-height: 1.5;
 }
-
-@media (max-width: 768px) {
-    .details-panel {
-        max-width: 98vw;
-    }
-}
+@media (max-width: 768px) { .details-panel { max-width: 98vw; } }
 
 /* Footer */
 footer {
@@ -185,29 +160,16 @@ footer {
     justify-content: center;
     align-items: center;
 }
-footer a img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    transition: transform 0.2s;
-}
-footer a img:hover {
-    transform: scale(1.2);
-}
+footer a img { width: 50px; height: 50px; object-fit: contain; transition: transform 0.2s; }
+footer a img:hover { transform: scale(1.2); }
 
-/* Responsive Button Scaling */
-@media (max-width: 768px) {
-    button { font-size: clamp(0.45rem, 1.3vw, 0.75rem); min-height: 36px; }
-}
-@media (max-width: 480px) {
-    button { font-size: clamp(0.35rem, 2vw, 0.7rem); min-height: 32px; padding: 4px 6px; }
-}
-@media (max-width: 360px) {
-    button { font-size: clamp(0.3rem, 2.5vw, 0.65rem); min-height: 28px; padding: 3px 5px; }
-}
+/* Responsive Buttons */
+@media (max-width: 768px) { button { font-size: clamp(0.45rem, 1.3vw, 0.75rem); min-height: 36px; } }
+@media (max-width: 480px) { button { font-size: clamp(0.35rem, 2vw, 0.7rem); min-height: 32px; padding: 4px 6px; } }
+@media (max-width: 360px) { button { font-size: clamp(0.3rem, 2.5vw, 0.65rem); min-height: 28px; padding: 3px 5px; } }
+
 </style>
 </head>
-
 <body>
 
 <header>
@@ -216,41 +178,41 @@ footer a img:hover {
 </header>
 
 <main>
-    <div class="grid-container">
-        <svg id="connectionSvg"></svg>
+    <div class="grid-wrapper">
+        <div class="grid-container">
+            <svg id="connectionSvg"></svg>
 
-        <!-- Row 1 -->
-        <div class="grid-cell"></div>
-        <div class="grid-cell"></div>
-        <div class="grid-cell"><button class="row1-btn" data-row="0" data-col="2" data-description="Ensure stable agriculture income through sustainable practices.">Agriculture Income</button></div>
-        <div class="grid-cell"></div>
-        <div class="grid-cell"></div>
+            <!-- Row 1 -->
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"><button class="row1-btn" data-row="0" data-col="2" data-description="Ensure stable agriculture income through sustainable practices.">Agriculture Income</button></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
 
-        <!-- Row 2 -->
-        <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="0" data-description="Weather unpredictability affects crops and yields.">Weather</button></div>
-        <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="1" data-description="Pest infestations reduce productivity.">Pest</button></div>
-        <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="2" data-description="Small farms have limited resources and capacity.">Small Farms</button></div>
-        <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="3" data-description="Market price volatility affects farmers' income.">Price</button></div>
-        <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="4" data-description="Intermediaries often reduce farmers' profit margins.">Intermediaries</button></div>
+            <!-- Row 2 -->
+            <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="0" data-description="Weather unpredictability affects crops and yields.">Weather</button></div>
+            <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="1" data-description="Pest infestations reduce productivity.">Pest</button></div>
+            <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="2" data-description="Small farms have limited resources and capacity.">Small Farms</button></div>
+            <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="3" data-description="Market price volatility affects farmers' income.">Price</button></div>
+            <div class="grid-cell"><button class="row3-btn" data-row="1" data-col="4" data-description="Intermediaries often reduce farmers' profit margins.">Intermediaries</button></div>
 
-        <!-- Row 3 -->
-        <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="0" data-description="Adaptable strategies to uncontrollable events.">Uncontrollable</button></div>
-        <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="1" data-description="Proper pesticide management to reduce losses.">Pesticides</button></div>
-        <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="2" data-description="Improve processing to increase finished products.">Finished Products</button></div>
-        <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="3" data-description="Use data to anticipate demand accurately.">Demand Data</button></div>
-        <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="4" data-description="Implement practices to avoid losses.">Avoidable</button></div>
+            <!-- Row 3 -->
+            <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="0" data-description="Adaptable strategies to uncontrollable events.">Uncontrollable</button></div>
+            <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="1" data-description="Proper pesticide management to reduce losses.">Pesticides</button></div>
+            <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="2" data-description="Improve processing to increase finished products.">Finished Products</button></div>
+            <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="3" data-description="Use data to anticipate demand accurately.">Demand Data</button></div>
+            <div class="grid-cell"><button class="row5-btn" data-row="2" data-col="4" data-description="Implement practices to avoid losses.">Avoidable</button></div>
 
-        <!-- Row 4 -->
-        <div class="grid-cell"></div>
-        <div class="grid-cell"></div>
-        <div class="grid-cell"></div>
-        <div class="grid-cell"><button class="row7-btn" data-row="3" data-col="3" data-description="Planet Market technologies facilitate applying solutions.">Planet Market</button></div>
-        <div class="grid-cell"></div>
+            <!-- Row 4 -->
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"><button class="row7-btn" data-row="3" data-col="3" data-description="Planet Market technologies facilitate applying solutions.">Planet Market</button></div>
+            <div class="grid-cell"></div>
+        </div>
     </div>
 
-    <div class="details-panel" id="detailsPanel">
-        Click a button to see friendly insights here.
-    </div>
+    <div class="details-panel" id="detailsPanel">Click a button to see friendly insights here.</div>
 </main>
 
 <footer>
