@@ -7,57 +7,58 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="grid-container">
-    <svg width="600" height="400">
-      <!-- Lines from all row 2 buttons to row 1 button (1,3) -->
-      <line class="line" x1="60" y1="150" x2="300" y2="50" />
-      <line class="line" x1="180" y1="150" x2="300" y2="50" />
-      <line class="line" x1="300" y1="150" x2="300" y2="50" />
-      <line class="line" x1="420" y1="150" x2="300" y2="50" />
-      <line class="line" x1="540" y1="150" x2="300" y2="50" />
+  <div class="grid-wrapper">
+    <div class="grid-container">
+      <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet">
+        <!-- Lines from row 2 to row 1 -->
+        <line class="line" x1="60" y1="150" x2="300" y2="50" />
+        <line class="line" x1="180" y1="150" x2="300" y2="50" />
+        <line class="line" x1="300" y1="150" x2="300" y2="50" />
+        <line class="line" x1="420" y1="150" x2="300" y2="50" />
+        <line class="line" x1="540" y1="150" x2="300" y2="50" />
 
-      <!-- Lines from row 2 buttons to row 3 buttons (vertical connections) -->
-      <line class="line" x1="60" y1="150" x2="60" y2="250" />
-      <line class="line" x1="180" y1="150" x2="180" y2="250" />
-      <line class="line" x1="300" y1="150" x2="300" y2="250" />
-      <line class="line" x1="420" y1="150" x2="420" y2="250" />
-      <line class="line" x1="540" y1="150" x2="540" y2="250" />
+        <!-- Vertical lines -->
+        <line class="line" x1="60" y1="150" x2="60" y2="250" />
+        <line class="line" x1="180" y1="150" x2="180" y2="250" />
+        <line class="line" x1="300" y1="150" x2="300" y2="250" />
+        <line class="line" x1="420" y1="150" x2="420" y2="250" />
+        <line class="line" x1="540" y1="150" x2="540" y2="250" />
 
-      <!-- Lines from row 3 buttons (columns 3,4,5) to row 4 button (4,4) -->
-      <line class="line" x1="300" y1="250" x2="420" y2="350" />
-      <line class="line" x1="420" y1="250" x2="420" y2="350" />
-      <line class="line" x1="540" y1="250" x2="420" y2="350" />
-    </svg>
+        <!-- Row 3 to Row 4 -->
+        <line class="line" x1="300" y1="250" x2="420" y2="350" />
+        <line class="line" x1="420" y1="250" x2="420" y2="350" />
+        <line class="line" x1="540" y1="250" x2="420" y2="350" />
+      </svg>
 
-    <!-- Row 1 -->
-    <div class="grid-cell"></div>
-    <div class="grid-cell"></div>
-    <div class="grid-cell"><button class="row1-btn">Agriculture Income</button></div>
-    <div class="grid-cell"></div>
-    <div class="grid-cell"></div>
+      <!-- Row 1 -->
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"><button class="row1-btn">Agriculture Income</button></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
 
-    <!-- Row 2 -->
-    <div class="grid-cell"><button class="row3-btn">Weather</button></div>
-    <div class="grid-cell"><button class="row3-btn">Pest</button></div>
-    <div class="grid-cell"><button class="row3-btn">Small Farms</button></div>
-    <div class="grid-cell"><button class="row3-btn">Price</button></div>
-    <div class="grid-cell"><button class="row3-btn">Intermediaries</button></div>
+      <!-- Row 2 -->
+      <div class="grid-cell"><button class="row3-btn">Weather</button></div>
+      <div class="grid-cell"><button class="row3-btn">Pest</button></div>
+      <div class="grid-cell"><button class="row3-btn">Small Farms</button></div>
+      <div class="grid-cell"><button class="row3-btn">Price</button></div>
+      <div class="grid-cell"><button class="row3-btn">Intermediaries</button></div>
 
-    <!-- Row 3 -->
-    <div class="grid-cell"><button class="row5-btn">Uncontrollable</button></div>
-    <div class="grid-cell"><button class="row5-btn">Pesticides</button></div>
-    <div class="grid-cell"><button class="row5-btn">Finished Products</button></div>
-    <div class="grid-cell"><button class="row5-btn">Demand Data</button></div>
-    <div class="grid-cell"><button class="row5-btn">Avoidable</button></div>
+      <!-- Row 3 -->
+      <div class="grid-cell"><button class="row5-btn">Uncontrollable</button></div>
+      <div class="grid-cell"><button class="row5-btn">Pesticides</button></div>
+      <div class="grid-cell"><button class="row5-btn">Finished Products</button></div>
+      <div class="grid-cell"><button class="row5-btn">Demand Data</button></div>
+      <div class="grid-cell"><button class="row5-btn">Avoidable</button></div>
 
-    <!-- Row 4 -->
-    <div class="grid-cell"></div>
-    <div class="grid-cell"></div>
-    <div class="grid-cell"></div>
-    <div class="grid-cell"><button class="row7-btn">Planet Market</button></div>
-    <div class="grid-cell"></div>
+      <!-- Row 4 -->
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"></div>
+      <div class="grid-cell"><button class="row7-btn">Planet Market</button></div>
+      <div class="grid-cell"></div>
+    </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
