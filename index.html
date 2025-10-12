@@ -1,233 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interactive Agriculture Flow</title>
-<style>
-/* Reset & Base */
-* { box-sizing: border-box; margin:0; padding:0; }
-body {
-    font-family: sans-serif;
-    background: linear-gradient(160deg, #e6f4ea, #c6e0c3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #000;
-    min-width: 320px;
-}
-
-/* Header */
-header {
-    text-align: center;
-    margin: clamp(10px, 2vw, 40px) 0;
-}
-header h1 { 
-    font-size: clamp(1.8rem, 4vw, 2.8rem); 
-    line-height: 1.2;
-}
-header p { 
-    font-size: clamp(0.9rem, 2vw, 1.3rem); 
-    font-style: italic; 
-    margin-top: clamp(5px, 1vw, 15px); 
-}
-
-/* Diagram Wrapper and Scaling */
-.diagram-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.diagram-container {
-    width: 500px;   /* base size for scaling */
-    height: 400px;  /* base size */
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(4,1fr);
-    gap: 10px;
-    position: relative;
-    transform-origin: top center;
-}
-
-/* Buttons */
-button {
-    width: 100%;
-    height: 100%;
-    min-height: 40px;
-    max-height: 100px;
-    font-size: clamp(0.6rem, 1.2vw, 1rem);
-    white-space: normal;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    text-align: center;
-    padding: clamp(4px, 1vw, 10px);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #fff;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-button:hover { transform: translateY(-3px) scale(1.03); box-shadow:0 6px 12px rgba(0,0,0,0.25);}
-button:active { transform: translateY(0) scale(0.97); box-shadow:0 3px 6px rgba(0,0,0,0.2); }
-
-/* Button Types */
-.btn-goal { background: linear-gradient(145deg,#FFB900,#FFC84D); color:#000; }
-.btn-problem { background: linear-gradient(145deg,#ff4500,#ff6b42); }
-.btn-solution { background: linear-gradient(145deg,#107C10,#3aa64a); }
-.btn-platform { background: linear-gradient(145deg,#006ee6,#3b9fff); }
-
-/* Ripple Effect */
-.ripple { position:absolute; border-radius:50%; background: rgba(255,255,255,0.5); transform:scale(0); animation:ripple 0.6s linear; pointer-events:none; z-index:20; }
-@keyframes ripple { to { transform:scale(4); opacity:0; } }
-
-/* SVG Lines */
-#diagramConnections {
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:0;
-}
-.line { stroke:#000; stroke-width:1.5; fill:none; stroke-linecap:round; stroke-dasharray:5 5; animation:flow 2s linear infinite; }
-@keyframes flow { to { stroke-dashoffset:-20; } }
-.diagram-container:hover .line { stroke:#00f; filter:drop-shadow(0 0 3px rgba(0,0,0,0.5)); }
-
-/* Details Panel */
-.details-panel {
-    background: rgba(255,255,255,0.95);
-    padding: clamp(10px, 2vw, 30px);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: clamp(280px, 90%, 1200px);
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-    color: #333;
-    margin: clamp(15px, 3vw, 40px) 0;
-    text-align: center;
-    line-height:1.5;
-    font-family: 'Comic Neue', cursive;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Grid</title>
 </head>
 <body>
+    <svg width="580" height="620" xmlns="http://www.w3.org/2000/svg" style="border:1px solid black;">
+        <!-- Loop through rows and columns to draw cells -->
+        <!-- 5 columns × 4 rows -->
+        <!-- Cell size: 100x100 -->
+        <!-- Horizontal gap: 20px, Vertical gap: 40px -->
+        <!-- Calculate positions manually -->
+        
+        <!-- Row 1 -->
+        <rect x="0"   y="0"   width="100" height="100" fill="#FFC0CB" stroke="black"/>
+        <rect x="120" y="0"   width="100" height="100" fill="#ADD8E6" stroke="black"/>
+        <rect x="240" y="0"   width="100" height="100" fill="#90EE90" stroke="black"/>
+        <rect x="360" y="0"   width="100" height="100" fill="#FFFF99" stroke="black"/>
+        <rect x="480" y="0"   width="100" height="100" fill="#FFA07A" stroke="black"/>
 
-<header>
-    <h1>PLANET MARKET</h1>
-    <p>Explore goals, problems, solutions, and technologies interactively</p>
-</header>
+        <!-- Row 2 -->
+        <rect x="0"   y="140" width="100" height="100" fill="#FFA07A" stroke="black"/>
+        <rect x="120" y="140" width="100" height="100" fill="#FFC0CB" stroke="black"/>
+        <rect x="240" y="140" width="100" height="100" fill="#ADD8E6" stroke="black"/>
+        <rect x="360" y="140" width="100" height="100" fill="#90EE90" stroke="black"/>
+        <rect x="480" y="140" width="100" height="100" fill="#FFFF99" stroke="black"/>
 
-<main>
-<div class="diagram-wrapper">
-<div class="diagram-container" id="diagramContainer">
-    <svg id="diagramConnections" viewBox="0 0 500 400" preserveAspectRatio="none"></svg>
+        <!-- Row 3 -->
+        <rect x="0"   y="280" width="100" height="100" fill="#90EE90" stroke="black"/>
+        <rect x="120" y="280" width="100" height="100" fill="#FFFF99" stroke="black"/>
+        <rect x="240" y="280" width="100" height="100" fill="#FFA07A" stroke="black"/>
+        <rect x="360" y="280" width="100" height="100" fill="#FFC0CB" stroke="black"/>
+        <rect x="480" y="280" width="100" height="100" fill="#ADD8E6" stroke="black"/>
 
-    <!-- Row 1 -->
-    <div class="diagram-cell"></div>
-    <div class="diagram-cell"></div>
-    <div class="diagram-cell"><button class="btn-goal" data-row="0" data-col="2" data-description="Ensure stable agriculture income through sustainable practices.">Agriculture Income</button></div>
-    <div class="diagram-cell"></div>
-    <div class="diagram-cell"></div>
-
-    <!-- Row 2 -->
-    <div class="diagram-cell"><button class="btn-problem" data-row="1" data-col="0" data-description="Weather unpredictability affects crops and yields.">Weather</button></div>
-    <div class="diagram-cell"><button class="btn-problem" data-row="1" data-col="1" data-description="Pest infestations reduce productivity.">Pest</button></div>
-    <div class="diagram-cell"><button class="btn-problem" data-row="1" data-col="2" data-description="Small farms have limited resources and capacity.">Small Farms</button></div>
-    <div class="diagram-cell"><button class="btn-problem" data-row="1" data-col="3" data-description="Market price volatility affects farmers' income.">Price</button></div>
-    <div class="diagram-cell"><button class="btn-problem" data-row="1" data-col="4" data-description="Intermediaries often reduce farmers' profit margins.">Intermediaries</button></div>
-
-    <!-- Row 3 -->
-    <div class="diagram-cell"><button class="btn-solution" data-row="2" data-col="0" data-description="Adaptable strategies to uncontrollable events.">Uncontrollable</button></div>
-    <div class="diagram-cell"><button class="btn-solution" data-row="2" data-col="1" data-description="Proper pesticide management to reduce losses.">Pesticides</button></div>
-    <div class="diagram-cell"><button class="btn-solution" data-row="2" data-col="2" data-description="Improve processing to increase finished products.">Finished Products</button></div>
-    <div class="diagram-cell"><button class="btn-solution" data-row="2" data-col="3" data-description="Use data to anticipate demand accurately.">Demand Data</button></div>
-    <div class="diagram-cell"><button class="btn-solution" data-row="2" data-col="4" data-description="Implement practices to avoid losses.">Avoidable</button></div>
-
-    <!-- Row 4 -->
-    <div class="diagram-cell"></div>
-    <div class="diagram-cell"></div>
-    <div class="diagram-cell"></div>
-    <div class="diagram-cell"><button class="btn-platform" data-row="3" data-col="3" data-description="Planet Market technologies facilitate applying solutions.">Planet Market</button></div>
-    <div class="diagram-cell"></div>
-</div>
-</div>
-
-<div class="details-panel" id="detailsPanel">Click a button to see insights here.</div>
-</main>
-
-<script>
-// Get center coordinates of a button inside container
-function getButtonCenter(button) {
-    const container = document.getElementById('diagramContainer');
-    const rect = button.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-    return { 
-        x: ((rect.left + rect.width/2) - containerRect.left) / containerRect.width * 500,
-        y: ((rect.top + rect.height/2) - containerRect.top) / containerRect.height * 400
-    };
-}
-
-// Draw SVG connections
-function drawConnections() {
-    const svg = document.getElementById('diagramConnections');
-    svg.innerHTML = '';
-    const buttons = document.querySelectorAll('button');
-    const buttonMap = {};
-    buttons.forEach(btn => buttonMap[`${btn.dataset.row}-${btn.dataset.col}`] = getButtonCenter(btn));
-
-    const connections = [
-        {from:'1-0',to:'0-2'},{from:'1-1',to:'0-2'},{from:'1-2',to:'0-2'},{from:'1-3',to:'0-2'},{from:'1-4',to:'0-2'},
-        {from:'1-0',to:'2-0'},{from:'1-1',to:'2-1'},{from:'1-2',to:'2-2'},{from:'1-3',to:'2-3'},{from:'1-4',to:'2-4'},
-        {from:'2-2',to:'3-3'},{from:'2-3',to:'3-3'},{from:'2-4',to:'3-3'}
-    ];
-
-    connections.forEach(conn => {
-        if(buttonMap[conn.from] && buttonMap[conn.to]){
-            const line = document.createElementNS('http://www.w3.org/2000/svg','line');
-            line.classList.add('line');
-            line.setAttribute('x1', buttonMap[conn.from].x);
-            line.setAttribute('y1', buttonMap[conn.from].y);
-            line.setAttribute('x2', buttonMap[conn.to].x);
-            line.setAttribute('y2', buttonMap[conn.to].y);
-            svg.appendChild(line);
-        }
-    });
-}
-
-// Ripple & details panel
-const detailsPanel = document.getElementById('detailsPanel');
-document.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', e => {
-        // Ripple effect
-        const circle = document.createElement('span');
-        circle.classList.add('ripple');
-        const rect = btn.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        circle.style.width = circle.style.height = size + 'px';
-        circle.style.left = (e.clientX - rect.left - size/2)+'px';
-        circle.style.top = (e.clientY - rect.top - size/2)+'px';
-        btn.appendChild(circle);
-        setTimeout(()=>circle.remove(),600);
-
-        // Show details
-        detailsPanel.textContent = btn.dataset.description;
-    });
-});
-
-// Initial draw and proportional scaling
-function scaleDiagram() {
-    const container = document.getElementById('diagramContainer');
-    const wrapper = document.querySelector('.diagram-wrapper');
-    const scaleX = wrapper.clientWidth / 500;
-    const scaleY = window.innerHeight * 0.7 / 400; // 70% of viewport height
-    const scale = Math.min(scaleX, scaleY, 1);
-    container.style.transform = `scale(${scale})`;
-    drawConnections();
-}
-
-window.addEventListener('load', scaleDiagram);
-window.addEventListener('resize', scaleDiagram);
-</script>
-
+        <!-- Row 4 -->
+        <rect x="0"   y="420" width="100" height="100" fill="#ADD8E6" stroke="black"/>
+        <rect x="120" y="420" width="100" height="100" fill="#90EE90" stroke="black"/>
+        <rect x="240" y="420" width="100" height="100" fill="#FFFF99" stroke="black"/>
+        <rect x="360" y="420" width="100" height="100" fill="#FFA07A" stroke="black"/>
+        <rect x="480" y="420" width="100" height="100" fill="#FFC0CB" stroke="black"/>
+    </svg>
 </body>
 </html>
