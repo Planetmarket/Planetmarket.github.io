@@ -26,20 +26,19 @@ main { display: flex; flex-direction: column; align-items: center; width: 100%; 
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(5, minmax(80px, 1fr));
-    grid-template-rows: repeat(4, minmax(60px, 1fr));
-    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 8px;
     position: relative;
     width: 100%;
     max-width: 95vw;
-    aspect-ratio: auto;
     margin-bottom:20px;
 }
 
-.grid-cell { display:flex; justify-content:center; align-items:center; position:relative; text-align:center; padding:4px; }
+.grid-cell { display:flex; justify-content:center; align-items:center; text-align:center; padding:4px; }
 
 button {
-    font-size: clamp(0.45rem, 1.5vw, 0.85rem);
+    font-size: clamp(0.55rem, 1.5vw, 0.85rem); /* small enough to fit longer text */
     font-weight:600;
     border:none;
     border-radius:12px;
@@ -50,15 +49,15 @@ button {
     align-items:center;
     justify-content:center;
     width:100%;
-    min-width: 60px;
-    max-width: 100%;
     min-height:40px;
-    padding: 10px;
+    padding:6px 8px;
     position:relative;
-    overflow:hidden;
-    line-height:1.3;
+    line-height:1.2;
     text-align:center;
     color:#fff;
+    white-space: nowrap; /* prevent word breaking */
+    overflow: hidden; /* clip text if needed */
+    text-overflow: ellipsis; /* show "..." if still too long */
 }
 
 button:hover { transform: translateY(-3px) scale(1.03); box-shadow:0 6px 12px rgba(0,0,0,0.25); }
@@ -112,20 +111,15 @@ footer a img:hover { transform: scale(1.2); }
 
 /* Responsive scaling */
 @media (max-width: 768px) {
-    .grid-container { grid-template-columns: repeat(5, minmax(60px, 1fr)); grid-template-rows: repeat(4, minmax(50px, 1fr)); }
-    button { font-size: clamp(0.4rem, 2vw, 0.75rem); min-height: 36px; }
-    .line { stroke-width:1; }
+    button { font-size: clamp(0.45rem, 1.3vw, 0.75rem); min-height:36px; }
 }
 
 @media (max-width: 480px) {
-    .grid-container { grid-template-columns: repeat(5, minmax(50px, 1fr)); grid-template-rows: repeat(4, minmax(45px, 1fr)); gap:4px; }
-    button { font-size: clamp(0.35rem, 2.5vw, 0.7rem); min-height: 32px; padding:4px 6px; }
-    .line { stroke-width:0.8; }
+    button { font-size: clamp(0.35rem, 2vw, 0.7rem); min-height:32px; padding:4px 6px; }
 }
 
 @media (max-width: 360px) {
-    .grid-container { grid-template-columns: repeat(5, minmax(45px, 1fr)); grid-template-rows: repeat(4, minmax(40px, 1fr)); }
-    button { font-size: clamp(0.3rem, 3vw, 0.65rem); min-height: 28px; padding:3px 5px; }
+    button { font-size: clamp(0.3rem, 2.5vw, 0.65rem); min-height:28px; padding:3px 5px; }
 }
 </style>
 </head>
