@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interactive Agriculture Flow</title>
+<title>Agriculture Flow Dashboard</title>
 <style>
-* { box-sizing: border-box; margin:0; padding:0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: sans-serif;
@@ -18,12 +18,31 @@ body {
     color: #000;
 }
 
-header { text-align: center; margin-bottom: 20px; }
-header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: #000; }
-header p { font-size: clamp(1rem, 2vw, 1.3rem); color: #000; margin-top: 5px; font-style: italic; }
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: #000;
+}
+header p {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: #000;
+    margin-top: 5px;
+    font-style: italic;
+}
 
-main { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 900px; }
+/* Main Layout */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 
+/* Grid */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -31,59 +50,113 @@ main { display: flex; flex-direction: column; align-items: center; width: 100%; 
     gap: 8px;
     position: relative;
     width: 100%;
-    max-width: 95vw;
-    margin-bottom:20px;
+    max-width: 60vw;
+    margin-bottom: 20px;
+    overflow: visible;
+    height:60vh;
 }
 
-.grid-cell { display:flex; justify-content:center; align-items:center; text-align:center; padding:4px; }
+@media (max-width: 768px) {
+    .grid-container {
+        max-width: 98vw;
+    }
+}
 
+.grid-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4px;
+}
+
+/* Buttons */
 button {
-    font-size: clamp(0.55rem, 1.5vw, 0.85rem); /* small enough to fit longer text */
-    font-weight:600;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
+    font-size: clamp(0.55rem, 1.5vw, 0.85rem);
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
     transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
-    box-shadow:0 2px 6px rgba(0,0,0,0.2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;
-    min-height:40px;
-    padding:6px 8px;
-    position:relative;
-    line-height:1.2;
-    text-align:center;
-    color:#fff;
-    white-space: nowrap; /* prevent word breaking */
-    overflow: hidden; /* clip text if needed */
-    text-overflow: ellipsis; /* show "..." if still too long */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 40px;
+    height:auto;
+    padding: 6px 8px;
+    position: relative;
+    line-height: 1.2;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-button:hover { transform: translateY(-3px) scale(1.03); box-shadow:0 6px 12px rgba(0,0,0,0.25); }
-button:active { transform: translateY(0) scale(0.97); box-shadow:0 3px 6px rgba(0,0,0,0.2); }
+button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+button:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
 
-.ripple { position:absolute; border-radius:50%; background: rgba(255,255,255,0.5); transform:scale(0); animation:ripple 0.6s linear; pointer-events:none; z-index:20; }
-@keyframes ripple { to { transform:scale(4); opacity:0; } }
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+    z-index: 20;
+}
+@keyframes ripple {
+    to { transform: scale(4); opacity: 0; }
+}
 
-/* Button colors */
-.row1-btn { background: linear-gradient(145deg,#FFB900,#FFC84D); color:#000; }
-.row3-btn { background: linear-gradient(145deg,#ff4500,#ff6b42); color:#fff; }
-.row5-btn { background: linear-gradient(145deg,#107C10,#3aa64a); color:#fff; }
-.row7-btn { background: linear-gradient(145deg,#006ee6,#3b9fff); color:#fff; }
+/* Button Colors */
+.row1-btn { background: linear-gradient(145deg, #FFB900, #FFC84D); color: #000; }
+.row3-btn { background: linear-gradient(145deg, #ff4500, #ff6b42); color: #fff; }
+.row5-btn { background: linear-gradient(145deg, #107C10, #3aa64a); color: #fff; }
+.row7-btn { background: linear-gradient(145deg, #006ee6, #3b9fff); color: #fff; }
 
-svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
-.line { stroke:#000; stroke-width:1.2; fill:none; stroke-linecap:round; stroke-dasharray:5 5; animation:flow 2s linear infinite; transition: stroke 0.3s ease; }
-@keyframes flow { to { stroke-dashoffset:-20; } }
-.grid-container:hover .line { stroke:#00f; filter:drop-shadow(0 0 3px rgba(0,0,0,0.5)); }
+/* Lines */
+svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+.line {
+    stroke: #000;
+    stroke-width: 1.2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 5 5;
+    animation: flow 2s linear infinite;
+    transition: stroke 0.3s ease;
+}
+@keyframes flow {
+    to { stroke-dashoffset: -20; }
+}
+.grid-container:hover .line {
+    stroke: #00f;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
+}
 
+/* Details Panel */
 .details-panel {
     background: rgba(255,255,255,0.9);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 900px;
+    max-width: 80vw;
     min-height: 120px;
     font-size: 1rem;
     color: #333;
@@ -92,6 +165,13 @@ svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; 
     line-height: 1.5;
 }
 
+@media (max-width: 768px) {
+    .details-panel {
+        max-width: 98vw;
+    }
+}
+
+/* Footer */
 footer {
     margin-top: 30px;
     display: flex;
@@ -99,30 +179,29 @@ footer {
     justify-content: center;
     align-items: center;
 }
-
 footer a img {
     width: 50px;
     height: 50px;
     object-fit: contain;
     transition: transform 0.2s;
 }
+footer a img:hover {
+    transform: scale(1.2);
+}
 
-footer a img:hover { transform: scale(1.2); }
-
-/* Responsive scaling */
+/* Responsive Button Scaling */
 @media (max-width: 768px) {
-    button { font-size: clamp(0.45rem, 1.3vw, 0.75rem); min-height:36px; }
+    button { font-size: clamp(0.45rem, 1.3vw, 0.75rem); min-height: 36px; }
 }
-
 @media (max-width: 480px) {
-    button { font-size: clamp(0.35rem, 2vw, 0.7rem); min-height:32px; padding:4px 6px; }
+    button { font-size: clamp(0.35rem, 2vw, 0.7rem); min-height: 32px; padding: 4px 6px; }
 }
-
 @media (max-width: 360px) {
-    button { font-size: clamp(0.3rem, 2.5vw, 0.65rem); min-height:28px; padding:3px 5px; }
+    button { font-size: clamp(0.3rem, 2.5vw, 0.65rem); min-height: 28px; padding: 3px 5px; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -179,7 +258,7 @@ function getButtonCenter(button) {
     const container = document.querySelector('.grid-container');
     const rect = button.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();
-    return { x: rect.left + rect.width/2 - containerRect.left, y: rect.top + rect.height/2 - containerRect.top };
+    return { x: rect.left + rect.width / 2 - containerRect.left, y: rect.top + rect.height / 2 - containerRect.top };
 }
 
 function drawConnections() {
@@ -195,9 +274,9 @@ function drawConnections() {
         {from:'2-2',to:'3-3'},{from:'2-3',to:'3-3'},{from:'2-4',to:'3-3'}
     ];
 
-    connections.forEach(conn=>{
-        if(buttonMap[conn.from] && buttonMap[conn.to]){
-            const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    connections.forEach(conn => {
+        if (buttonMap[conn.from] && buttonMap[conn.to]) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             line.classList.add('line');
             line.setAttribute('x1', buttonMap[conn.from].x);
             line.setAttribute('y1', buttonMap[conn.from].y);
@@ -213,21 +292,22 @@ const resizeObserver = new ResizeObserver(drawConnections);
 resizeObserver.observe(document.querySelector('.grid-container'));
 
 const detailsPanel = document.getElementById('detailsPanel');
-document.querySelectorAll('button').forEach(btn=>{
-    btn.addEventListener('click', e=>{
+document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', e => {
         const circle = document.createElement('span');
         circle.classList.add('ripple');
         const rect = btn.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
         circle.style.width = circle.style.height = size + 'px';
-        circle.style.left = (e.clientX - rect.left - size/2)+'px';
-        circle.style.top = (e.clientY - rect.top - size/2)+'px';
+        circle.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        circle.style.top = (e.clientY - rect.top - size / 2) + 'px';
         btn.appendChild(circle);
-        setTimeout(()=>circle.remove(),600);
+        setTimeout(() => circle.remove(), 600);
 
         detailsPanel.textContent = btn.dataset.description;
     });
 });
 </script>
+
 </body>
 </html>
