@@ -61,20 +61,20 @@ main {
 
 @media (max-width: 768px) {
     .grid-container {
-        min-height: 70vh;
+        min-height: 60vh;
     }
 }
 
 @media (max-width: 480px) {
     .grid-container {
-        min-height: 70vh;
+        min-height: 50vh;
     }
 }
 
 /* Grid Row */
 .grid-row {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: clamp(8px, 2vw, 15px);
     width: 100%;
     align-items: center;
