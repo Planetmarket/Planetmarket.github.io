@@ -1,3 +1,11 @@
+Absolutely! Here's the **full interactive agriculture flow page** with:
+
+* Real logos for WhatsApp, Gmail, and Facebook share (all uniform size)
+* Hand-written style only in the details panel
+* Interactive buttons with ripple effect, responsive design, and lines behind buttons
+* Green family gradient background, black titles/subtitles
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,35 +20,18 @@ body {
     background: linear-gradient(160deg, #e6f4ea, #c6e0c3);
     display: flex;
     flex-direction: column;
-    align-items: center; /* horizontally center all content */
-    justify-content: flex-start;
+    align-items: center;
     padding: 20px;
     color: #000;
 }
 
-header, main, footer {
-    width: 100%;
-    max-width: 900px; /* uniform width */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* horizontally center content */
-    margin-bottom: 20px;
-}
+header { text-align: center; margin-bottom: 20px; }
+header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: #000; }
+header p { font-size: clamp(1rem, 2vw, 1.3rem); color: #000; margin-top: 5px; font-style: italic; }
 
-header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: #000; text-align: center; }
-header p { font-size: clamp(1rem, 2vw, 1.3rem); color: #000; margin-top: 5px; font-style: italic; text-align: center; }
+main { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 900px; }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap:0;
-    position: relative;
-    width:100%;
-    max-width:95vw;
-    aspect-ratio:5/4;
-}
-
+.grid-container { display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(4, 1fr); gap:0; position: relative; width:100%; max-width:95vw; aspect-ratio:5/4; margin-bottom:20px; }
 .grid-cell { display:flex; justify-content:center; align-items:center; position:relative; text-align:center; padding:clamp(4px,2vw,10px); }
 
 button {
@@ -95,17 +86,14 @@ svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; 
     font-family: 'Comic Neue', cursive; /* only here */
     white-space: pre-line;
     line-height: 1.5;
-    text-align: center;
 }
 
 footer {
+    margin-top: 30px;
     display: flex;
-    flex-direction: row; /* horizontal row */
     gap: 50px;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    flex-wrap: wrap; /* wrap on very small screens */
 }
 
 footer a img {
@@ -218,17 +206,39 @@ document.querySelectorAll('button').forEach(btn=>{
         const circle = document.createElement('span');
         circle.classList.add('ripple');
         const rect = btn.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        circle.style.width = circle.style.height = size + 'px';
-        circle.style.left = (e.clientX - rect.left - size/2)+'px';
-        circle.style.top = (e.clientY - rect.top - size/2)+'px';
-        btn.appendChild(circle);
-        setTimeout(()=>circle.remove(),600);
+```
 
-        // Show details
-        detailsPanel.textContent = btn.dataset.description;
-    });
+
+```
+    const size = Math.max(rect.width, rect.height);
+    circle.style.width = circle.style.height = size + 'px';
+    circle.style.left = (e.clientX - rect.left - size/2)+'px';
+    circle.style.top = (e.clientY - rect.top - size/2)+'px';
+    btn.appendChild(circle);
+    setTimeout(()=>circle.remove(),600);
+
+    // Show details
+    detailsPanel.textContent = btn.dataset.description;
 });
-</script>
+```
+
+}); </script>
+
 </body>
 </html>
+```
+
+✅ Features included:
+
+* Real, **uniformly sized logos** for WhatsApp, Gmail, and Facebook share
+* **Interactive buttons with ripple effect**
+* **Lines behind buttons**
+* Responsive **green gradient background**
+* **Details panel** with hand-written style font
+* Black title/subtitle, friendly layout
+
+---
+
+If you want, I can also **add animated transitions for lines** or a **fade-in effect for details** to make it even more engaging.
+
+Do you want me to do that next?
