@@ -53,17 +53,11 @@ main {
     width: 100%;
     position: relative;
     padding: 20px 10px;
-    min-height: 70vh;
+    height: 70vh;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: clamp(10px, 2vw, 20px);
-}
-
-@media (min-width: 769px) {
-    .grid-container {
-        min-height: 70vh;
-    }
 }
 
 @media (max-width: 480px) {
@@ -107,14 +101,14 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(10px, 2.5vw, 16px) clamp(8px, 2vw, 14px);
+    padding: clamp(10px, 2.5vw, 16px) clamp(12px, 2.5vw, 18px);
     position: relative;
     line-height: 1.4;
     color: #fff;
     text-align: center;
     word-wrap: break-word;
     hyphens: auto;
-    width: fit-content;
+    width: 85%;
     max-width: 100%;
     height: auto;
     min-height: fit-content;
@@ -123,21 +117,24 @@ button {
 @media (max-width: 768px) {
     button {
         font-size: clamp(0.55rem, 2vw, 0.85rem);
-        padding: clamp(9px, 2.2vw, 14px) clamp(7px, 1.8vw, 12px);
+        padding: clamp(9px, 2.2vw, 14px) clamp(10px, 2.2vw, 16px);
+        width: 90%;
     }
 }
 
 @media (max-width: 480px) {
     button {
         font-size: clamp(0.5rem, 2.5vw, 0.75rem);
-        padding: clamp(8px, 2vw, 12px) clamp(6px, 1.5vw, 10px);
+        padding: clamp(8px, 2vw, 12px) clamp(8px, 2vw, 14px);
+        width: 95%;
     }
 }
 
 @media (max-width: 360px) {
     button {
         font-size: clamp(0.45rem, 3vw, 0.7rem);
-        padding: clamp(7px, 1.8vw, 10px) clamp(5px, 1.2vw, 8px);
+        padding: clamp(7px, 1.8vw, 10px) clamp(7px, 1.8vw, 12px);
+        width: 98%;
     }
 }
 
