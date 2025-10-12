@@ -6,22 +6,31 @@
 <title>Interactive Agriculture Flow</title>
 <style>
 * { box-sizing: border-box; margin:0; padding:0; }
+html, body { height: 100%; }
+
 body {
     font-family: sans-serif;
-    min-height: 100vh;
     background: linear-gradient(160deg, #e6f4ea, #c6e0c3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    color: #000;
+}
+
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    color: #000;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
 }
 
 header { text-align: center; margin-bottom: 20px; }
 header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: #000; }
 header p { font-size: clamp(1rem, 2vw, 1.3rem); color: #000; margin-top: 5px; font-style: italic; }
-
-main { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 900px; }
 
 .grid-container { display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(4, 1fr); gap:0; position: relative; width:100%; max-width:95vw; aspect-ratio:5/4; margin-bottom:20px; }
 .grid-cell { display:flex; justify-content:center; align-items:center; position:relative; text-align:center; padding:clamp(4px,2vw,10px); }
@@ -71,17 +80,16 @@ svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; 
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 900px;
-    min-height: 120px;
     font-size: 1rem;
     color: #333;
-    font-family: 'Comic Neue', cursive; /* only here */
+    font-family: 'Comic Neue', cursive; 
     white-space: pre-line;
     line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 footer {
-    margin-top: 30px;
     display: flex;
     gap: 50px;
     justify-content: center;
@@ -104,12 +112,12 @@ footer a img:hover { transform: scale(1.2); }
 </head>
 <body>
 
-<header>
-    <h1>Agriculture Flow Dashboard</h1>
-    <p>Explore goals, problems, solutions, and technologies interactively</p>
-</header>
+<div class="container">
+    <header>
+        <h1>Agriculture Flow Dashboard</h1>
+        <p>Explore goals, problems, solutions, and technologies interactively</p>
+    </header>
 
-<main>
     <div class="grid-container">
         <svg id="connectionSvg"></svg>
 
@@ -145,13 +153,13 @@ footer a img:hover { transform: scale(1.2); }
     <div class="details-panel" id="detailsPanel">
         Click a button to see friendly insights here.
     </div>
-</main>
 
-<footer>
-    <a href="https://wa.me/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
-    <a href="mailto:example@gmail.com"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail"></a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Share"></a>
-</footer>
+    <footer>
+        <a href="https://wa.me/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
+        <a href="mailto:example@gmail.com"><img src="https://www.google.com/s2/favicons?domain=gmail.com&sz=48" alt="Gmail"></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Share"></a>
+    </footer>
+</div>
 
 <script>
 function getButtonCenter(button) {
