@@ -13,6 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     min-height: 100vh;
     color: #000;
 }
@@ -25,7 +26,12 @@ header {
 header h1 { font-size: clamp(1.8rem,4vw,2.8rem); }
 header p { font-size: clamp(1rem,2vw,1.3rem); font-style: italic; margin-top:5px; }
 
-/* Diagram Grid */
+/* Diagram Container (Centered) */
+.diagram-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .diagram-container {
     display: grid;
     grid-template-columns: repeat(5,1fr);
@@ -36,20 +42,21 @@ header p { font-size: clamp(1rem,2vw,1.3rem); font-style: italic; margin-top:5px
     gap: 10px;
     position: relative;
 }
+
+/* Diagram Cells */
 .diagram-cell {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: clamp(4px,1.5vw,12px);
     position: relative;
 }
 
-/* Buttons */
+/* Buttons: Equal Width */
 button {
     font-size: clamp(0.6rem,1.8vw,1rem);
     min-height: clamp(40px,6vw,60px);
-    width: 90%;
+    width: 90%;       /* All buttons same width */
     max-width: 100%;
     padding: clamp(8px,2vw,14px);
     border: none;
@@ -111,6 +118,7 @@ button:active { transform: translateY(0) scale(0.97); box-shadow:0 3px 6px rgba(
 </header>
 
 <main>
+<div class="diagram-wrapper">
 <div class="diagram-container" id="diagramContainer">
     <svg id="diagramConnections" viewBox="0 0 500 400" preserveAspectRatio="none"></svg>
 
@@ -141,6 +149,7 @@ button:active { transform: translateY(0) scale(0.97); box-shadow:0 3px 6px rgba(
     <div class="diagram-cell"></div>
     <div class="diagram-cell"><button class="btn-platform" data-row="3" data-col="3" data-description="Planet Market technologies facilitate applying solutions.">Planet Market</button></div>
     <div class="diagram-cell"></div>
+</div>
 </div>
 
 <div class="details-panel" id="detailsPanel">Click a button to see insights here.</div>
@@ -189,7 +198,6 @@ function drawConnections() {
 const detailsPanel = document.getElementById('detailsPanel');
 document.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', e => {
-        // Ripple effect
         const circle = document.createElement('span');
         circle.classList.add('ripple');
         const rect = btn.getBoundingClientRect();
@@ -200,7 +208,6 @@ document.querySelectorAll('button').forEach(btn => {
         btn.appendChild(circle);
         setTimeout(()=>circle.remove(),600);
 
-        // Show details
         detailsPanel.textContent = btn.dataset.description;
     });
 });
