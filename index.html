@@ -476,7 +476,7 @@
                     <span class="social-caption">Send Email</span>
                 </div>
                 
-                <div class="social-item" onclick="customShare()">
+                <div class="social-item" onclick="shareWithImage()">
                     <div class="social-icon">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Google_Contacts_icon_%282022%29.svg" alt="Share Page">
                     </div>
@@ -505,73 +505,108 @@
             }
         });
 
-        // Custom Share functionality - YOU CAN EDIT THESE VALUES
-        function customShare() {
+        // Share with image functionality
+        async function shareWithImage() {
             // ⚡ EDIT THESE VALUES TO CUSTOMIZE THE SHARE CONTENT ⚡
             const customShareData = {
-                title: "Discover Planet Market - Agricultural Revolution", // Custom title for sharing
-                message: "I found this amazing platform that's transforming agriculture! Planet Market connects farmers directly to consumers, eliminating middlemen and ensuring fair prices. Check out their innovative approach to solving rural income challenges. The diagram shows how they address key agricultural problems with smart solutions!", // Custom message for sharing
-                url: window.location.href // Page URL (you can change this too if needed)
-            };
-            // ⚡ END OF CUSTOMIZABLE CONTENT ⚡
-
-            // Create the full share text
-            const fullShareText = `${customShareData.title}\n\n${customShareData.message}\n\n${customShareData.url}`;
-
-            // Try Web Share API first
-            if (navigator.share) {
-                const shareData = {
-                    title: customShareData.title,
-                    text: customShareData.message,
-                    url: customShareData.url
-                };
-
-                navigator.share(shareData)
-                    .then(() => console.log('Custom share successful'))
-                    .catch((error) => {
-                        console.log('Web Share failed, using fallback:', error);
-                        fallbackCustomShare(fullShareText);
-                    });
-            } else {
-                // Use fallback method
-                fallbackCustomShare(fullShareText);
-            }
-        }
-
-        // Fallback share method
-        function fallbackCustomShare(shareText) {
-            // For mobile devices - open WhatsApp with pre-filled message
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
-            
-            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // Mobile device
-                window.open(whatsappUrl, '_blank');
-            } else {
-                // Desktop device - copy to clipboard
-                navigator.clipboard.writeText(shareText).then(() => {
-                    alert('✨ Share content copied to clipboard! ✨\n\nYou can now paste this message anywhere to share:\n\n' + shareText);
-                }).catch(() => {
-                    // Final fallback - open WhatsApp anyway
-                    window.open(whatsappUrl, '_blank');
-                });
-            }
-        }
-
-        // Alternative: Share with image (if you want to include the diagram as image)
-        function customShareWithImage() {
-            // ⚡ EDIT THESE VALUES TO CUSTOMIZE THE SHARE CONTENT ⚡
-            const customShareData = {
-                title: "Planet Market - Revolutionizing Agriculture",
-                message: "Look at this innovative solution for agricultural challenges! Planet Market's approach eliminates intermediaries and connects farmers directly to markets. Their comprehensive diagram shows the complete problem-to-solution journey.",
+                title: "🌱 Planet Market - Agricultural Revolution",
+                message: "Check out this innovative solution for agricultural challenges! Planet Market connects farmers directly to consumers, eliminating intermediaries and ensuring fair prices. Their comprehensive approach addresses weather, pests, small farms, pricing, and market access issues.",
                 url: window.location.href
             };
             // ⚡ END OF CUSTOMIZABLE CONTENT ⚡
 
-            // For platforms that support image sharing
-            const fullShareText = `${customShareData.title}\n\n${customShareData.message}\n\nView the interactive diagram: ${customShareData.url}`;
+            const diagramImageUrl = 'diagram.png'; // Path to your diagram image
             
-            // Use the same fallback as above
-            fallbackCustomShare(fullShareText);
+            try {
+                // First, check if the diagram.png file exists
+                const imageExists = await checkImageExists(diagramImageUrl);
+                
+                if (imageExists) {
+                    // If image exists, try to share with image
+                    await shareWithImageFile(customShareData, diagramImageUrl);
+                } else {
+                    // If image doesn't exist, share without image
+                    await shareWithoutImage(customShareData);
+                }
+            } catch (error) {
+                console.log('Share error:', error);
+                // Fallback to simple share without image
+                await shareWithoutImage(customShareData);
+            }
+        }
+
+        // Check if image file exists
+        function checkImageExists(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+                
+                // Timeout after 2 seconds
+                setTimeout(() => resolve(false), 2000);
+            });
+        }
+
+        // Share with image file
+        async function shareWithImageFile(shareData, imageUrl) {
+            try {
+                // Fetch the image
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                const file = new File([blob], 'planet-market-diagram.png', { type: 'image/png' });
+
+                const sharePayload = {
+                    title: shareData.title,
+                    text: shareData.message,
+                    url: shareData.url,
+                    files: [file]
+                };
+
+                if (navigator.share && navigator.canShare(sharePayload)) {
+                    await navigator.share(sharePayload);
+                    console.log('Shared with image successfully');
+                } else {
+                    throw new Error('Image sharing not supported');
+                }
+            } catch (error) {
+                console.log('Image share failed, falling back to text-only:', error);
+                await shareWithoutImage(shareData);
+            }
+        }
+
+        // Share without image (text only)
+        async function shareWithoutImage(shareData) {
+            const fullShareText = `${shareData.title}\n\n${shareData.message}\n\n${shareData.url}`;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: shareData.title,
+                        text: shareData.message,
+                        url: shareData.url
+                    });
+                } catch (error) {
+                    fallbackToWhatsApp(fullShareText);
+                }
+            } else {
+                fallbackToWhatsApp(fullShareText);
+            }
+        }
+
+        // Fallback to WhatsApp or clipboard
+        function fallbackToWhatsApp(shareText) {
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                window.open(whatsappUrl, '_blank');
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('📋 Share content copied to clipboard!\n\nYou can now paste this message to share.');
+                }).catch(() => {
+                    window.open(whatsappUrl, '_blank');
+                });
+            }
         }
     </script>
 </body>
