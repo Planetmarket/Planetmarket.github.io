@@ -505,11 +505,12 @@
             }
         });
 
-        // Share page functionality
+        // Share page functionality with custom messages
         function sharePage() {
+            // Custom sharing messages (different from page content)
             const shareData = {
-                title: 'Planet Market - Agricultural Innovation',
-                text: 'Revolutionizing Agriculture Income - Connecting farmers directly to markets, eliminating intermediaries',
+                title: '🌱 Join the Agricultural Revolution with Planet Market!',
+                text: 'Discover how Planet Market is transforming farming communities by connecting farmers directly to consumers. Eliminate intermediaries, increase farmer income, and get fresh produce at fair prices! 🚜✨',
                 url: window.location.href
             };
 
@@ -520,15 +521,16 @@
                     .catch((error) => console.log('Error sharing:', error));
             } else {
                 // Fallback for browsers that don't support Web Share API
-                const fallbackUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+                const shareMessage = `${shareData.title}\n\n${shareData.text}\n\n${shareData.url}`;
+                const fallbackUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
                 window.open(fallbackUrl, '_blank');
                 
                 // Show a message for desktop users
                 if (!/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    alert('Page URL copied to clipboard! You can now share it manually.\n\n' + window.location.href);
+                    alert('Share this message:\n\n' + shareMessage);
                     // Copy to clipboard as fallback
-                    navigator.clipboard.writeText(window.location.href).then(() => {
-                        console.log('URL copied to clipboard');
+                    navigator.clipboard.writeText(shareMessage).then(() => {
+                        console.log('Share message copied to clipboard');
                     });
                 }
             }
