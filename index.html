@@ -308,7 +308,7 @@
         
         <!-- Diagram -->
         <div class="diagram-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 400">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 520">
                 <defs>
                     <style>
                         @keyframes flow { to { stroke-dashoffset:-20; } }
@@ -360,9 +360,10 @@
                 <line class="line" x1="385" y1="160" x2="385" y2="280"/>
                 <line class="line" x1="495" y1="160" x2="495" y2="280"/>
                 
-                <line class="line" x1="275" y1="280" x2="385" y2="360"/>
-                <line class="line" x1="385" y1="280" x2="385" y2="360"/>
-                <line class="line" x1="495" y1="280" x2="385" y2="360"/>
+                <!-- Increased gap between 3rd and 4th row (120px) -->
+                <line class="line" x1="275" y1="280" x2="385" y2="440"/>
+                <line class="line" x1="385" y1="280" x2="385" y2="440"/>
+                <line class="line" x1="495" y1="280" x2="385" y2="440"/>
                 
                 <!-- Row 1: Agriculture Income -->
                 <g class="btn">
@@ -426,11 +427,11 @@
                     <text x="495" y="280" class="btn-text" fill="#fff">Avoidable</text>
                 </g>
                 
-                <!-- Row 4: Planet Market -->
+                <!-- Row 4: Planet Market (moved down by 120px) -->
                 <g class="btn">
-                    <rect x="335" y="340" width="100" height="40" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
-                    <text x="385" y="356" class="btn-text" fill="#fff">Planet</text>
-                    <text x="385" y="368" class="btn-text" fill="#fff">Market</text>
+                    <rect x="335" y="420" width="100" height="40" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
+                    <text x="385" y="436" class="btn-text" fill="#fff">Planet</text>
+                    <text x="385" y="448" class="btn-text" fill="#fff">Market</text>
                 </g>
             </svg>
         </div>
@@ -476,11 +477,11 @@
                     <span class="social-caption">Send Email</span>
                 </div>
                 
-                <div class="social-item" onclick="window.open('https://contacts.google.com/', '_blank')">
+                <div class="social-item" onclick="shareOnWhatsApp()">
                     <div class="social-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Google_Contacts_icon_%282022%29.svg" alt="Google Contacts">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Google_Contacts_icon_%282022%29.svg" alt="Share on WhatsApp">
                     </div>
-                    <span class="social-caption">Invite Friend</span>
+                    <span class="social-caption">Share Page</span>
                 </div>
             </div>
             
@@ -504,6 +505,16 @@
                 seeMoreBtn.textContent = 'See Less';
             }
         });
+
+        // WhatsApp Share functionality for third icon
+        function shareOnWhatsApp() {
+            const pageTitle = "Planet Market - Agricultural Innovation";
+            const pageUrl = window.location.href;
+            const message = `Check out this amazing platform: ${pageTitle} - ${pageUrl}`;
+            
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
     </script>
 </body>
 </html>
