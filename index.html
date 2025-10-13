@@ -1,613 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planet Market - Agricultural Innovation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 50%, #e8f5e9 100%);
-            min-height: 100vh;
-            color: #000000;
-            padding: 15px;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        
-        /* Header */
-        .header {
-            padding: 15px 0;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .company-name {
-            font-size: 20px;
-            font-weight: 700;
-            color: #000000;
-        }
-        
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            font-size: 18px;
-            color: #000000;
-            margin-bottom: 25px;
-            font-weight: 400;
-        }
-        
-        /* Diagram Container */
-        .diagram-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 25px;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .diagram-container svg {
-            width: 100%;
-            max-width: 550px;
-            height: auto;
-        }
-        
-        /* Company Message */
-        .company-message {
-            padding: 20px;
-            margin-bottom: 35px;
-            text-align: center;
-        }
-        
-        .company-message h2 {
-            color: #000000;
-            font-size: 24px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        .message-content {
-            color: #000000;
-            font-size: 16px;
-            line-height: 1.7;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .message-short {
-            display: block;
-        }
-        
-        .message-full {
-            display: none;
-        }
-        
-        .message-content.expanded .message-short {
-            display: none;
-        }
-        
-        .message-content.expanded .message-full {
-            display: block;
-        }
-        
-        .see-more-btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .see-more-btn:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-        }
-        
-        /* Footer */
-        .footer {
-            padding: 30px 0 20px;
-            margin-top: 35px;
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        
-        .social-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .social-item:hover {
-            transform: translateY(-3px);
-        }
-        
-        .social-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            background: white;
-        }
-        
-        .social-item:hover .social-icon {
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-        }
-        
-        .social-icon svg {
-            width: 28px;
-            height: 28px;
-        }
-        
-        .social-icon img {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-        }
-        
-        .whatsapp svg {
-            fill: #25D366;
-        }
-        
-        .gmail svg {
-            fill: #EA4335;
-        }
-        
-        .social-caption {
-            color: #000000;
-            font-size: 18px;
-            font-weight: 500;
-            text-align: center;
-        }
-        
-        .footer-text {
-            text-align: center;
-            color: #000000;
-            font-size: 14px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(139, 195, 74, 0.3);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
+<!-- Diagram -->
+<div class="diagram-container">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 440">
+        <defs>
+            <style>
+                @keyframes flow { to { stroke-dashoffset:-20; } }
+                .line { stroke:#000; stroke-width:1.5; fill:none; stroke-linecap:round; stroke-dasharray:5 5; animation:flow 2s linear infinite; }
+                .btn { cursor:pointer; transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+                .btn rect { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+                .btn:hover { filter: drop-shadow(0 4px 5px rgba(0,0,0,0.14)) drop-shadow(0 1px 10px rgba(0,0,0,0.12)) drop-shadow(0 2px 4px rgba(0,0,0,0.20)); }
+                .btn:active { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.14)) drop-shadow(0 1px 5px rgba(0,0,0,0.12)) drop-shadow(0 1px 2px rgba(0,0,0,0.20)); }
+                .btn-text { font-family: sans-serif; font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+            </style>
             
-            .company-name {
-                font-size: 18px;
-            }
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#FFB900;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FFC84D;stop-opacity:1" />
+            </linearGradient>
             
-            .title {
-                font-size: 22px;
-            }
+            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#ff6b42;stop-opacity:1" />
+            </linearGradient>
             
-            .subtitle {
-                font-size: 16px;
-            }
+            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#107C10;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#3aa64a;stop-opacity:1" />
+            </linearGradient>
             
-            .company-message h2 {
-                font-size: 22px;
-            }
+            <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#006ee6;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#3b9fff;stop-opacity:1" />
+            </linearGradient>
             
-            .message-content {
-                font-size: 15px;
-            }
-            
-            .social-icons {
-                gap: 40px;
-            }
-            
-            .social-icon {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .social-icon svg, .social-icon img {
-                width: 25px;
-                height: 25px;
-            }
-            
-            .social-caption {
-                font-size: 16px;
-            }
-        }
+            <filter id="shadow">
+                <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.14"/>
+                <feDropShadow dx="0" dy="1" stdDeviation="5" flood-opacity="0.12"/>
+                <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.20"/>
+            </filter>
+        </defs>
         
-        @media (max-width: 480px) {
-            .company-name {
-                font-size: 16px;
-            }
-            
-            .title {
-                font-size: 20px;
-            }
-            
-            .subtitle {
-                font-size: 15px;
-            }
-            
-            .social-icons {
-                gap: 30px;
-            }
-            
-            .social-caption {
-                font-size: 15px;
-            }
-            
-            .see-more-btn {
-                padding: 6px 16px;
-                font-size: 13px;
-            }
-        }
+        <!-- Connection Lines -->
+        <line class="line" x1="55" y1="160" x2="275" y2="40"/>
+        <line class="line" x1="165" y1="160" x2="275" y2="40"/>
+        <line class="line" x1="275" y1="160" x2="275" y2="40"/>
+        <line class="line" x1="385" y1="160" x2="275" y2="40"/>
+        <line class="line" x1="495" y1="160" x2="275" y2="40"/>
         
-        @media (min-width: 1024px) {
-            .diagram-container svg {
-                max-width: 600px;
-            }
-        }
+        <line class="line" x1="55" y1="160" x2="55" y2="280"/>
+        <line class="line" x1="165" y1="160" x2="165" y2="280"/>
+        <line class="line" x1="275" y1="160" x2="275" y2="280"/>
+        <line class="line" x1="385" y1="160" x2="385" y2="280"/>
+        <line class="line" x1="495" y1="160" x2="495" y2="280"/>
         
-        @media (min-width: 1400px) {
-            .diagram-container svg {
-                max-width: 650px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="company-name">Planet Market</div>
-        </div>
+        <line class="line" x1="275" y1="280" x2="385" y2="380"/>
+        <line class="line" x1="385" y1="280" x2="385" y2="380"/>
+        <line class="line" x1="495" y1="280" x2="385" y2="380"/>
         
-        <!-- Hero Section -->
-        <div class="hero">
-            <h1 class="title">Revolutionizing Agriculture Income</h1>
-            <p class="subtitle">Connecting farmers directly to markets, eliminating intermediaries</p>
-        </div>
+        <!-- Row 1: Agriculture Income -->
+        <g class="btn">
+            <rect x="225" y="20" width="100" height="40" rx="8" fill="url(#grad1)" filter="url(#shadow)"/>
+            <text x="275" y="36" class="btn-text" fill="#000">Agriculture</text>
+            <text x="275" y="48" class="btn-text" fill="#000">Income</text>
+        </g>
         
-        <!-- Diagram -->
-        <div class="diagram-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 440" id="mainDiagram">
-                <defs>
-                    <style>
-                        @keyframes flow { to { stroke-dashoffset:-20; } }
-                        .line { stroke:#000; stroke-width:1.5; fill:none; stroke-linecap:round; stroke-dasharray:5 5; animation:flow 2s linear infinite; }
-                        .btn { cursor:pointer; transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-                        .btn rect { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-                        .btn:hover { filter: drop-shadow(0 4px 5px rgba(0,0,0,0.14)) drop-shadow(0 1px 10px rgba(0,0,0,0.12)) drop-shadow(0 2px 4px rgba(0,0,0,0.20)); }
-                        .btn:active { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.14)) drop-shadow(0 1px 5px rgba(0,0,0,0.12)) drop-shadow(0 1px 2px rgba(0,0,0,0.20)); }
-                        .btn-text { font-family: sans-serif; font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
-                    </style>
-                    
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#FFB900;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#FFC84D;stop-opacity:1" />
-                    </linearGradient>
-                    
-                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#ff6b42;stop-opacity:1" />
-                    </linearGradient>
-                    
-                    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#107C10;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#3aa64a;stop-opacity:1" />
-                    </linearGradient>
-                    
-                    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#006ee6;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#3b9fff;stop-opacity:1" />
-                    </linearGradient>
-                    
-                    <filter id="shadow">
-                        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.14"/>
-                        <feDropShadow dx="0" dy="1" stdDeviation="5" flood-opacity="0.12"/>
-                        <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.20"/>
-                    </filter>
-                </defs>
-                
-                <!-- Connection Lines -->
-                <line class="line" x1="55" y1="160" x2="275" y2="40"/>
-                <line class="line" x1="165" y1="160" x2="275" y2="40"/>
-                <line class="line" x1="275" y1="160" x2="275" y2="40"/>
-                <line class="line" x1="385" y1="160" x2="275" y2="40"/>
-                <line class="line" x1="495" y1="160" x2="275" y2="40"/>
-                
-                <line class="line" x1="55" y1="160" x2="55" y2="280"/>
-                <line class="line" x1="165" y1="160" x2="165" y2="280"/>
-                <line class="line" x1="275" y1="160" x2="275" y2="280"/>
-                <line class="line" x1="385" y1="160" x2="385" y2="280"/>
-                <line class="line" x1="495" y1="160" x2="495" y2="280"/>
-                
-                <line class="line" x1="275" y1="280" x2="385" y2="380"/>
-                <line class="line" x1="385" y1="280" x2="385" y2="380"/>
-                <line class="line" x1="495" y1="280" x2="385" y2="380"/>
-                
-                <!-- Row 1: Agriculture Income -->
-                <g class="btn">
-                    <rect x="225" y="20" width="100" height="40" rx="8" fill="url(#grad1)" filter="url(#shadow)"/>
-                    <text x="275" y="36" class="btn-text" fill="#000">Agriculture</text>
-                    <text x="275" y="48" class="btn-text" fill="#000">Income</text>
-                </g>
-                
-                <!-- Row 2: Problems -->
-                <g class="btn">
-                    <rect x="5" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-                    <text x="55" y="160" class="btn-text" fill="#fff">Weather</text>
-                </g>
-                
-                <g class="btn">
-                    <rect x="115" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-                    <text x="165" y="160" class="btn-text" fill="#fff">Pest</text>
-                </g>
-                
-                <g class="btn">
-                    <rect x="225" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-                    <text x="275" y="156" class="btn-text" fill="#fff">Small</text>
-                    <text x="275" y="168" class="btn-text" fill="#fff">Farms</text>
-                </g>
-                
-                <g class="btn">
-                    <rect x="335" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-                    <text x="385" y="160" class="btn-text" fill="#fff">Price</text>
-                </g>
-                
-                <g class="btn">
-                    <rect x="445" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
-                    <text x="495" y="160" class="btn-text" fill="#fff">Intermediaries</text>
-                </g>
-                
-                <!-- Row 3: Solutions -->
-                <g class="btn">
-                    <rect x="5" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-                    <text x="55" y="280" class="btn-text" fill="#fff">Uncontrollable</text>
-                </g>
-                
-                <g class="btn">
-                    <rect x="115" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-                    <text x="165" y="280" class="btn-text" fill="#fff">Pesticides</text>
-                </g>
-                
-                <g class="btn">
-                    <rect x="225" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-                    <text x="275" y="276" class="btn-text" fill="#fff">Finished</text>
-                    <text x="275" y="288" class="btn-text" fill="#fff">Products</text>
-                </g>
-                
-                <g class="btn">
-                    <rect x="335" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-                    <text x="385" y="276" class="btn-text" fill="#fff">Demand</text>
-                    <text x="385" y="288" class="btn-text" fill="#fff">Data</text>
-                </g>
-                
-                <g class="btn">
-                    <rect x="445" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
-                    <text x="495" y="280" class="btn-text" fill="#fff">Avoidable</text>
-                </g>
-                
-                <!-- Row 4: Planet Market -->
-                <g class="btn">
-                    <rect x="335" y="380" width="100" height="40" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
-                    <text x="385" y="396" class="btn-text" fill="#fff">Planet</text>
-                    <text x="385" y="408" class="btn-text" fill="#fff">Market</text>
-                </g>
-            </svg>
-        </div>
+        <!-- Row 2: Problems -->
+        <g class="btn">
+            <rect x="5" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+            <text x="55" y="160" class="btn-text" fill="#fff">Weather</text>
+        </g>
         
-        <!-- Company Message -->
-        <div class="company-message">
-            <h2>Our Mission</h2>
-            <div class="message-content" id="messageContent">
-                <div class="message-short">
-                    Planet Market is dedicated to transforming agricultural commerce by creating a direct bridge between farmers and consumers. We eliminate unnecessary intermediaries, ensure fair pricing, and leverage data-driven insights to help farmers make informed decisions...
-                </div>
-                <div class="message-full">
-                    Planet Market is dedicated to transforming agricultural commerce by creating a direct bridge between farmers and consumers. We eliminate unnecessary intermediaries, ensure fair pricing, and leverage data-driven insights to help farmers make informed decisions. Together, we're building a sustainable future for agriculture.<br><br>
-                    
-                    Our platform empowers small-scale farmers with market intelligence, helping them understand demand patterns and optimize their production. By connecting farmers directly with buyers, we're creating a more transparent and efficient agricultural ecosystem that benefits everyone involved in the food supply chain.<br><br>
-                    
-                    Through innovative technology and community-driven approaches, we're working to solve the fundamental challenges that have plagued agricultural markets for generations, creating new opportunities for rural communities and sustainable farming practices worldwide.
-                </div>
-                <button class="see-more-btn" id="seeMoreBtn">See More</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="social-icons">
-                <div class="social-item" onclick="window.open('https://wa.me/', '_blank')">
-                    <div class="social-icon whatsapp">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                    </div>
-                    <span class="social-caption">Join Group</span>
-                </div>
-                
-                <div class="social-item" onclick="window.open('mailto:info@planetmarket.com', '_blank')">
-                    <div class="social-icon gmail">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
-                        </svg>
-                    </div>
-                    <span class="social-caption">Send Email</span>
-                </div>
-                
-                <div class="social-item" onclick="shareWithImage()">
-                    <div class="social-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Google_Contacts_icon_%282022%29.svg" alt="Share Page">
-                    </div>
-                    <span class="social-caption">Share Page</span>
-                </div>
-            </div>
-            
-            <div class="footer-text">
-                © 2024 Planet Market. All rights reserved. Empowering farmers, transforming agriculture.
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // See More button functionality
-        const seeMoreBtn = document.getElementById('seeMoreBtn');
-        const messageContent = document.getElementById('messageContent');
-
-        seeMoreBtn.addEventListener('click', function() {
-            if (messageContent.classList.contains('expanded')) {
-                messageContent.classList.remove('expanded');
-                seeMoreBtn.textContent = 'See More';
-            } else {
-                messageContent.classList.add('expanded');
-                seeMoreBtn.textContent = 'See Less';
-            }
-        });
-
-        // Share with image functionality
-        async function shareWithImage() {
-            // ⚡ EDIT THESE VALUES TO CUSTOMIZE THE SHARE CONTENT ⚡
-            const customShareData = {
-                title: "🌱 Planet Market - Agricultural Revolution",
-                message: "Check out this innovative solution for agricultural challenges! Planet Market connects farmers directly to consumers, eliminating intermediaries and ensuring fair prices. Their comprehensive approach addresses weather, pests, small farms, pricing, and market access issues.",
-                url: window.location.href
-            };
-            // ⚡ END OF CUSTOMIZABLE CONTENT ⚡
-
-            const diagramImageUrl = 'diagram.png'; // Path to your diagram image
-            
-            try {
-                // First, check if the diagram.png file exists
-                const imageExists = await checkImageExists(diagramImageUrl);
-                
-                if (imageExists) {
-                    // If image exists, try to share with image
-                    await shareWithImageFile(customShareData, diagramImageUrl);
-                } else {
-                    // If image doesn't exist, share without image
-                    await shareWithoutImage(customShareData);
-                }
-            } catch (error) {
-                console.log('Share error:', error);
-                // Fallback to simple share without image
-                await shareWithoutImage(customShareData);
-            }
-        }
-
-        // Check if image file exists
-        function checkImageExists(url) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = url;
-                
-                // Timeout after 2 seconds
-                setTimeout(() => resolve(false), 2000);
-            });
-        }
-
-        // Share with image file
-        async function shareWithImageFile(shareData, imageUrl) {
-            try {
-                // Fetch the image
-                const response = await fetch(imageUrl);
-                const blob = await response.blob();
-                const file = new File([blob], 'planet-market-diagram.png', { type: 'image/png' });
-
-                const sharePayload = {
-                    title: shareData.title,
-                    text: shareData.message,
-                    url: shareData.url,
-                    files: [file]
-                };
-
-                if (navigator.share && navigator.canShare(sharePayload)) {
-                    await navigator.share(sharePayload);
-                    console.log('Shared with image successfully');
-                } else {
-                    throw new Error('Image sharing not supported');
-                }
-            } catch (error) {
-                console.log('Image share failed, falling back to text-only:', error);
-                await shareWithoutImage(shareData);
-            }
-        }
-
-        // Share without image (text only)
-        async function shareWithoutImage(shareData) {
-            const fullShareText = `${shareData.title}\n\n${shareData.message}\n\n${shareData.url}`;
-
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: shareData.title,
-                        text: shareData.message,
-                        url: shareData.url
-                    });
-                } catch (error) {
-                    fallbackToWhatsApp(fullShareText);
-                }
-            } else {
-                fallbackToWhatsApp(fullShareText);
-            }
-        }
-
-        // Fallback to WhatsApp or clipboard
-        function fallbackToWhatsApp(shareText) {
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
-            
-            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                window.open(whatsappUrl, '_blank');
-            } else {
-                navigator.clipboard.writeText(shareText).then(() => {
-                    alert('📋 Share content copied to clipboard!\n\nYou can now paste this message to share.');
-                }).catch(() => {
-                    window.open(whatsappUrl, '_blank');
-                });
-            }
-        }
-    </script>
-</body>
-</html>
+        <g class="btn">
+            <rect x="115" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+            <text x="165" y="160" class="btn-text" fill="#fff">Pest</text>
+        </g>
+        
+        <g class="btn">
+            <rect x="225" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+            <text x="275" y="156" class="btn-text" fill="#fff">Small</text>
+            <text x="275" y="168" class="btn-text" fill="#fff">Farms</text>
+        </g>
+        
+        <g class="btn">
+            <rect x="335" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+            <text x="385" y="160" class="btn-text" fill="#fff">Price</text>
+        </g>
+        
+        <g class="btn">
+            <rect x="445" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+            <text x="495" y="160" class="btn-text" fill="#fff">Intermediaries</text>
+        </g>
+        
+        <!-- Row 3: Solutions -->
+        <g class="btn">
+            <rect x="5" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+            <text x="55" y="280" class="btn-text" fill="#fff">Uncontrollable</text>
+        </g>
+        
+        <g class="btn">
+            <rect x="115" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+            <text x="165" y="280" class="btn-text" fill="#fff">Pesticides</text>
+        </g>
+        
+        <g class="btn">
+            <rect x="225" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+            <text x="275" y="276" class="btn-text" fill="#fff">Finished</text>
+            <text x="275" y="288" class="btn-text" fill="#fff">Products</text>
+        </g>
+        
+        <g class="btn">
+            <rect x="335" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+            <text x="385" y="276" class="btn-text" fill="#fff">Demand</text>
+            <text x="385" y="288" class="btn-text" fill="#fff">Data</text>
+        </g>
+        
+        <g class="btn">
+            <rect x="445" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+            <text x="495" y="280" class="btn-text" fill="#fff">Avoidable</text>
+        </g>
+        
+        <!-- Row 4: Planet Market -->
+        <g class="btn">
+            <rect x="335" y="380" width="100" height="40" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
+            <text x="385" y="396" class="btn-text" fill="#fff">Planet</text>
+            <text x="385" y="408" class="btn-text" fill="#fff">Market</text>
+        </g>
+    </svg>
+</div>
