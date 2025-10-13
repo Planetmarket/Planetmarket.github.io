@@ -207,15 +207,6 @@
             padding-top: 15px;
             border-top: 1px solid rgba(139, 195, 74, 0.3);
         }
-
-        /* Hidden SVG for sharing */
-        #shareSvg {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-            width: 400px;
-            height: 300px;
-        }
         
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -485,11 +476,11 @@
                     <span class="social-caption">Send Email</span>
                 </div>
                 
-                <div class="social-item" onclick="featuredShare()">
+                <div class="social-item" onclick="customShare()">
                     <div class="social-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Google_Contacts_icon_%282022%29.svg" alt="Featured Share">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Google_Contacts_icon_%282022%29.svg" alt="Share Page">
                     </div>
-                    <span class="social-caption">Featured Share</span>
+                    <span class="social-caption">Share Page</span>
                 </div>
             </div>
             
@@ -498,9 +489,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Hidden canvas for SVG conversion -->
-    <canvas id="svgCanvas" style="display: none;"></canvas>
 
     <script>
         // See More button functionality
@@ -517,109 +505,73 @@
             }
         });
 
-        // Featured Share functionality
-        async function featuredShare() {
-            const shareTitle = "🌱 Revolutionize Agriculture with Planet Market";
-            const shareText = "Check out how Planet Market is transforming agricultural income by connecting farmers directly to markets! This innovative platform eliminates intermediaries and creates fair pricing for farmers. See the complete solution diagram and join the movement for sustainable agriculture. 🚀";
-            
-            try {
-                // Convert SVG to image for sharing
-                const svgElement = document.getElementById('mainDiagram');
-                const canvas = document.getElementById('svgCanvas');
-                const ctx = canvas.getContext('2d');
-                
-                // Set canvas size
-                const svgRect = svgElement.getBoundingClientRect();
-                canvas.width = svgRect.width;
-                canvas.height = svgRect.height;
-                
-                // Create SVG data URL
-                const svgData = new XMLSerializer().serializeToString(svgElement);
-                const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
-                const svgUrl = URL.createObjectURL(svgBlob);
-                
-                const img = new Image();
-                img.onload = async function() {
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    
-                    // Convert canvas to blob
-                    canvas.toBlob(async function(blob) {
-                        // Create the share data with image
-                        const shareData = {
-                            title: shareTitle,
-                            text: shareText,
-                            url: window.location.href,
-                            files: blob ? [new File([blob], 'planet-market-diagram.png', { type: 'image/png' })] : []
-                        };
+        // Custom Share functionality - YOU CAN EDIT THESE VALUES
+        function customShare() {
+            // ⚡ EDIT THESE VALUES TO CUSTOMIZE THE SHARE CONTENT ⚡
+            const customShareData = {
+                title: "Discover Planet Market - Agricultural Revolution", // Custom title for sharing
+                message: "I found this amazing platform that's transforming agriculture! Planet Market connects farmers directly to consumers, eliminating middlemen and ensuring fair prices. Check out their innovative approach to solving rural income challenges. The diagram shows how they address key agricultural problems with smart solutions!", // Custom message for sharing
+                url: window.location.href // Page URL (you can change this too if needed)
+            };
+            // ⚡ END OF CUSTOMIZABLE CONTENT ⚡
 
-                        // Check if Web Share API is supported
-                        if (navigator.share && navigator.canShare(shareData)) {
-                            try {
-                                await navigator.share(shareData);
-                                console.log('Featured share successful');
-                            } catch (error) {
-                                console.log('Error sharing:', error);
-                                fallbackShare(shareTitle, shareText);
-                            }
-                        } else {
-                            fallbackShare(shareTitle, shareText);
-                        }
-                        
-                        // Clean up
-                        URL.revokeObjectURL(svgUrl);
-                    }, 'image/png');
+            // Create the full share text
+            const fullShareText = `${customShareData.title}\n\n${customShareData.message}\n\n${customShareData.url}`;
+
+            // Try Web Share API first
+            if (navigator.share) {
+                const shareData = {
+                    title: customShareData.title,
+                    text: customShareData.message,
+                    url: customShareData.url
                 };
-                
-                img.src = svgUrl;
-                
-            } catch (error) {
-                console.log('Error in featured share:', error);
-                fallbackShare(shareTitle, shareText);
+
+                navigator.share(shareData)
+                    .then(() => console.log('Custom share successful'))
+                    .catch((error) => {
+                        console.log('Web Share failed, using fallback:', error);
+                        fallbackCustomShare(fullShareText);
+                    });
+            } else {
+                // Use fallback method
+                fallbackCustomShare(fullShareText);
             }
         }
 
-        // Fallback share function
-        function fallbackShare(title, text) {
-            const url = window.location.href;
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(title + '\n\n' + text + '\n\n' + url)}`;
+        // Fallback share method
+        function fallbackCustomShare(shareText) {
+            // For mobile devices - open WhatsApp with pre-filled message
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
             
             if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // Mobile device - open WhatsApp
+                // Mobile device
                 window.open(whatsappUrl, '_blank');
             } else {
-                // Desktop - copy to clipboard and show message
-                const shareMessage = `${title}\n\n${text}\n\n${url}`;
-                navigator.clipboard.writeText(shareMessage).then(() => {
-                    alert('Featured share content copied to clipboard! 📋\n\nYou can now paste and share this message with the diagram description.');
+                // Desktop device - copy to clipboard
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('✨ Share content copied to clipboard! ✨\n\nYou can now paste this message anywhere to share:\n\n' + shareText);
                 }).catch(() => {
-                    // Final fallback
+                    // Final fallback - open WhatsApp anyway
                     window.open(whatsappUrl, '_blank');
                 });
             }
         }
 
-        // Alternative method for browsers that don't support file sharing
-        function simpleFeaturedShare() {
-            const shareTitle = "🌱 Revolutionize Agriculture with Planet Market";
-            const shareText = "Check out how Planet Market is transforming agricultural income by connecting farmers directly to markets! This innovative platform eliminates intermediaries and creates fair pricing for farmers. See the complete solution diagram and join the movement for sustainable agriculture. 🚀";
-            const url = window.location.href;
-            
-            const shareData = {
-                title: shareTitle,
-                text: shareText + '\n\nView the interactive diagram at:',
-                url: url
+        // Alternative: Share with image (if you want to include the diagram as image)
+        function customShareWithImage() {
+            // ⚡ EDIT THESE VALUES TO CUSTOMIZE THE SHARE CONTENT ⚡
+            const customShareData = {
+                title: "Planet Market - Revolutionizing Agriculture",
+                message: "Look at this innovative solution for agricultural challenges! Planet Market's approach eliminates intermediaries and connects farmers directly to markets. Their comprehensive diagram shows the complete problem-to-solution journey.",
+                url: window.location.href
             };
+            // ⚡ END OF CUSTOMIZABLE CONTENT ⚡
 
-            if (navigator.share) {
-                navigator.share(shareData)
-                    .then(() => console.log('Simple featured share successful'))
-                    .catch((error) => {
-                        console.log('Error sharing:', error);
-                        fallbackShare(shareTitle, shareText);
-                    });
-            } else {
-                fallbackShare(shareTitle, shareText);
-            }
+            // For platforms that support image sharing
+            const fullShareText = `${customShareData.title}\n\n${customShareData.message}\n\nView the interactive diagram: ${customShareData.url}`;
+            
+            // Use the same fallback as above
+            fallbackCustomShare(fullShareText);
         }
     </script>
 </body>
