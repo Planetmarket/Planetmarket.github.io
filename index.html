@@ -207,6 +207,15 @@
             padding-top: 15px;
             border-top: 1px solid rgba(139, 195, 74, 0.3);
         }
+
+        /* Hidden SVG for sharing */
+        #shareSvg {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 400px;
+            height: 300px;
+        }
         
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -308,7 +317,7 @@
         
         <!-- Diagram -->
         <div class="diagram-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 450">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 440" id="mainDiagram">
                 <defs>
                     <style>
                         @keyframes flow { to { stroke-dashoffset:-20; } }
@@ -360,9 +369,9 @@
                 <line class="line" x1="385" y1="160" x2="385" y2="280"/>
                 <line class="line" x1="495" y1="160" x2="495" y2="280"/>
                 
-                <line class="line" x1="275" y1="305" x2="385" y2="385"/>
-                <line class="line" x1="385" y1="305" x2="385" y2="385"/>
-                <line class="line" x1="495" y1="305" x2="385" y2="385"/>
+                <line class="line" x1="275" y1="280" x2="385" y2="380"/>
+                <line class="line" x1="385" y1="280" x2="385" y2="380"/>
+                <line class="line" x1="495" y1="280" x2="385" y2="380"/>
                 
                 <!-- Row 1: Agriculture Income -->
                 <g class="btn">
@@ -428,9 +437,9 @@
                 
                 <!-- Row 4: Planet Market -->
                 <g class="btn">
-                    <rect x="335" y="365" width="100" height="40" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
-                    <text x="385" y="381" class="btn-text" fill="#fff">Planet</text>
-                    <text x="385" y="393" class="btn-text" fill="#fff">Market</text>
+                    <rect x="335" y="380" width="100" height="40" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
+                    <text x="385" y="396" class="btn-text" fill="#fff">Planet</text>
+                    <text x="385" y="408" class="btn-text" fill="#fff">Market</text>
                 </g>
             </svg>
         </div>
@@ -476,11 +485,11 @@
                     <span class="social-caption">Send Email</span>
                 </div>
                 
-                <div class="social-item" onclick="sharePage()">
+                <div class="social-item" onclick="featuredShare()">
                     <div class="social-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Google_Contacts_icon_%282022%29.svg" alt="Share Page">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Google_Contacts_icon_%282022%29.svg" alt="Featured Share">
                     </div>
-                    <span class="social-caption">Share Page</span>
+                    <span class="social-caption">Featured Share</span>
                 </div>
             </div>
             
@@ -489,6 +498,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Hidden canvas for SVG conversion -->
+    <canvas id="svgCanvas" style="display: none;"></canvas>
 
     <script>
         // See More button functionality
@@ -505,32 +517,108 @@
             }
         });
 
-        // Share page functionality
-        function sharePage() {
+        // Featured Share functionality
+        async function featuredShare() {
+            const shareTitle = "🌱 Revolutionize Agriculture with Planet Market";
+            const shareText = "Check out how Planet Market is transforming agricultural income by connecting farmers directly to markets! This innovative platform eliminates intermediaries and creates fair pricing for farmers. See the complete solution diagram and join the movement for sustainable agriculture. 🚀";
+            
+            try {
+                // Convert SVG to image for sharing
+                const svgElement = document.getElementById('mainDiagram');
+                const canvas = document.getElementById('svgCanvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Set canvas size
+                const svgRect = svgElement.getBoundingClientRect();
+                canvas.width = svgRect.width;
+                canvas.height = svgRect.height;
+                
+                // Create SVG data URL
+                const svgData = new XMLSerializer().serializeToString(svgElement);
+                const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+                const svgUrl = URL.createObjectURL(svgBlob);
+                
+                const img = new Image();
+                img.onload = async function() {
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    // Convert canvas to blob
+                    canvas.toBlob(async function(blob) {
+                        // Create the share data with image
+                        const shareData = {
+                            title: shareTitle,
+                            text: shareText,
+                            url: window.location.href,
+                            files: blob ? [new File([blob], 'planet-market-diagram.png', { type: 'image/png' })] : []
+                        };
+
+                        // Check if Web Share API is supported
+                        if (navigator.share && navigator.canShare(shareData)) {
+                            try {
+                                await navigator.share(shareData);
+                                console.log('Featured share successful');
+                            } catch (error) {
+                                console.log('Error sharing:', error);
+                                fallbackShare(shareTitle, shareText);
+                            }
+                        } else {
+                            fallbackShare(shareTitle, shareText);
+                        }
+                        
+                        // Clean up
+                        URL.revokeObjectURL(svgUrl);
+                    }, 'image/png');
+                };
+                
+                img.src = svgUrl;
+                
+            } catch (error) {
+                console.log('Error in featured share:', error);
+                fallbackShare(shareTitle, shareText);
+            }
+        }
+
+        // Fallback share function
+        function fallbackShare(title, text) {
+            const url = window.location.href;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(title + '\n\n' + text + '\n\n' + url)}`;
+            
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Mobile device - open WhatsApp
+                window.open(whatsappUrl, '_blank');
+            } else {
+                // Desktop - copy to clipboard and show message
+                const shareMessage = `${title}\n\n${text}\n\n${url}`;
+                navigator.clipboard.writeText(shareMessage).then(() => {
+                    alert('Featured share content copied to clipboard! 📋\n\nYou can now paste and share this message with the diagram description.');
+                }).catch(() => {
+                    // Final fallback
+                    window.open(whatsappUrl, '_blank');
+                });
+            }
+        }
+
+        // Alternative method for browsers that don't support file sharing
+        function simpleFeaturedShare() {
+            const shareTitle = "🌱 Revolutionize Agriculture with Planet Market";
+            const shareText = "Check out how Planet Market is transforming agricultural income by connecting farmers directly to markets! This innovative platform eliminates intermediaries and creates fair pricing for farmers. See the complete solution diagram and join the movement for sustainable agriculture. 🚀";
+            const url = window.location.href;
+            
             const shareData = {
-                title: 'Planet Market - Agricultural Innovation',
-                text: 'Revolutionizing Agriculture Income - Connecting farmers directly to markets, eliminating intermediaries',
-                url: window.location.href
+                title: shareTitle,
+                text: shareText + '\n\nView the interactive diagram at:',
+                url: url
             };
 
-            // Check if Web Share API is supported
             if (navigator.share) {
                 navigator.share(shareData)
-                    .then(() => console.log('Page shared successfully'))
-                    .catch((error) => console.log('Error sharing:', error));
-            } else {
-                // Fallback for browsers that don't support Web Share API
-                const fallbackUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
-                window.open(fallbackUrl, '_blank');
-                
-                // Show a message for desktop users
-                if (!/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    alert('Page URL copied to clipboard! You can now share it manually.\n\n' + window.location.href);
-                    // Copy to clipboard as fallback
-                    navigator.clipboard.writeText(window.location.href).then(() => {
-                        console.log('URL copied to clipboard');
+                    .then(() => console.log('Simple featured share successful'))
+                    .catch((error) => {
+                        console.log('Error sharing:', error);
+                        fallbackShare(shareTitle, shareText);
                     });
-                }
+            } else {
+                fallbackShare(shareTitle, shareText);
             }
         }
     </script>
