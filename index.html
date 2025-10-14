@@ -34,7 +34,7 @@ body, html {
 /* Header */
 header {
   background-color: rgba(255,255,255,0.9);
-  padding: 15px 30px;
+  padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -42,23 +42,26 @@ header {
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 /* Logo */
 .logo-text {
   display: flex;
   flex-direction: column;
-  margin-left: 15px;
+  margin-left: 12px;
+  white-space: nowrap;
 }
 .logo-main {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  font-size: 26px;
+  font-size: 24px;
   color: #2E7D32;
 }
 .logo-sub {
   font-family: 'Poppins', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   color: #000;
 }
@@ -98,23 +101,23 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px;
+  padding: 50px 10px;
   text-align: center;
 }
 .chat-box {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(6px);
   border-radius: 20px;
-  padding: 40px 30px;
+  padding: 35px 25px;
   max-width: 800px;
-  width: 90%;
+  width: 92%;
   box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 .chat-title {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 .chat-desc {
   font-size: 17px;
@@ -128,8 +131,8 @@ header {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
-  margin: 50px 0 20px;
+  gap: 35px;
+  margin: 40px 0 20px;
 }
 .social-footer a {
   display: flex;
@@ -140,7 +143,7 @@ header {
   font-size: 14px;
 }
 .social-footer img {
-  width: 40px; height: 40px;
+  width: 36px; height: 36px;
   margin-bottom: 5px;
 }
 
@@ -154,15 +157,22 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero-section { min-height: 70vh; }
+  .hero-section { min-height: 70vh; padding: 40px 15px; }
+  .hero-box, .chat-box { width: 95%; padding: 30px 20px; }
+  .chat-section { padding: 40px 0; }
   .hero-title { font-size: 36px; }
-  .hero-desc, .chat-desc { font-size: 16px; }
-  .chat-title { font-size: 28px; }
+  .hero-desc, .chat-desc { font-size: 15px; line-height: 1.5; }
+  .chat-title { font-size: 26px; }
+  .logo-main { font-size: 20px; }
+  .logo-sub { font-size: 10px; }
 }
 @media (max-width: 480px) {
   .hero-title { font-size: 28px; }
   .chat-title { font-size: 22px; }
   .hero-desc, .chat-desc { font-size: 14px; }
+  header { padding: 10px 15px; }
+  .logo-main { font-size: 18px; }
+  .logo-sub { font-size: 9px; }
 }
 </style>
 </head>
@@ -177,7 +187,7 @@ footer {
 
 <!-- Header -->
 <header>
-  <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 36 36">
+  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 36 36">
     <defs>
       <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#4CAF50"/>
