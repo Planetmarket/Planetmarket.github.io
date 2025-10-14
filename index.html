@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planet Market Project !</title>
+    <title>Planet Market - Agricultural Innovation</title>
     <style>
         * {
             margin: 0;
@@ -16,7 +16,7 @@
             background: linear-gradient(225deg, #d4edda 0%, #c8e6c9 25%, #a5d6a7 50%, #81c784 75%, #66bb6a 100%);
             min-height: 100vh;
             color: #000000;
-            padding: 15px;
+            padding: 0;
             overflow-x: hidden;
         }
         
@@ -26,30 +26,74 @@
             width: 100%;
         }
         
-        /* Header */
-        .header {
+        /* Topbar */
+        .topbar {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 15px 0;
-            margin-bottom: 25px;
-            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .topbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
         }
         
         .company-name {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
-            color: #000000;
+            color: #2E7D32;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* Header */
+        .header {
+            padding: 30px 0 15px;
+            margin-bottom: 25px;
+            text-align: center;
         }
         
         /* Hero Section */
         .hero {
             text-align: center;
             margin-bottom: 30px;
+            padding: 0 20px;
         }
         
         .title {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 800;
             color: #000000;
             margin-bottom: 10px;
+            line-height: 1.2;
         }
         
         .subtitle {
@@ -57,6 +101,7 @@
             color: #000000;
             margin-bottom: 25px;
             font-weight: 400;
+            line-height: 1.4;
         }
         
         /* Diagram Container */
@@ -66,6 +111,7 @@
             margin-bottom: 25px;
             width: 100%;
             overflow: hidden;
+            padding: 0 20px;
         }
         
         .diagram-container svg {
@@ -135,6 +181,7 @@
         .footer {
             padding: 30px 0 20px;
             margin-top: 35px;
+            background-color: rgba(255, 255, 255, 0.7);
         }
         
         .social-icons {
@@ -159,8 +206,8 @@
         }
         
         .social-icon {
-            width: 55px;
-            height: 55px;
+            width: 41.25px; /* 3/4 of 55px */
+            height: 41.25px; /* 3/4 of 55px */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -175,13 +222,13 @@
         }
         
         .social-icon svg {
-            width: 28px;
-            height: 28px;
+            width: 21px; /* 3/4 of 28px */
+            height: 21px; /* 3/4 of 28px */
         }
         
         .social-icon img {
-            width: 28px;
-            height: 28px;
+            width: 21px; /* 3/4 of 28px */
+            height: 21px; /* 3/4 of 28px */
             border-radius: 6px;
         }
         
@@ -195,7 +242,7 @@
         
         .social-caption {
             color: #000000;
-            font-size: 18px;
+            font-size: 14px; /* Slightly smaller to match smaller icons */
             font-weight: 500;
             text-align: center;
         }
@@ -211,15 +258,23 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 0;
+            }
+            
+            .topbar-content {
+                padding: 0 15px;
             }
             
             .company-name {
-                font-size: 18px;
+                font-size: 20px;
+            }
+            
+            .tagline {
+                display: none;
             }
             
             .title {
-                font-size: 22px;
+                font-size: 24px;
             }
             
             .subtitle {
@@ -239,27 +294,27 @@
             }
             
             .social-icon {
-                width: 50px;
-                height: 50px;
+                width: 37.5px; /* 3/4 of 50px */
+                height: 37.5px; /* 3/4 of 50px */
             }
             
             .social-icon svg, .social-icon img {
-                width: 25px;
-                height: 25px;
+                width: 19px; /* 3/4 of 25px */
+                height: 19px; /* 3/4 of 25px */
             }
             
             .social-caption {
-                font-size: 16px;
+                font-size: 13px;
             }
         }
         
         @media (max-width: 480px) {
             .company-name {
-                font-size: 16px;
+                font-size: 18px;
             }
             
             .title {
-                font-size: 20px;
+                font-size: 22px;
             }
             
             .subtitle {
@@ -271,7 +326,7 @@
             }
             
             .social-caption {
-                font-size: 15px;
+                font-size: 12px;
             }
             
             .see-more-btn {
@@ -294,16 +349,31 @@
     </style>
 </head>
 <body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-content">
+                <div class="logo">
+                    <div class="logo-icon">PM</div>
+                    <div>
+                        <div class="company-name">Planet Market</div>
+                        <div class="tagline">Agricultural Innovation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <div class="company-name">planet market project , pune </div>
+            <!-- Content moved to topbar -->
         </div>
         
         <!-- Hero Section -->
         <div class="hero">
-            <h1 class="title">Agricultural Income Cycle</h1>
-            <p class="subtitle">Factors Affecting Agricultural Household Income </p>
+            <h1 class="title">Revolutionizing Agriculture Income</h1>
+            <p class="subtitle">Connecting farmers directly to markets, eliminating intermediaries</p>
         </div>
         
         <!-- Diagram -->
@@ -437,7 +507,7 @@
         
         <!-- Company Message -->
         <div class="company-message">
-            <h2>Join The Project </h2>
+            <h2>Our Mission</h2>
             <div class="message-content" id="messageContent">
                 <div class="message-short">
                     Planet Market is dedicated to transforming agricultural commerce by creating a direct bridge between farmers and consumers. We eliminate unnecessary intermediaries, ensure fair pricing, and leverage data-driven insights to help farmers make informed decisions...
@@ -473,7 +543,7 @@
                             <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
                         </svg>
                     </div>
-                    <span class="social-caption">Email</span>
+                    <span class="social-caption">Send Email</span>
                 </div>
                 
                 <div class="social-item" onclick="sharePage()">
@@ -485,7 +555,7 @@
             </div>
             
             <div class="footer-text">
-                © 2024 Planet Market. All rights reserved.
+                © 2024 Planet Market. All rights reserved. Empowering farmers, transforming agriculture.
             </div>
         </div>
     </div>
@@ -508,8 +578,8 @@
         // Share page functionality
         function sharePage() {
             const shareData = {
-                title: 'Planet Market',
-                text: 'Agriculture Income problems',
+                title: 'Planet Market - Agricultural Innovation',
+                text: 'Revolutionizing Agriculture Income - Connecting farmers directly to markets, eliminating intermediaries',
                 url: window.location.href
             };
 
