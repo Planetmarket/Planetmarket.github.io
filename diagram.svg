@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 440">
+    <defs>
+        <style>
+            @keyframes flow { to { stroke-dashoffset:-20; } }
+            .line { stroke:#000; stroke-width:1.5; fill:none; stroke-linecap:round; stroke-dasharray:5 5; animation:flow 2s linear infinite; }
+            .btn { cursor:pointer; transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+            .btn rect { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+            .btn:hover { filter: drop-shadow(0 4px 5px rgba(0,0,0,0.14)) drop-shadow(0 1px 10px rgba(0,0,0,0.12)) drop-shadow(0 2px 4px rgba(0,0,0,0.20)); }
+            .btn:active { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.14)) drop-shadow(0 1px 5px rgba(0,0,0,0.12)) drop-shadow(0 1px 2px rgba(0,0,0,0.20)); }
+            .btn-text { font-family: sans-serif; font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+        </style>
+        
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFB900;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#FFC84D;stop-opacity:1" />
+        </linearGradient>
+        
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ff6b42;stop-opacity:1" />
+        </linearGradient>
+        
+        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#107C10;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3aa64a;stop-opacity:1" />
+        </linearGradient>
+        
+        <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#006ee6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3b9fff;stop-opacity:1" />
+        </linearGradient>
+        
+        <filter id="shadow">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.14"/>
+            <feDropShadow dx="0" dy="1" stdDeviation="5" flood-opacity="0.12"/>
+            <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.20"/>
+        </filter>
+    </defs>
+    
+    <!-- Connection Lines -->
+    <line class="line" x1="55" y1="160" x2="275" y2="40"/>
+    <line class="line" x1="165" y1="160" x2="275" y2="40"/>
+    <line class="line" x1="275" y1="160" x2="275" y2="40"/>
+    <line class="line" x1="385" y1="160" x2="275" y2="40"/>
+    <line class="line" x1="495" y1="160" x2="275" y2="40"/>
+    
+    <line class="line" x1="55" y1="160" x2="55" y2="280"/>
+    <line class="line" x1="165" y1="160" x2="165" y2="280"/>
+    <line class="line" x1="275" y1="160" x2="275" y2="280"/>
+    <line class="line" x1="385" y1="160" x2="385" y2="280"/>
+    <line class="line" x1="495" y1="160" x2="495" y2="280"/>
+    
+    <line class="line" x1="275" y1="280" x2="385" y2="380"/>
+    <line class="line" x1="385" y1="280" x2="385" y2="380"/>
+    <line class="line" x1="495" y1="280" x2="385" y2="380"/>
+    
+    <!-- Row 1: Agriculture Income -->
+    <g class="btn">
+        <rect x="225" y="20" width="100" height="40" rx="8" fill="url(#grad1)" filter="url(#shadow)"/>
+        <text x="275" y="36" class="btn-text" fill="#000">Agriculture</text>
+        <text x="275" y="48" class="btn-text" fill="#000">Income</text>
+    </g>
+    
+    <!-- Row 2: Problems -->
+    <g class="btn">
+        <rect x="5" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="55" y="160" class="btn-text" fill="#fff">Weather</text>
+    </g>
+    
+    <g class="btn">
+        <rect x="115" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="165" y="160" class="btn-text" fill="#fff">Pest</text>
+    </g>
+    
+    <g class="btn">
+        <rect x="225" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="275" y="156" class="btn-text" fill="#fff">Small</text>
+        <text x="275" y="168" class="btn-text" fill="#fff">Farms</text>
+    </g>
+    
+    <g class="btn">
+        <rect x="335" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="385" y="160" class="btn-text" fill="#fff">Price</text>
+    </g>
+    
+    <g class="btn">
+        <rect x="445" y="140" width="100" height="40" rx="8" fill="url(#grad2)" filter="url(#shadow)"/>
+        <text x="495" y="160" class="btn-text" fill="#fff">Intermediaries</text>
+    </g>
+    
+    <!-- Row 3: Solutions -->
+    <g class="btn">
+        <rect x="5" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="55" y="280" class="btn-text" fill="#fff">Uncontrollable</text>
+    </g>
+    
+    <g class="btn">
+        <rect x="115" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="165" y="280" class="btn-text" fill="#fff">Pesticides</text>
+    </g>
+    
+    <g class="btn">
+        <rect x="225" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="275" y="276" class="btn-text" fill="#fff">Finished</text>
+        <text x="275" y="288" class="btn-text" fill="#fff">Products</text>
+    </g>
+    
+    <g class="btn">
+        <rect x="335" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="385" y="276" class="btn-text" fill="#fff">Demand</text>
+        <text x="385" y="288" class="btn-text" fill="#fff">Data</text>
+    </g>
+    
+    <g class="btn">
+        <rect x="445" y="260" width="100" height="40" rx="8" fill="url(#grad3)" filter="url(#shadow)"/>
+        <text x="495" y="280" class="btn-text" fill="#fff">Avoidable</text>
+    </g>
+    
+    <!-- Row 4: Planet Market -->
+    <g class="btn">
+        <rect x="335" y="380" width="100" height="40" rx="8" fill="url(#grad4)" filter="url(#shadow)"/>
+        <text x="385" y="396" class="btn-text" fill="#fff">Planet</text>
+        <text x="385" y="408" class="btn-text" fill="#fff">Market</text>
+    </g>
+</svg>
