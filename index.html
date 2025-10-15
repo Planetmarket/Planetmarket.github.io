@@ -1,4 +1,4 @@
-
+                    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -303,7 +303,34 @@
         <div class="container">
             <div class="logo">
                 <!-- PASTE YOUR LOGO SVG HERE -->
-                <svg width="150" height="50" viewBox="0 0 150 50">
+              <svg xmlns="http://www.w3.org/2000/svg" width="260" height="36" viewBox="0 0 260 36">
+  <defs>
+    <!-- Gradient for logo background -->
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Logo square -->
+  <rect x="0" y="0" width="36" height="36" rx="8" ry="8" fill="url(#logoGradient)"/>
+
+  <!-- Logo text "PM" -->
+  <text x="18" y="18" text-anchor="middle" dominant-baseline="middle"
+        font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+        font-size="18" font-weight="bold" fill="white">PM</text>
+
+  <!-- Text group for company name and tagline -->
+  <g transform="translate(46, 4)">
+    <!-- Company name -->
+    <text x="0" y="0" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+          font-size="16" font-weight="700" fill="#2E7D32" dominant-baseline="hanging">Planet Market Project</text>
+    <!-- Tagline -->
+    <text x="0" y="18" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+          font-size="10" font-weight="500" fill="#666" dominant-baseline="hanging">Agricultural Commerce Technology</text>
+  </g>
+</svg>
+
                     <!-- Your logo SVG content -->
                     <rect width="150" height="50" fill="#1e88e5" rx="8"/>
                     <text x="75" y="30" text-anchor="middle" fill="white" font-family="Poppins" font-size="20">AGRI TECH</text>
