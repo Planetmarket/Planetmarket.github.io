@@ -1,506 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriTech Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            /*background: linear-gradient(135deg, #128C7E 0%, #25D366 25%, #34B7F1 50%, #25D366 75%, #128C7E 100%);
-            */
-           
-  background: linear-gradient(135deg, #1DA1F2 0%, #0d8ddb 100%);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        /* Header */
-        header {
-            padding: 1rem 0;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 10;
-        }
-        
-        .logo {
-            width: 300px;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Hero Section */
-        .hero {
-            position: relative;
-            padding: 4rem 0;
-            text-align: center;
-            margin: 0;
-            overflow: hidden;
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            opacity: 0.7;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 2.5rem;
-            color: #fff;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            line-height: 1.3;
-        }
-        
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1.2rem 2.5rem;
-            background: #ffeb3b;
-            color: #000;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .hero-cta:hover {
-            background: #fdd835;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        /* Content Section */
-        .content {
-            padding: 1rem 0 0 0;
-            margin: 0;
-        }
-        
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0;
-        }
-        
-        .content-item {
-            background: rgba(255,255,255,0.25);
-            padding: 2rem 0;
-            border-radius: 0;
-            text-align: left;
-            margin: 0;
-            position: relative;
-        }
-        
-        .content-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 5%;
-            right: 5%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.2), transparent);
-        }
-        
-        .content-item:nth-child(even) {
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .content-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: #000;
-            font-weight: 600;
-            padding: 0 1rem;
-        }
-        
-        .image-container {
-            width: 100%;
-            margin: 0 0 1.5rem 0;
-            border-radius: 0;
-            overflow: hidden;
-            height: auto;
-        }
-        
-        .content-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .content-item p {
-            color: #000;
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            padding: 0 1rem;
-        }
-        
-        .expand-btn {
-            font-size: 12px;
-            color: #000000;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 3px;
-            font-weight: 500;
-            margin: 1rem;
-            display: inline-block;
-        }
-        
-        .expanded-text {
-            display: none;
-            padding: 0 1rem;
-        }
-        
-        .expanded-text.active {
-            display: block;
-            margin-top: 1rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: rgba(30, 30, 30, 0.9);
-            color: white;
-            padding: 3rem 1rem 2rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-        
-        .footer-ctas {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-cta {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .footer-cta:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateY(-2px);
-        }
-        
-        .copyright {
-            color: #ccc;
-            font-weight: 300;
-            font-size: 0.9rem;
-        }
-        
-        /* Desktop Styles */
-        @media (min-width: 769px) {
-            .content-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-            
-            .image-container {
-                height: auto;
-                padding: 0 1rem;
-            }
-            
-            .content-image {
-                width: 100%;
-                height: 100%;
-            }
-        }
-        
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .logo {
-                width: 250px;
-                height: auto;
-            }
-            
-            .hero {
-                padding: 3rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-            
-            .hero-cta {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-            
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .content-item {
-                padding: 1rem 0;
-            }
-            
-            .image-container {
-                height: auto;
-                padding: 0 1rem;
-            }
-            
-            .content-image {
-                width: 100%;
-                height: 100%;
-            }
-            
-            .content-item h3 {
-                font-size: 1.6rem;
-                margin-bottom: 1rem;
-            }
-            
-            .content-item p {
-                font-size: 1rem;
-            }
-            
-            .footer-ctas {
-                gap: 0.8rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .footer-cta {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            
-            footer {
-                padding: 2.5rem 1rem 1.5rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .logo {
-                width: 200px;
-                height: auto;
-            }
-            
-            .hero {
-                padding: 2rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            
-            .hero-cta {
-                padding: 0.9rem 1.8rem;
-                font-size: 0.95rem;
-            }
-            
-            .image-container {
-                height: auto;
-                padding: 0 1rem;
-            }
-            
-            .content-item h3 {
-                font-size: 1.4rem;
-                margin-bottom: 1rem;
-            }
-            
-            .footer-ctas {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
-            }
-            
-            .footer-cta {
-                width: 200px;
-                justify-content: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriTech Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; background: white;
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Header */
+    header { padding: 1rem 0; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: relative; z-index: 10; }
+    .logo { width: 300px; height: auto; display: flex; align-items: center; justify-content: center; }
+
+    /* Hero Section */
+    .hero { position: relative; padding: 4rem 0; text-align: center; margin: 0; overflow: hidden; }
+    .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0.7; }
+    .hero-content { position: relative; z-index: 2; }
+    .hero h1 { font-size: 2.8rem; margin-bottom: 2.5rem; color: #000000; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); line-height: 1.3; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1.2rem 2.5rem; background: #ffeb3b; color: #000; text-decoration: none; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .hero-cta:hover { background: #fdd835; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+    /* Content Section */
+    .content { padding: 1rem 0 0 0; margin: 0; }
+    .content-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 1200px; margin: 0 auto; padding: 0; }
+    .content-item { background: rgba(255,255,255,0.25); padding: 5px; text-align: left; margin: 0; position: relative; border-radius: 10px; overflow: hidden; }
+    .content-item:not(:last-child)::after { content: ''; position: absolute; bottom: 0; left: 5%; right: 5%; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,0,0,0.2), transparent); }
+    .content-item:nth-child(even) { background: rgba(255,255,255,0.15); }
+    .content-item h3 { font-size: 1.8rem; margin-bottom: 1rem; color: #000; font-weight: 600; padding: 0 1rem; }
+    .image-container { width: 100%; margin-bottom: 1rem; border-radius: 10px; overflow: hidden; }
+    .content-video, .content-image { width: 100%; height: auto; display: block; border-radius: 10px; }
+    .content-item p { color: #000; font-size: 1.1rem; font-weight: 400; margin-bottom: 1rem; padding: 0 1rem; }
+    .expand-btn { font-size: 12px; color: #000; background: transparent; border: none; cursor: pointer; padding: 6px 12px; border-radius: 3px; font-weight: 500; margin: 1rem; display: inline-block; }
+    .expanded-text { display: none; padding: 0 1rem; }
+    .expanded-text.active { display: block; margin-top: 1rem; }
+
+    /* Footer */
+    footer { background: rgba(30, 30, 30, 0.9); color: white; padding: 3rem 1rem 2rem; text-align: center; margin-top: 2rem; }
+    .footer-ctas { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-cta { display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(255,255,255,0.15); color: white; text-decoration: none; border-radius: 25px; font-weight: 500; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2); }
+    .footer-cta:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .copyright { color: #ccc; font-weight: 300; font-size: 0.9rem; }
+
+    /* Desktop Styles */
+    @media (min-width: 769px) {
+      .content-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .content-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <!-- PASTE YOUR LOGO SVG HERE -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="260" height="36" viewBox="0 0 260 36">
-  <defs>
-    <!-- Gradient for logo background -->
-    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4CAF50"/>
-      <stop offset="100%" stop-color="#2E7D32"/>
-    </linearGradient>
-  </defs>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <!-- Logo SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="260" height="36" viewBox="0 0 260 36">
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#4CAF50"/>
+              <stop offset="100%" stop-color="#2E7D32"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="36" height="36" rx="8" ry="8" fill="url(#logoGradient)"/>
+          <text x="18" y="18" text-anchor="middle" dominant-baseline="middle"
+                font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+                font-size="18" font-weight="bold" fill="white">PM</text>
+          <g transform="translate(46, 4)">
+            <text x="0" y="0" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+                  font-size="16" font-weight="700" fill="#2E7D32" dominant-baseline="hanging">Planet Market Project</text>
+            <text x="0" y="18" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+                  font-size="10" font-weight="500" fill="#666" dominant-baseline="hanging">Agricultural Commerce Technology</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </header>
 
-  <!-- Logo square -->
-  <rect x="0" y="0" width="36" height="36" rx="8" ry="8" fill="url(#logoGradient)"/>
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="/bg.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="container hero-content">
+      <h1>Information technologies are so powerful,<br>Let us together design platforms that are important to agriculture</h1>
+      <a href="https://chat.whatsapp.com/yourgroup" class="hero-cta" target="_blank">
+        Join Group
+      </a>
+    </div>
+  </section>
 
-  <!-- Logo text "PM" -->
-  <text x="18" y="18" text-anchor="middle" dominant-baseline="middle"
-        font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
-        font-size="18" font-weight="bold" fill="white">PM</text>
-
-  <!-- Text group for company name and tagline -->
-  <g transform="translate(46, 4)">
-    <!-- Company name -->
-    <text x="0" y="0" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
-          font-size="16" font-weight="700" fill="#2E7D32" dominant-baseline="hanging">Planet Market Project</text>
-    <!-- Tagline -->
-    <text x="0" y="18" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
-          font-size="10" font-weight="500" fill="#666" dominant-baseline="hanging">Agricultural Commerce Technology</text>
-  </g>
-</svg>
-
-            </div>
+  <section class="content">
+    <div class="content-grid">
+      <!-- Contract Platform -->
+      <div class="content-item">
+        <h3>Contract Platform</h3>
+        <div class="image-container">
+          <video class="content-video" autoplay muted loop playsinline>
+            <source src="sugar.mp4" type="video/mp4">
+            <img src="fallback-contract.png" alt="Contract Platform">
+          </video>
         </div>
-    </header>
-
-    <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="/bg.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="container hero-content">
-            <h1>Information technologies are so powerful,<br>Let us together design platforms that are important to agriculture</h1>
-            <a href="https://chat.whatsapp.com/yourgroup" class="hero-cta" target="_blank">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.248-6.189-3.515-8.452"/>
-                </svg>
-                Join Group
-            </a>
+        <p>Description for the Contract Platform feature.</p>
+        <div id="expand1" class="expanded-text">
+          <p>Additional expanded content for Contract Platform.</p>
         </div>
-    </section>
+        <button class="expand-btn" onclick="toggleExpand('expand1', this)">See More</button>
+      </div>
 
-    <section class="content">
-        <div class="content-grid">
-            <div class="content-item">
-                <h3>1. Contract Platform</h3>
-                <div class="image-container">
-                    <!-- PASTE YOUR FIRST IMAGE PNG HERE -->
-                    <img src="cotton.jpg" alt="Feature One" class="content-image">
-                </div>
-                <p>Description for the first feature or content item. This text explains what this section is about.</p>
-                <div id="expand1" class="expanded-text">
-                    <p>Additional expanded content for feature one. This appears when you click the more button.</p>
-                </div>
-                <button class="expand-btn" onclick="toggleExpand('expand1', this)">See More</button>
-            </div>
-            
-            <div class="content-item">
-                <h3>2. Sales Platform</h3>
-                <div class="image-container">
-                    <!-- PASTE YOUR SECOND IMAGE PNG HERE -->
-                    <img src="sales.jpg" alt="Feature Two" class="content-image">
-                </div>
-                <p>Description for the second feature or content item. This text explains what this section is about.</p>
-                <div id="expand2" class="expanded-text">
-                    <p>Additional expanded content for feature two. This appears when you click the more button.</p>
-                </div>
-                <button class="expand-btn" onclick="toggleExpand('expand2', this)">See More</button>
-            </div>
-            
-            <div class="content-item">
-                <h3>3. Transport platform</h3>
-                <div class="image-container">
-                    <!-- PASTE YOUR THIRD IMAGE PNG HERE -->
-                    <img src="transport.png" alt="Feature Three" class="content-image">
-                </div>
-                <p>Description for the third feature or content item. This text explains what this section is about.</p>
-                <div id="expand3" class="expanded-text">
-                    <p>Additional expanded content for feature three. This appears when you click the more button.</p>
-                </div>
-                <button class="expand-btn" onclick="toggleExpand('expand3', this)">See More</button>
-            </div>
-
-            
+      <!-- Sales Platform -->
+      <div class="content-item">
+        <h3>Sales Platform</h3>
+        <div class="image-container">
+          <video class="content-video" autoplay muted loop playsinline>
+            <source src="sales.mp4" type="video/mp4">
+            <img src="fallback-sales.png" alt="Sales Platform">
+          </video>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-ctas">
-                <a href="mailto:your@email.com" class="footer-cta">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
-                    Email
-                </a>
-                <a href="https://api.whatsapp.com/send?text=Check%20this%20out!" class="footer-cta" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.248-6.189-3.515-8.452"/>
-                    </svg>
-                    Invite Friend
-                </a>
-            </div>
-            <div class="copyright">
-                &copy; 2024 AgriTech Platform. All rights reserved.
-            </div>
+        <p>Description for the Sales Platform feature.</p>
+        <div id="expand2" class="expanded-text">
+          <p>Additional expanded content for Sales Platform.</p>
         </div>
-    </footer>
+        <button class="expand-btn" onclick="toggleExpand('expand2', this)">See More</button>
+      </div>
 
-    <script>
-        function toggleExpand(id, button) {
-            const element = document.getElementById(id);
-            const isExpanded = element.classList.contains('active');
-            
-            if (isExpanded) {
-                element.classList.remove('active');
-                button.textContent = 'See More';
-                // Move button back to original position
-                button.parentNode.appendChild(button);
-            } else {
-                element.classList.add('active');
-                button.textContent = 'See Less';
-                // Move button to end of expanded content
-                element.parentNode.insertBefore(button, element.nextSibling);
-            }
-        }
-    </script>
+      <!-- Transport Platform -->
+      <div class="content-item">
+        <h3>Transport Platform</h3>
+        <div class="image-container">
+          <video class="content-video" autoplay muted loop playsinline>
+            <source src="transport.mp4" type="video/mp4">
+            <img src="fallback-transport.png" alt="Transport Platform">
+          </video>
+        </div>
+        <p>Description for the Transport Platform feature.</p>
+        <div id="expand3" class="expanded-text">
+          <p>Additional expanded content for Transport Platform.</p>
+        </div>
+        <button class="expand-btn" onclick="toggleExpand('expand3', this)">See More</button>
+      </div>
+
+      <!-- Infrastructure Platform -->
+      <div class="content-item">
+        <h3>Infrastructure Platform</h3>
+        <div class="image-container">
+          <video class="content-video" autoplay muted loop playsinline>
+            <source src="infra.mp4" type="video/mp4">
+            <img src="fallback-infra.png" alt="Infrastructure Platform">
+          </video>
+        </div>
+        <p>Description for the Infrastructure Platform feature.</p>
+        <div id="expand4" class="expanded-text">
+          <p>Additional expanded content for Infrastructure Platform.</p>
+        </div>
+        <button class="expand-btn" onclick="toggleExpand('expand4', this)">See More</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-ctas">
+        <a href="mailto:your@email.com" class="footer-cta">Email</a>
+        <a href="https://api.whatsapp.com/send?text=Check%20this%20out!" class="footer-cta" target="_blank">Invite Friend</a>
+      </div>
+      <div class="copyright">&copy; 2024 AgriTech Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleExpand(id, button) {
+      const element = document.getElementById(id);
+      const isExpanded = element.classList.contains('active');
+      if (isExpanded) {
+        element.classList.remove('active');
+        button.textContent = 'See More';
+      } else {
+        element.classList.add('active');
+        button.textContent = 'See Less';
+      }
+    }
+  </script>
 </body>
 </html>
