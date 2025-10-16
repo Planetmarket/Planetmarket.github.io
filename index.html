@@ -12,6 +12,7 @@
       line-height: 1.6; 
       background: white;
       color: #333;
+      overflow-x: hidden;
     }
     .container { 
       max-width: 1200px; 
@@ -52,9 +53,9 @@
       position: absolute; 
       top: 0; 
       left: 0; 
-      width: 100%; 
+      width: 100vw; 
       height: 100%; 
-      object-fit: cover; 
+      object-fit: contain; /* CHANGED from cover to contain */
       z-index: 1; 
       opacity: 0.4; 
     }
@@ -81,7 +82,7 @@
       color: rgb(0, 0, 0); 
       text-decoration: none; 
       border-radius: 30px; 
-      font-weight: 600; 
+      font-weight: 500; 
       transition: all 0.3s ease; 
       font-size: 1.1rem; 
       box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
@@ -137,12 +138,27 @@
       width: 100%; 
       margin-bottom: 1.5rem; 
       overflow: hidden; 
+      border-radius: 8px;
     }
+    /* Full-width video styling */
     .content-video, .content-image { 
       width: 100%; 
       height: auto; 
       display: block; 
       border-radius: 0; 
+      object-fit: contain; /* CHANGED from cover to contain */
+    }
+    /* Full-width video wrapper */
+    .full-width-video {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      background: #f0f0f0; /* Added background for letterboxing effect */
     }
     .content-item p { 
       color: #555; 
@@ -233,6 +249,15 @@
       .hero h1 {
         font-size: 3rem;
       }
+      /* Ensure videos maintain proper height on desktop */
+      .full-width-video {
+        max-height: 400px; /* Adjust this value as needed */
+      }
+      .content-video {
+        max-height: 400px; /* Adjust this value as needed */
+        width: 100%;
+        object-fit: contain;
+      }
     }
 
     /* Mobile Styles */
@@ -264,6 +289,13 @@
         width: 100%;
         max-width: 250px;
         justify-content: center;
+      }
+      /* Mobile video adjustments */
+      .full-width-video {
+        max-height: 250px; /* Adjust this value as needed */
+      }
+      .content-video {
+        max-height: 250px; /* Adjust this value as needed */
       }
     }
   </style>
@@ -317,7 +349,7 @@
         <!-- Contract Platform -->
         <div class="content-item">
           <h3>Contract Platform</h3>
-          <div class="image-container">
+          <div class="full-width-video">
             <video class="content-video" autoplay muted loop playsinline>
               <source src="sugar.mp4" type="video/mp4">
               <img src="fallback-contract.png" alt="Contract Platform">
@@ -333,7 +365,7 @@
         <!-- Sales Platform -->
         <div class="content-item">
           <h3>Sales Platform</h3>
-          <div class="image-container">
+          <div class="full-width-video">
             <video class="content-video" autoplay muted loop playsinline>
               <source src="sales.mp4" type="video/mp4">
               <img src="fallback-sales.png" alt="Sales Platform">
@@ -349,7 +381,7 @@
         <!-- Transport Platform -->
         <div class="content-item">
           <h3>Transport Platform</h3>
-          <div class="image-container">
+          <div class="full-width-video">
             <video class="content-video" autoplay muted loop playsinline>
               <source src="transport.mp4" type="video/mp4">
               <img src="fallback-transport.png" alt="Transport Platform">
@@ -365,7 +397,7 @@
         <!-- Infrastructure Platform -->
         <div class="content-item">
           <h3>Infrastructure Platform</h3>
-          <div class="image-container">
+          <div class="full-width-video">
             <video class="content-video" autoplay muted loop playsinline>
               <source src="infra.mp4" type="video/mp4">
               <img src="fallback-infra.png" alt="Infrastructure Platform">
