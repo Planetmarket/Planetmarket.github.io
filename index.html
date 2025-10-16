@@ -1,506 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriTech Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            /*background: linear-gradient(135deg, #128C7E 0%, #25D366 25%, #34B7F1 50%, #25D366 75%, #128C7E 100%);
-            */
-           
-  background: linear-gradient(135deg, #1DA1F2 0%, #0d8ddb 100%);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        /* Header */
-        header {
-            padding: 1rem 0;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 10;
-        }
-        
-        .logo {
-            width: 300px;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Hero Section */
-        .hero {
-            position: relative;
-            padding: 4rem 0;
-            text-align: center;
-            margin: 0;
-            overflow: hidden;
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            opacity: 0.7;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 2.5rem;
-            color: #fff;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            line-height: 1.3;
-        }
-        
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1.2rem 2.5rem;
-            background: #ffeb3b;
-            color: #000;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .hero-cta:hover {
-            background: #fdd835;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        /* Content Section */
-        .content {
-            padding: 1rem 0 0 0;
-            margin: 0;
-        }
-        
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0;
-        }
-        
-        .content-item {
-            background: rgba(255,255,255,0.25);
-            padding: 2rem 0;
-            border-radius: 0;
-            text-align: left;
-            margin: 0;
-            position: relative;
-        }
-        
-        .content-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 5%;
-            right: 5%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.2), transparent);
-        }
-        
-        .content-item:nth-child(even) {
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .content-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: #000;
-            font-weight: 600;
-            padding: 0 1rem;
-        }
-        
-        .image-container {
-            width: 100%;
-            margin: 0 0 1.5rem 0;
-            border-radius: 0;
-            overflow: hidden;
-            height: auto;
-        }
-        
-        .content-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .content-item p {
-            color: #000;
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            padding: 0 1rem;
-        }
-        
-        .expand-btn {
-            font-size: 12px;
-            color: #000000;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 3px;
-            font-weight: 500;
-            margin: 1rem;
-            display: inline-block;
-        }
-        
-        .expanded-text {
-            display: none;
-            padding: 0 1rem;
-        }
-        
-        .expanded-text.active {
-            display: block;
-            margin-top: 1rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: rgba(30, 30, 30, 0.9);
-            color: white;
-            padding: 3rem 1rem 2rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-        
-        .footer-ctas {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-cta {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .footer-cta:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateY(-2px);
-        }
-        
-        .copyright {
-            color: #ccc;
-            font-weight: 300;
-            font-size: 0.9rem;
-        }
-        
-        /* Desktop Styles */
-        @media (min-width: 769px) {
-            .content-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-            
-            .image-container {
-                height: auto;
-                padding: 0 1rem;
-            }
-            
-            .content-image {
-                width: 100%;
-                height: 100%;
-            }
-        }
-        
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .logo {
-                width: 250px;
-                height: auto;
-            }
-            
-            .hero {
-                padding: 3rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-            
-            .hero-cta {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-            
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .content-item {
-                padding: 1rem 0;
-            }
-            
-            .image-container {
-                height: auto;
-                padding: 0 1rem;
-            }
-            
-            .content-image {
-                width: 100%;
-                height: 100%;
-            }
-            
-            .content-item h3 {
-                font-size: 1.6rem;
-                margin-bottom: 1rem;
-            }
-            
-            .content-item p {
-                font-size: 1rem;
-            }
-            
-            .footer-ctas {
-                gap: 0.8rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .footer-cta {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            
-            footer {
-                padding: 2.5rem 1rem 1.5rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .logo {
-                width: 200px;
-                height: auto;
-            }
-            
-            .hero {
-                padding: 2rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            
-            .hero-cta {
-                padding: 0.9rem 1.8rem;
-                font-size: 0.95rem;
-            }
-            
-            .image-container {
-                height: auto;
-                padding: 0 1rem;
-            }
-            
-            .content-item h3 {
-                font-size: 1.4rem;
-                margin-bottom: 1rem;
-            }
-            
-            .footer-ctas {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
-            }
-            
-            .footer-cta {
-                width: 200px;
-                justify-content: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriTech Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'segoe ui', sans-serif; 
+      line-height: 1.6; 
+      background: white;
+      color: #333;
+      overflow-x: hidden;
+    }
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 0.8rem; 
+    }
+
+    /* Header */
+    header { 
+      padding: 1.5rem 0; 
+      background: white; 
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08); 
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { 
+      display: flex; 
+      align-items: center; 
+      justify-content: flex-start;
+     
+    }
+    .logo svg {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+
+    /* Hero Section */
+    .hero { 
+      position: relative; 
+      padding: 6rem 0; 
+      text-align: left; 
+      margin: 0; 
+      overflow: hidden; 
+      background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    }
+    .hero-slideshow { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100vw; 
+      height: 100%; 
+      z-index: 1; 
+    }
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .hero-slide.active {
+      opacity: 1;
+    }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(46, 125, 50, 0.7) 0%, rgba(46, 125, 50, 0.3) 50%, transparent 100%);
+      z-index: 2;
+    }
+    .hero-content { 
+      position: relative; 
+      z-index: 3; 
+      max-width: 800px;
+      padding-left: 1rem;
+    }
+    .hero h1 { 
+      font-size: 2.5rem; 
+      margin-bottom: 2.5rem; 
+      color: #ffffff; 
+      font-weight: 500; 
+      line-height: 1.3; 
+      text-align: left;
+    }
+    .hero-cta { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center;
+      gap: 0.5rem; 
+      padding: 1.0rem 1.5rem; 
+      background: #fbff00; 
+      color: rgb(0, 0, 0); 
+      text-decoration: none; 
+      border-radius: 50px; 
+      font-weight: 500; 
+      transition: all 0.3s ease; 
+      font-size: 1.1rem; 
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+    .hero-cta:hover { 
+      background: #fde506; 
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4); 
+    }
+
+    /* Content Section */
+    .content { 
+      padding: 4rem 0; 
+      background: #eeecec;
+    }
+    .section-title {
+      text-align: left;
+      margin-bottom: 1.8rem;
+      color: #000;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .content-grid { 
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 2rem; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+    }
+    .content-item { 
+      background: white; 
+      padding: 1rem ; 
+      text-align: left; 
+      border-radius: 0px; 
+      overflow: hidden; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      
+    }
+    .content-item:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .content-item h3 { 
+      font-size: 1.3rem; 
+      margin-bottom: 1.2rem; 
+      color: #000000; 
+      font-weight: 500; 
+    }
+    .image-container { 
+      width: 100%; 
+      margin-bottom: 1.5rem; 
+      overflow: hidden; 
+      border-radius: 0px;
+    }
+    /* Full-width video styling */
+    .content-video, .content-image { 
+      width: 100%; 
+      height: auto; 
+      display: block; 
+      border-radius: 0; 
+      object-fit: contain; /* CHANGED from cover to contain */
+    }
+    /* Full-width video wrapper */
+    .full-width-video {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      background: #f0f0f0; /* Added background for letterboxing effect */
+    }
+    .content-item p { 
+      color: #555; 
+      font-size: 1rem; 
+      font-weight: 400; 
+      margin-bottom: 1.5rem; 
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+    .expand-btn { 
+      font-size: 1rem; 
+      color: #4CAF50; 
+      background: transparent; 
+      border: 1px solid #4CAF50;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px; 
+      font-weight: 500; 
+      margin-top: auto;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+    .expand-btn:hover { 
+      background: #4CAF50; 
+      color: white;
+    }
+    .expanded-text { 
+      display: none; 
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+      margin-top: 1rem;
+    }
+    .expanded-text.active { 
+      display: block; 
+    }
+
+    /* Footer */
+    footer { 
+      background: #1a1a1a; 
+      color: white; 
+      padding: 3rem 1rem 2rem; 
+      text-align: center; 
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .footer-ctas { 
+      display: flex; 
+      justify-content: center; 
+      gap: 1rem; 
+      margin-bottom: 1rem; 
+      flex-wrap: wrap; 
+    }
+    .footer-cta { 
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      padding: 0.8rem 1.5rem; 
+      background: rgba(255,255,255,0.1); 
+      color: white; 
+      text-decoration: none; 
+      border-radius: 25px; 
+      font-weight: 500; 
+      transition: all 0.3s ease; 
+      border: 1px solid rgba(255,255,255,0.2); 
+    }
+    .footer-cta:hover { 
+      background: rgba(255,255,255,0.2); 
+    }
+    .copyright { 
+      color: #aaa; 
+      font-weight: 300; 
+      font-size: 0.9rem; 
+    }
+
+    /* Desktop Styles */
+    @media (min-width: 769px) {
+      .content-grid { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 2rem; 
+      }
+      .hero {
+        padding: 8rem 0;
+      }
+      .hero h1 {
+        font-size: 3rem;
+      }
+      /* Ensure videos maintain proper height on desktop */
+      .full-width-video {
+        max-height: 350px; /* Adjust this value as needed */
+      }
+      .content-video {
+        max-height: 350px; /* Adjust this value as needed */
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+      .hero {
+        padding: 4rem 0;
+      }
+      .logo {
+        padding-left: 8px;
+      }
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+      .content {
+        padding: 2.5rem 0;
+      }
+      .section-title {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .content-item {
+        padding: 0.8rem;
+      }
+      .footer-ctas {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-cta {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+      }
+      /* Mobile video adjustments */
+      .full-width-video {
+        max-height: auto; /* Adjust this value as needed */
+      }
+      .content-video {
+        max-height: auto /* Adjust this value as needed */
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <!-- PASTE YOUR LOGO SVG HERE -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="260" height="36" viewBox="0 0 260 36">
-  <defs>
-    <!-- Gradient for logo background -->
-    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4CAF50"/>
-      <stop offset="100%" stop-color="#2E7D32"/>
-    </linearGradient>
-  </defs>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="260" height="36" viewBox="0 0 260 36">
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#4CAF50"/>
+              <stop offset="100%" stop-color="#2E7D32"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="36" height="36" rx="8" ry="8" fill="url(#logoGradient)"/>
+          <text x="18" y="18" text-anchor="middle" dominant-baseline="middle"
+                font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+                font-size="18" font-weight="bold" fill="white">PM</text>
+          <g transform="translate(46, 4)">
+            <text x="0" y="0" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+                  font-size="16" font-weight="700" fill="#2E7D32" dominant-baseline="hanging">Planet Market Project</text>
+            <text x="0" y="18" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+                  font-size="10" font-weight="500" fill="#666" dominant-baseline="hanging">Agricultural Commerce Technology</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </header>
 
-  <!-- Logo square -->
-  <rect x="0" y="0" width="36" height="36" rx="8" ry="8" fill="url(#logoGradient)"/>
+  <section class="hero">
+    <div class="hero-slideshow">
+      <div class="hero-slide active">
+        <img src="1.jpg" alt="Agricultural Technology">
+      </div>
+      <div class="hero-slide">
+        <img src="2.jpg" alt="Farming Innovation">
+      </div>
+      <div class="hero-slide">
+        <img src="3.jpg" alt="Smart Agriculture">
+      </div>
+      <div class="hero-slide">
+        <img src="4.jpg" alt="Modern Farming">
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Information Technologies are so powerful,<br>Let us together design platform that is necessity of indian agriculture</h1>
+      <a href="https://chat.whatsapp.com/yourgroup" class="hero-cta" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893c0-3.18-1.24-6.171-3.495-8.428"/>
+        </svg>
+        Join Group
+      </a>
+    </div>
+  </section>
 
-  <!-- Logo text "PM" -->
-  <text x="18" y="18" text-anchor="middle" dominant-baseline="middle"
-        font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
-        font-size="18" font-weight="bold" fill="white">PM</text>
-
-  <!-- Text group for company name and tagline -->
-  <g transform="translate(46, 4)">
-    <!-- Company name -->
-    <text x="0" y="0" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
-          font-size="16" font-weight="700" fill="#2E7D32" dominant-baseline="hanging">Planet Market Project</text>
-    <!-- Tagline -->
-    <text x="0" y="18" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
-          font-size="10" font-weight="500" fill="#666" dominant-baseline="hanging">Agricultural Commerce Technology</text>
-  </g>
-</svg>
-
-            </div>
+  <section class="content">
+    <div class="container">
+      <h2 class="section-title">Our Platform Features</h2>
+      <div class="content-grid">
+        <!-- Contract Platform -->
+        <div class="content-item">
+          <h3>Contract Platform</h3>
+          <div class="full-width-video">
+            <video class="content-video" autoplay muted loop playsinline>
+              <source src="sugar.mp4" type="video/mp4">
+              <img src="fallback-contract.png" alt="Contract Platform">
+            </video>
+          </div>
+          <p>Streamline agricultural contracts with our digital platform that simplifies negotiations, approvals, and management for all parties involved.</p>
+          <div id="expand1" class="expanded-text">
+            <p>Our contract platform enables farmers and buyers to create, negotiate, and sign agreements digitally. Features include automated reminders, document tracking, and secure storage. Reduce paperwork and improve transparency in agricultural transactions.</p>
+          </div>
+          <button class="expand-btn" onclick="toggleExpand('expand1', this)">Show More</button>
         </div>
-    </header>
 
-    <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="/bg.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="container hero-content">
-            <h1>Information technologies are so powerful,<br>Let us together design platforms that are important to agriculture</h1>
-            <a href="https://chat.whatsapp.com/yourgroup" class="hero-cta" target="_blank">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.248-6.189-3.515-8.452"/>
-                </svg>
-                Join Group
-            </a>
+        <!-- Sales Platform -->
+        <div class="content-item">
+          <h3>Sales Platform</h3>
+          <div class="full-width-video">
+            <video class="content-video" autoplay muted loop playsinline>
+              <source src="sales.mp4" type="video/mp4">
+              <img src="fallback-sales.png" alt="Sales Platform">
+            </video>
+          </div>
+          <p>Connect directly with buyers and expand your market reach with our comprehensive agricultural sales platform.</p>
+          <div id="expand2" class="expanded-text">
+            <p>Our sales platform provides farmers with direct access to regional and international markets. List your products, manage inventory, process orders, and receive payments securely. Real-time market data helps you make informed pricing decisions.</p>
+          </div>
+          <button class="expand-btn" onclick="toggleExpand('expand2', this)">Show More</button>
         </div>
-    </section>
 
-    <section class="content">
-        <div class="content-grid">
-            <div class="content-item">
-                <h3>1. Contract Platform</h3>
-                <div class="image-container">
-                    <!-- PASTE YOUR FIRST IMAGE PNG HERE -->
-                    <img src="cotton.jpg" alt="Feature One" class="content-image">
-                </div>
-                <p>Description for the first feature or content item. This text explains what this section is about.</p>
-                <div id="expand1" class="expanded-text">
-                    <p>Additional expanded content for feature one. This appears when you click the more button.</p>
-                </div>
-                <button class="expand-btn" onclick="toggleExpand('expand1', this)">See More</button>
-            </div>
-            
-            <div class="content-item">
-                <h3>2. Sales Platform</h3>
-                <div class="image-container">
-                    <!-- PASTE YOUR SECOND IMAGE PNG HERE -->
-                    <img src="sales.jpg" alt="Feature Two" class="content-image">
-                </div>
-                <p>Description for the second feature or content item. This text explains what this section is about.</p>
-                <div id="expand2" class="expanded-text">
-                    <p>Additional expanded content for feature two. This appears when you click the more button.</p>
-                </div>
-                <button class="expand-btn" onclick="toggleExpand('expand2', this)">See More</button>
-            </div>
-            
-            <div class="content-item">
-                <h3>3. Transport platform</h3>
-                <div class="image-container">
-                    <!-- PASTE YOUR THIRD IMAGE PNG HERE -->
-                    <img src="transport.png" alt="Feature Three" class="content-image">
-                </div>
-                <p>Description for the third feature or content item. This text explains what this section is about.</p>
-                <div id="expand3" class="expanded-text">
-                    <p>Additional expanded content for feature three. This appears when you click the more button.</p>
-                </div>
-                <button class="expand-btn" onclick="toggleExpand('expand3', this)">See More</button>
-            </div>
-
-            
+        <!-- Transport Platform -->
+        <div class="content-item">
+          <h3>Transport Platform</h3>
+          <div class="full-width-video">
+            <video class="content-video" autoplay muted loop playsinline>
+              <source src="transport.mp4" type="video/mp4">
+              <img src="fallback-transport.png" alt="Transport Platform">
+            </video>
+          </div>
+          <p>Efficiently manage logistics with our transport platform designed specifically for agricultural products.</p>
+          <div id="expand3" class="expanded-text">
+            <p>Coordinate transportation of perishable goods with our specialized logistics platform. Find verified carriers, track shipments in real-time, and ensure proper handling of temperature-sensitive products. Reduce spoilage and delivery delays with optimized routing.</p>
+          </div>
+          <button class="expand-btn" onclick="toggleExpand('expand3', this)">Show More</button>
         </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-ctas">
-                <a href="mailto:your@email.com" class="footer-cta">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
-                    Email
-                </a>
-                <a href="https://api.whatsapp.com/send?text=Check%20this%20out!" class="footer-cta" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.248-6.189-3.515-8.452"/>
-                    </svg>
-                    Invite Friend
-                </a>
-            </div>
-            <div class="copyright">
-                &copy; 2024 AgriTech Platform. All rights reserved.
-            </div>
+        <!-- Infrastructure Platform -->
+        <div class="content-item">
+          <h3>Infrastructure Platform</h3>
+          <div class="full-width-video">
+            <video class="content-video" autoplay muted loop playsinline>
+              <source src="infra.mp4" type="video/mp4">
+              <img src="fallback-infra.png" alt="Infrastructure Platform">
+            </video>
+          </div>
+          <p>Access and manage agricultural infrastructure resources through our centralized platform.</p>
+          <div id="expand4" class="expanded-text">
+            <p>Our infrastructure platform connects farmers with storage facilities, processing units, and equipment rentals. Find available silos, cold storage, or processing facilities in your area. Share resources with other farmers to reduce costs and improve efficiency.</p>
+          </div>
+          <button class="expand-btn" onclick="toggleExpand('expand4', this)">Show More</button>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        function toggleExpand(id, button) {
-            const element = document.getElementById(id);
-            const isExpanded = element.classList.contains('active');
-            
-            if (isExpanded) {
-                element.classList.remove('active');
-                button.textContent = 'See More';
-                // Move button back to original position
-                button.parentNode.appendChild(button);
-            } else {
-                element.classList.add('active');
-                button.textContent = 'See Less';
-                // Move button to end of expanded content
-                element.parentNode.insertBefore(button, element.nextSibling);
-            }
-        }
-    </script>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-ctas">
+          <a href="mailto:your@email.com" class="footer-cta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Email Us
+          </a>
+          <a href="https://api.whatsapp.com/send?text=Check%20this%20out!" class="footer-cta" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Invite Friend
+          </a>
+        </div>
+        <div class="copyright">&copy; 2024 AgriTech Platform. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleExpand(id, button) {
+      const element = document.getElementById(id);
+      const isExpanded = element.classList.contains('active');
+      if (isExpanded) {
+        element.classList.remove('active');
+        button.textContent = 'Show More';
+      } else {
+        element.classList.add('active');
+        button.textContent = 'Show Less';
+      }
+    }
+
+    // Hero Slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const totalSlides = slides.length;
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % totalSlides;
+      slides[currentSlide].classList.add('active');
+    }
+
+    // Change slide every 4 seconds
+    setInterval(showNextSlide, 4000);
+  </script>
 </body>
 </html>
