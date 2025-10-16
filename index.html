@@ -82,7 +82,7 @@
       color: rgb(0, 0, 0); 
       text-decoration: none; 
       border-radius: 30px; 
-      font-weight: 500; 
+      font-weight: 600; 
       transition: all 0.3s ease; 
       font-size: 1.1rem; 
       box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
@@ -103,7 +103,7 @@
       text-align: center;
       margin-bottom: 0.5rem;
       color: #2E7D32;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 400;
     }
     .content-grid { 
@@ -117,7 +117,7 @@
       background: white; 
       padding: 2rem; 
       text-align: left; 
-      border-radius: 12px; 
+      border-radius: 0px; 
       overflow: hidden; 
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       transition: box-shadow 0.3s ease;
@@ -138,7 +138,7 @@
       width: 100%; 
       margin-bottom: 1.5rem; 
       overflow: hidden; 
-      border-radius: 8px;
+      border-radius: 0px;
     }
     /* Full-width video styling */
     .content-video, .content-image { 
@@ -251,10 +251,10 @@
       }
       /* Ensure videos maintain proper height on desktop */
       .full-width-video {
-        max-height: 400px; /* Adjust this value as needed */
+        max-height: 350px; /* Adjust this value as needed */
       }
       .content-video {
-        max-height: 400px; /* Adjust this value as needed */
+        max-height: 350px; /* Adjust this value as needed */
         width: 100%;
         object-fit: contain;
       }
@@ -292,10 +292,10 @@
       }
       /* Mobile video adjustments */
       .full-width-video {
-        max-height: 250px; /* Adjust this value as needed */
+        max-height: auto; /* Adjust this value as needed */
       }
       .content-video {
-        max-height: 250px; /* Adjust this value as needed */
+        max-height: auto /* Adjust this value as needed */
       }
     }
   </style>
@@ -359,7 +359,7 @@
           <div id="expand1" class="expanded-text">
             <p>Our contract platform enables farmers and buyers to create, negotiate, and sign agreements digitally. Features include automated reminders, document tracking, and secure storage. Reduce paperwork and improve transparency in agricultural transactions.</p>
           </div>
-          <button class="expand-btn" onclick="toggleExpand('expand1', this)">Learn More</button>
+          <button class="expand-btn" onclick="toggleExpand('expand1', this)">Show More</button>
         </div>
 
         <!-- Sales Platform -->
@@ -375,7 +375,7 @@
           <div id="expand2" class="expanded-text">
             <p>Our sales platform provides farmers with direct access to regional and international markets. List your products, manage inventory, process orders, and receive payments securely. Real-time market data helps you make informed pricing decisions.</p>
           </div>
-          <button class="expand-btn" onclick="toggleExpand('expand2', this)">Learn More</button>
+          <button class="expand-btn" onclick="toggleExpand('expand2', this)">Show More</button>
         </div>
 
         <!-- Transport Platform -->
@@ -391,7 +391,7 @@
           <div id="expand3" class="expanded-text">
             <p>Coordinate transportation of perishable goods with our specialized logistics platform. Find verified carriers, track shipments in real-time, and ensure proper handling of temperature-sensitive products. Reduce spoilage and delivery delays with optimized routing.</p>
           </div>
-          <button class="expand-btn" onclick="toggleExpand('expand3', this)">Learn More</button>
+          <button class="expand-btn" onclick="toggleExpand('expand3', this)">Show More</button>
         </div>
 
         <!-- Infrastructure Platform -->
@@ -407,7 +407,7 @@
           <div id="expand4" class="expanded-text">
             <p>Our infrastructure platform connects farmers with storage facilities, processing units, and equipment rentals. Find available silos, cold storage, or processing facilities in your area. Share resources with other farmers to reduce costs and improve efficiency.</p>
           </div>
-          <button class="expand-btn" onclick="toggleExpand('expand4', this)">Learn More</button>
+          <button class="expand-btn" onclick="toggleExpand('expand4', this)">Show More</button>
         </div>
       </div>
     </div>
@@ -442,7 +442,7 @@
       const isExpanded = element.classList.contains('active');
       if (isExpanded) {
         element.classList.remove('active');
-        button.textContent = 'Learn More';
+        button.textContent = 'Show More';
       } else {
         element.classList.add('active');
         button.textContent = 'Show Less';
