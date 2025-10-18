@@ -63,34 +63,7 @@ header {
   background: white;
 }
 
-.hero-slideshow { 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100vw; 
-  height: 100%; 
-  z-index: 1; 
-}
 
-.hero-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-}
-
-.hero-slide.active {
-  opacity: 1;
-}
-
-.hero-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 .hero-overlay {
   position: absolute;
@@ -456,20 +429,7 @@ footer {
   </header>
 
   <section class="hero">
-    <div class="hero-slideshow">
-      <div class="hero-slide active">
-        <img src="1.jpg" alt="Agricultural Technology">
-      </div>
-      <div class="hero-slide">
-        <img src="2.jpg" alt="Farming Innovation">
-      </div>
-      <div class="hero-slide">
-        <img src="3.jpg" alt="Smart Agriculture">
-      </div>
-      <div class="hero-slide">
-        <img src="4.jpg" alt="Modern Farming">
-      </div>
-    </div>
+ 
     <div class="hero-overlay"></div>
     <div class="container hero-content">
       <p class="hero-subtitle">Unprofitable Agriculture</p>
@@ -609,20 +569,9 @@ Intermediaries make up to 40 to 80% of the price paid by consumers. there is rqu
       }
     }
 
-    // Hero Slideshow
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.hero-slide');
-    const totalSlides = slides.length;
+   
 
-    function showNextSlide() {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % totalSlides;
-      slides[currentSlide].classList.add('active');
-    }
-
-    // Change slide every 4 seconds
-    setInterval(showNextSlide, 4000);
-
+  
     window.addEventListener('scroll', () => document.querySelector('.scroll-indicator').style.opacity = window.scrollY > 50 ? '0' : '1');
   </script>
 </body>
