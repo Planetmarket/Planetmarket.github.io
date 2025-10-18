@@ -99,7 +99,7 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.65);
   z-index: 2;
 }
 
@@ -108,6 +108,7 @@ header {
   z-index: 3; 
   max-width: 100%;
   padding-left: 1rem;
+
 }
 
 .hero-subtitle {
@@ -158,7 +159,7 @@ header {
 
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2vh;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
@@ -342,17 +343,17 @@ footer {
    =========================== */
 @media (min-width: 769px) {
   .hero {
-    padding: 5.5rem 0;
+    padding: 7rem 0;
     height: 89vh;
   }
 
   .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     letter-spacing: 3px;
   }
 
   .hero h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     text-shadow: 
       2px 2px 4px rgba(0, 0, 0, 0.5),
       0 0 20px rgba(76, 175, 80, 0.3),
@@ -395,13 +396,16 @@ footer {
   }
 
   .hero-subtitle {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .hero h1 {
     font-size: 1.3rem;
     padding-bottom: 3rem;
   }
+
+   .scroll-indicator {
+    bottom: 5vh; 
 
   .scroll-indicator svg {
     width: 35px;
@@ -616,6 +620,8 @@ Intermediaries make up to 40 to 80% of the price paid by consumers. there is rqu
 
     // Change slide every 4 seconds
     setInterval(showNextSlide, 4000);
+
+    window.addEventListener('scroll', () => document.querySelector('.scroll-indicator').style.opacity = window.scrollY > 50 ? '0' : '1');
   </script>
 </body>
 </html>
