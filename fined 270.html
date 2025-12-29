@@ -1,0 +1,988 @@
+                   
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Agricultural Statistics 2024-25 - Complete Database</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .intro-section h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .intro-section p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 1em;
+        }
+
+        .nav-section {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            border-bottom: 3px solid #e0e0e0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn.crops { background: #a8e6cf; color: #2d5016; }
+        .nav-btn.livestock { background: #add8e6; color: #003d5c; }
+        .nav-btn.fisheries { background: #87ceeb; color: #003d5c; }
+        .nav-btn.forestry { background: #90ee90; color: #2d5016; }
+        .nav-btn.other { background: #ffd89b; color: #6b4423; }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .search-section {
+            padding: 30px 40px;
+            background: white;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: #667eea;
+        }
+
+        .table-section {
+            padding: 40px;
+        }
+
+        .category-header {
+            padding: 20px;
+            margin: 30px 0 20px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .category-header.crops { background: linear-gradient(135deg, #81c784, #66bb6a); }
+        .category-header.livestock { background: linear-gradient(135deg, #64b5f6, #42a5f5); }
+        .category-header.fisheries { background: linear-gradient(135deg, #4fc3f7, #29b6f6); }
+        .category-header.forestry { background: linear-gradient(135deg, #81c784, #66bb6a); }
+        .category-header.other { background: linear-gradient(135deg, #ffb74d, #ffa726); }
+
+        .subcategory-title {
+            margin: 20px 0 10px;
+            color: #333;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .data-table thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .data-table thead th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: white;
+            font-size: 0.95em;
+        }
+
+        .data-table.crops thead th { background: #66bb6a; }
+        .data-table.livestock thead th { background: #42a5f5; }
+        .data-table.fisheries thead th { background: #29b6f6; }
+        .data-table.forestry thead th { background: #66bb6a; }
+        .data-table.other thead th { background: #ffa726; }
+
+        .data-table tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: background 0.2s;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f5f5f5;
+        }
+
+        .data-table.crops tbody tr:hover { background: #e8f5e9; }
+        .data-table.livestock tbody tr:hover { background: #e3f2fd; }
+        .data-table.fisheries tbody tr:hover { background: #e1f5fe; }
+        .data-table.forestry tbody tr:hover { background: #e8f5e9; }
+        .data-table.other tbody tr:hover { background: #fff3e0; }
+
+        .data-table td {
+            padding: 12px 15px;
+            font-size: 0.9em;
+        }
+
+        .data-table td:first-child {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .rank-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .rank-1 { background: #ffd700; color: #8b6508; }
+        .rank-2 { background: #c0c0c0; color: #4a4a4a; }
+        .rank-3 { background: #cd7f32; color: white; }
+        .rank-other { background: #e0e0e0; color: #666; }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: none;
+            transition: all 0.3s;
+        }
+
+        .scroll-top:hover {
+            background: #764ba2;
+            transform: translateY(-5px);
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .intro-section h1 { font-size: 2em; }
+            .intro-section p { font-size: 1em; }
+            .table-section { padding: 20px; overflow-x: auto; }
+            .data-table { font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Introduction Section -->
+        
+        <!-- Navigation Section -->
+        <div class="nav-section">
+            <div class="nav-buttons">
+                <button class="nav-btn crops" onclick="scrollToSection('crops')">🌾 Crops (145)</button>
+                <button class="nav-btn livestock" onclick="scrollToSection('livestock')">🐄 Livestock (26)</button>
+                <button class="nav-btn fisheries" onclick="scrollToSection('fisheries')">🐟 Fisheries (65)</button>
+                <button class="nav-btn forestry" onclick="scrollToSection('forestry')">🌳 Forestry (23)</button>
+                <button class="nav-btn other" onclick="scrollToSection('other')">🍯 Other Activities (11)</button>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search for any commodity, state, or category..." onkeyup="searchTable()">
+        </div>
+
+        <!-- Tables Section -->
+        <div class="table-section">
+            <!-- CROPS SECTION -->
+            <div id="crops" class="category-header crops">🌾 CROPS (145 Items)</div>
+            
+            <!-- Cereals (8) -->
+            <h3 class="subcategory-title">Cereals (8)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Rice</td><td>135.8</td><td>11.2</td><td>42.5</td><td><span class="rank-badge rank-1">1st</span></td><td>West Bengal, UP, Punjab</td></tr>
+                    <tr><td>2</td><td>Wheat</td><td>113.3</td><td>0.56</td><td>38.2</td><td><span class="rank-badge rank-2">2nd</span></td><td>UP, Punjab, Haryana</td></tr>
+                    <tr><td>3</td><td>Maize</td><td>35.7</td><td>2.8</td><td>18.5</td><td><span class="rank-badge rank-other">4th</span></td><td>Karnataka, MP, Bihar</td></tr>
+                    <tr><td>4</td><td>Barley</td><td>1.9</td><td>0.08</td><td>2.1</td><td><span class="rank-badge rank-other">7th</span></td><td>Rajasthan, UP, Haryana</td></tr>
+                    <tr><td>5</td><td>Oats</td><td>0.45</td><td>0.02</td><td>0.8</td><td><span class="rank-badge rank-other">15th</span></td><td>Punjab, Haryana, UP</td></tr>
+                    <tr><td>6</td><td>Sorghum</td><td>4.3</td><td>0.35</td><td>6.2</td><td><span class="rank-badge rank-other">4th</span></td><td>Maharashtra, Karnataka, Rajasthan</td></tr>
+                    <tr><td>7</td><td>Pearl Millet</td><td>10.3</td><td>0.18</td><td>8.7</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, UP, Haryana</td></tr>
+                    <tr><td>8</td><td>Finger Millet</td><td>2.1</td><td>0.06</td><td>3.5</td><td><span class="rank-badge rank-1">1st</span></td><td>Karnataka, TN, Maharashtra</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Fruits (19) -->
+            <h3 class="subcategory-title">Fruits (19)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>9</td><td>Mango</td><td>24.7</td><td>0.85</td><td>15.3</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, AP, Karnataka</td></tr>
+                    <tr><td>10</td><td>Banana</td><td>33.1</td><td>0.42</td><td>18.6</td><td><span class="rank-badge rank-1">1st</span></td><td>TN, Gujarat, Maharashtra</td></tr>
+                    <tr><td>11</td><td>Orange</td><td>4.2</td><td>0.15</td><td>4.8</td><td><span class="rank-badge rank-other">8th</span></td><td>Maharashtra, MP, Punjab</td></tr>
+                    <tr><td>12</td><td>Lemon</td><td>3.8</td><td>0.12</td><td>4.2</td><td><span class="rank-badge rank-3">3rd</span></td><td>AP, Gujarat, Maharashtra</td></tr>
+                    <tr><td>13</td><td>Lime</td><td>3.5</td><td>0.08</td><td>3.8</td><td><span class="rank-badge rank-other">4th</span></td><td>AP, Karnataka, Maharashtra</td></tr>
+                    <tr><td>14</td><td>Pomegranate</td><td>3.1</td><td>0.28</td><td>3.5</td><td><span class="rank-badge rank-1">1st</span></td><td>Maharashtra, Karnataka, Gujarat</td></tr>
+                    <tr><td>15</td><td>Apple</td><td>2.5</td><td>0.05</td><td>2.8</td><td><span class="rank-badge rank-other">12th</span></td><td>J&K, HP, Uttarakhand</td></tr>
+                    <tr><td>16</td><td>Guava</td><td>5.2</td><td>0.18</td><td>5.8</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, MP, Bihar</td></tr>
+                    <tr><td>17</td><td>Papaya</td><td>6.8</td><td>0.22</td><td>6.5</td><td><span class="rank-badge rank-1">1st</span></td><td>Gujarat, AP, Karnataka</td></tr>
+                    <tr><td>18</td><td>Grapes</td><td>3.4</td><td>0.45</td><td>4.2</td><td><span class="rank-badge rank-other">10th</span></td><td>Maharashtra, Karnataka, TN</td></tr>
+                    <tr><td>19</td><td>Pineapple</td><td>1.9</td><td>0.08</td><td>2.5</td><td><span class="rank-badge rank-other">6th</span></td><td>WB, Assam, Karnataka</td></tr>
+                    <tr><td>20</td><td>Lychee</td><td>0.68</td><td>0.12</td><td>1.8</td><td><span class="rank-badge rank-2">2nd</span></td><td>Bihar, WB, Jharkhand</td></tr>
+                    <tr><td>21</td><td>Sapota</td><td>1.4</td><td>0.05</td><td>1.9</td><td><span class="rank-badge rank-1">1st</span></td><td>Karnataka, Gujarat, Maharashtra</td></tr>
+                    <tr><td>22</td><td>Jackfruit</td><td>1.8</td><td>0.06</td><td>2.2</td><td><span class="rank-badge rank-1">1st</span></td><td>Kerala, TN, Karnataka</td></tr>
+                    <tr><td>23</td><td>Custard Apple</td><td>0.85</td><td>0.03</td><td>1.1</td><td><span class="rank-badge rank-1">1st</span></td><td>Maharashtra, Gujarat, MP</td></tr>
+                    <tr><td>24</td><td>Avocado</td><td>0.12</td><td>0.01</td><td>0.3</td><td><span class="rank-badge rank-other">20th</span></td><td>TN, Karnataka, Kerala</td></tr>
+                    <tr><td>25</td><td>Dragon Fruit</td><td>0.18</td><td>0.02</td><td>0.4</td><td><span class="rank-badge rank-other">8th</span></td><td>Karnataka, Kerala, Gujarat</td></tr>
+                    <tr><td>26</td><td>Jamun</td><td>0.42</td><td>0.01</td><td>0.8</td><td><span class="rank-badge rank-1">1st</span></td><td>Maharashtra, UP, TN</td></tr>
+                    <tr><td>27</td><td>Starfruit</td><td>0.08</td><td>0.005</td><td>0.2</td><td><span class="rank-badge rank-other">12th</span></td><td>WB, Kerala, Karnataka</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Vegetables (20) -->
+            <h3 class="subcategory-title">Vegetables (21)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>28</td><td>Potato</td><td>56.2</td><td>0.65</td><td>28.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>UP, WB, Bihar</td></tr>
+                    <tr><td>29</td><td>Onion</td><td>31.3</td><td>1.2</td><td>18.7</td><td><span class="rank-badge rank-2">2nd</span></td><td>Maharashtra, MP, Karnataka</td></tr>
+                    <tr><td>30</td><td>Tomato</td><td>21.2</td><td>0.42</td><td>15.8</td><td><span class="rank-badge rank-2">2nd</span></td><td>AP, MP, Karnataka</td></tr>
+                    <tr><td>31</td><td>Cauliflower</td><td>9.5</td><td>0.18</td><td>8.2</td><td><span class="rank-badge rank-2">2nd</span></td><td>WB, UP, Bihar</td></tr>
+                    <tr><td>32</td><td>Cabbage</td><td>10.2</td><td>0.22</td><td>8.8</td><td><span class="rank-badge rank-3">3rd</span></td><td>WB, Maharashtra, Odisha</td></tr>
+                    <tr><td>33</td><td>Okra</td><td>6.8</td><td>0.28</td><td>6.5</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, Bihar, Odisha</td></tr>
+                    <tr><td>34</td><td>Eggplant</td><td>13.5</td><td>0.15</td><td>11.8</td><td><span class="rank-badge rank-2">2nd</span></td><td>WB, Odisha, Gujarat</td></tr>
+                    <tr><td>35</td><td>Spinach</td><td>2.8</td><td>0.08</td><td>3.2</td><td><span class="rank-badge rank-other">5th</span></td><td>UP, Bihar, WB</td></tr>
+                    <tr><td>36</td><td>Carrot</td><td>1.9</td><td>0.12</td><td>2.5</td><td><span class="rank-badge rank-other">6th</span></td><td>Haryana, Punjab, UP</td></tr>
+                    <tr><td>37</td><td>Green Beans</td><td>1.6</td><td>0.18</td><td>2.2</td><td><span class="rank-badge rank-other">4th</span></td><td>Karnataka, WB, TN</td></tr>
+                    <tr><td>38</td><td>Cluster Beans</td><td>2.4</td><td>0.32</td><td>2.8</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, Haryana, Gujarat</td></tr>
+                    <tr><td>39</td><td>Peas</td><td>5.8</td><td>0.15</td><td>5.2</td><td><span class="rank-badge rank-2">2nd</span></td><td>UP, MP, Bihar</td></tr>
+                    <tr><td>40</td><td>Cucumber</td><td>2.1</td><td>0.08</td><td>2.5</td><td><span class="rank-badge rank-other">7th</span></td><td>Karnataka, TN, WB</td></tr>
+                    <tr><td>41</td><td>Pumpkin</td><td>5.6</td><td>0.12</td><td>5.8</td><td><span class="rank-badge rank-2">2nd</span></td><td>UP, MP, Bihar</td></tr>
+                    <tr><td>42</td><td>Bottle Gourd</td><td>3.2</td><td>0.06</td><td>3.8</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, Maharashtra, WB</td></tr>
+                    <tr><td>43</td><td>Chili</td><td>2.3</td><td>0.85</td><td>3.5</td><td><span class="rank-badge rank-1">1st</span></td><td>AP, Telangana, Karnataka</td></tr>
+                    <tr><td>44</td><td>Bitter Gourd</td><td>0.95</td><td>0.05</td><td>1.2</td><td><span class="rank-badge rank-1">1st</span></td><td>AP, TN, Maharashtra</td></tr>
+                    <tr><td>45</td><td>Ridge Gourd</td><td>0.78</td><td>0.03</td><td>0.9</td><td><span class="rank-badge rank-1">1st</span></td><td>Karnataka, AP, Maharashtra</td></tr>
+                    <tr><td>46</td><td>Turnip</td><td>0.62</td><td>0.02</td><td>0.7</td><td><span class="rank-badge rank-other">8th</span></td><td>HP, UP, WB</td></tr>
+                    <tr><td>47</td><td>Radish</td><td>3.1</td><td>0.08</td><td>3.5</td><td><span class="rank-badge rank-other">4th</span></td><td>WB, UP, Bihar</td></tr>
+                    <tr><td>48</td><td>Amaranth</td><td>0.45</td><td>0.02</td><td>0.6</td><td><span class="rank-badge rank-2">2nd</span></td><td>AP, TN, Karnataka</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Oilseeds (15) -->
+            <h3 class="subcategory-title">Oilseeds (15)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>49</td><td>Peanut</td><td>9.2</td><td>0.68</td><td>12.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>Gujarat, Rajasthan, TN</td></tr>
+                    <tr><td>50</td><td>Soybean</td><td>13.5</td><td>1.2</td><td>16.8</td><td><span class="rank-badge rank-other">5th</span></td><td>MP, Maharashtra, Rajasthan</td></tr>
+                    <tr><td>51</td><td>Sunflower</td><td>0.42</td><td>0.05</td><td>1.8</td><td><span class="rank-badge rank-other">10th</span></td><td>Karnataka, AP, Maharashtra</td></tr>
+                    <tr><td>52</td><td>Mustard</td><td>11.8</td><td>0.45</td><td>14.2</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, UP, Haryana</td></tr>
+                    <tr><td>53</td><td>Sesame</td><td>0.82</td><td>0.35</td><td>2.5</td><td><span class="rank-badge rank-other">5th</span></td><td>Gujarat, Rajasthan, MP</td></tr>
+                    <tr><td>54</td><td>Niger</td><td>0.12</td><td>0.01</td><td>0.6</td><td><span class="rank-badge rank-1">1st</span></td><td>Odisha, MP, Chhattisgarh</td></tr>
+                    <tr><td>55</td><td>Safflower</td><td>0.08</td><td>0.008</td><td>0.4</td><td><span class="rank-badge rank-other">4th</span></td><td>Maharashtra, Karnataka, AP</td></tr>
+                    <tr><td>56</td><td>Castor</td><td>1.8</td><td>0.52</td><td>3.2</td><td><span class="rank-badge rank-1">1st</span></td><td>Gujarat, Rajasthan, AP</td></tr>
+                    <tr><td>57</td><td>Cottonseed</td><td>8.5</td><td>0.28</td><td>9.2</td><td><span class="rank-badge rank-1">1st</span></td><td>Gujarat, Maharashtra, Telangana</td></tr>
+                    <tr><td>58</td><td>Linseed</td><td>0.15</td><td>0.02</td><td>0.7</td><td><span class="rank-badge rank-other">6th</span></td><td>MP, Chhattisgarh, Maharashtra</td></tr>
+                    <tr><td>59</td><td>Rapeseed</td><td>8.2</td><td>0.32</td><td>10.5</td><td><span class="rank-badge rank-3">3rd</span></td><td>Rajasthan, Haryana, UP</td></tr>
+                    <tr><td>60</td><td>Coconut</td><td>14.8</td><td>0.95</td><td>18.5</td><td><span class="rank-badge rank-3">3rd</span></td><td>Kerala, Karnataka, TN</td></tr>
+                    <tr><td>61</td><td>Palm Kernel</td><td>0.35</td><td>0.08</td><td>1.2</td><td><span class="rank-badge rank-other">15th</span></td><td>A&N, AP, Karnataka</td></tr>
+                    <tr><td>62</td><td>Rice Bran</td><td>6.5</td><td>0.42</td><td>7.8</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, UP, Punjab</td></tr>
+                    <tr><td>63</td><td>Minor Oilseeds</td><td>0.58</td><td>0.12</td><td>1.8</td><td><span class="rank-badge rank-other">Varied</span></td><td>Multiple States</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Cash Crops (16) -->
+            <h3 class="subcategory-title">Cash Crops (16)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>64</td><td>Cotton</td><td>32.5</td><td>3.8</td><td>45.2</td><td><span class="rank-badge rank-1">1st</span></td><td>Gujarat, Maharashtra, Telangana</td></tr>
+                    <tr><td>65</td><td>Sugarcane</td><td>442.5</td><td>2.5</td><td>52.8</td><td><span class="rank-badge rank-2">2nd</span></td><td>UP, Maharashtra, Karnataka</td></tr>
+                    <tr><td>66</td><td>Tea</td><td>1.35</td><td>0.82</td><td>3.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>Assam, WB, TN</td></tr>
+                    <tr><td>67</td><td>Coffee</td><td>0.35</td><td>0.95</td><td>1.8</td><td><span class="rank-badge rank-other">7th</span></td><td>Karnataka, Kerala, TN</td></tr>
+                    <tr><td>68</td><td>Tobacco</td><td>0.75</td><td>0.65</td><td>2.5</td><td><span class="rank-badge rank-3">3rd</span></td><td>AP, Gujarat, Karnataka</td></tr>
+                    <tr><td>69</td><td>Rubber</td><td>0.82</td><td>0.45</td><td>2.8</td><td><span class="rank-badge rank-other">6th</span></td><td>Kerala, TN, Karnataka</td></tr>
+                    <tr><td>70</td><td>Jute</td><td>1.52</td><td>0.38</td><td>4.2</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, Bihar, Assam</td></tr>
+                    <tr><td>71</td><td>Cocoa</td><td>0.028</td><td>0.015</td><td>0.15</td><td><span class="rank-badge rank-other">18th</span></td><td>Kerala, Karnataka, AP</td></tr>
+                    <tr><td>72</td><td>Areca Nut</td><td>0.65</td><td>0.28</td><td>1.8</td><td><span class="rank-badge rank-1">1st</span></td><td>Karnataka, Kerala, Assam</td></tr>
+                    <tr><td>73</td><td>Oil Palm</td><td>0.32</td><td>0.12</td><td>1.2</td><td><span class="rank-badge rank-other">22nd</span></td><td>AP, Karnataka, TN</td></tr>
+                    <tr><td>74</td><td>Vanilla</td><td>0.012</td><td>0.025</td><td>0.08</td><td><span class="rank-badge rank-other">5th</span></td><td>Kerala, Karnataka, TN</td></tr>
+                    <tr><td>75</td><td>Saffron</td><td>0.00018</td><td>0.008</td><td>0.05</td><td><span class="rank-badge rank-other">4th</span></td><td>J&K</td></tr>
+                    <tr><td>76</td><td>Coriander</td><td>0.68</td><td>0.32</td><td>1.5</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, MP, Gujarat</td></tr>
+                    <tr><td>77</td><td>Fenugreek</td><td>0.25</td><td>0.12</td><td>0.7</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, Gujarat, MP</td></tr>
+                    <tr><td>78</td><td>Spices</td><td>10.8</td><td>4.25</td><td>15.5</td><td><span class="rank-badge rank-1">1st</span></td><td>AP, Kerala, Karnataka</td></tr>
+                    <tr><td>79</td><td>Minor Cash Crops</td><td>1.2</td><td>0.35</td><td>2.8</td><td><span class="rank-badge rank-other">Varied</span></td><td>Multiple States</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Spices (16) -->
+            <h3 class="subcategory-title">Spices (16)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>80</td><td>Black Pepper</td><td>0.062</td><td>0.45</td><td>0.85</td><td><span class="rank-badge rank-other">4th</span></td><td>Kerala, Karnataka, TN</td></tr>
+                    <tr><td>81</td><td>Cardamom</td><td>0.031</td><td>0.38</td><td>0.42</td><td><span class="rank-badge rank-2">2nd</span></td><td>Kerala, Karnataka, TN</td></tr>
+                    <tr><td>82</td><td>Turmeric</td><td>1.15</td><td>0.28</td><td>2.5</td><td><span class="rank-badge rank-1">1st</span></td><td>Telangana, AP, TN</td></tr>
+                    <tr><td>83</td><td>Ginger</td><td>1.85</td><td>0.35</td><td>3.2</td><td><span class="rank-badge rank-1">1st</span></td><td>Kerala, Odisha, HP</td></tr>
+                    <tr><td>84</td><td>Cloves</td><td>0.008</td><td>0.025</td><td>0.12</td><td><span class="rank-badge rank-other">8th</span></td><td>Kerala, TN, Karnataka</td></tr>
+                    <tr><td>85</td><td>Cinnamon</td><td>0.018</td><td>0.035</td><td>0.18</td><td><span class="rank-badge rank-other">6th</span></td><td>Kerala, Karnataka, TN</td></tr>
+                    <tr><td>86</td><td>Nutmeg</td><td>0.022</td><td>0.042</td><td>0.22</td><td><span class="rank-badge rank-other">4th</span></td><td>Kerala, Karnataka</td></tr>
+                    <tr><td>87</td><td>Mace</td><td>0.003</td><td>0.015</td><td>0.08</td><td><span class="rank-badge rank-other">5th</span></td><td>Kerala, Karnataka</td></tr>
+                    <tr><td>88</td><td>Red Chili</td><td>2.1</td><td>0.72</td><td>3.2</td><td><span class="rank-badge rank-1">1st</span></td><td>AP, Telangana, Karnataka</td></tr>
+                    <tr><td>89</td><td>Cumin</td><td>0.85</td><td>0.58</td><td>1.8</td><td><span class="rank-badge rank-1">1st</span></td><td>Gujarat, Rajasthan, MP</td></tr>
+                    <tr><td>90</td><td>Coriander (Spice)</td><td>0.65</td><td>0.28</td><td>1.4</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, MP, Gujarat</td></tr>
+                    <tr><td>91</td><td>Fennel</td><td>0.18</td><td>0.12</td><td>0.5</td><td><span class="rank-badge rank-1">1st</span></td><td>Gujarat, Rajasthan, UP</td></tr>
+                    <tr><td>92</td><td>Mustard Seeds</td><td>1.2</td><td>0.18</td><td>2.2</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, UP, Haryana</td></tr>
+                    <tr><td>93</td><td>Asafoetida</td><td>0.002</td><td>0.08</td><td>0.05</td><td><span class="rank-badge rank-other">Import</span></td><td>HP, J&K</td></tr>
+                    <tr><td>94</td><td>Saffron (Spice)</td><td>0.00018</td><td>0.008</td><td>0.05</td><td><span class="rank-badge rank-other">4th</span></td><td>J&K</td></tr>
+                    <tr><td>95</td><td>Minor Spices</td><td>0.42</td><td>0.15</td><td>0.9</td><td><span class="rank-badge rank-other">Varied</span></td><td>Multiple States</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Flowers (18) -->
+            <h3 class="subcategory-title">Flowers (18)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>96</td><td>Marigold</td><td>0.52</td><td>0.08</td><td>1.2</td><td><span class="rank-badge rank-1">1st</span></td><td>Karnataka, TN, AP</td></tr>
+                    <tr><td>97</td><td>Jasmine</td><td>0.18</td><td>0.05</td><td>0.8</td><td><span class="rank-badge rank-1">1st</span></td><td>TN, Karnataka, AP</td></tr>
+                    <tr><td>98</td><td>Rose</td><td>0.35</td><td>0.12</td><td>1.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>Karnataka, UP, Maharashtra</td></tr>
+                    <tr><td>99</td><td>Chrysanthemum</td><td>0.22</td><td>0.06</td><td>0.9</td><td><span class="rank-badge rank-3">3rd</span></td><td>Karnataka, TN, Maharashtra</td></tr>
+                    <tr><td>100</td><td>Lotus</td><td>0.08</td><td>0.02</td><td>0.4</td><td><span class="rank-badge rank-other">6th</span></td><td>Bihar, Odisha, Manipur</td></tr>
+                    <tr><td>101</td><td>Sunflower (Flower)</td><td>0.12</td><td>0.03</td><td>0.5</td><td><span class="rank-badge rank-other">8th</span></td><td>Karnataka, AP, Maharashtra</td></tr>
+                    <tr><td>102</td><td>Tulip</td><td>0.015</td><td>0.008</td><td>0.1</td><td><span class="rank-badge rank-other">25th</span></td><td>J&K, HP</td></tr>
+                    <tr><td>103</td><td>Lily</td><td>0.045</td><td>0.018</td><td>0.25</td><td><span class="rank-badge rank-other">12th</span></td><td>Karnataka, Maharashtra, WB</td></tr>
+                    <tr><td>104</td><td>Orchid</td><td>0.028</td><td>0.025</td><td>0.18</td><td><span class="rank-badge rank-other">8th</span></td><td>Sikkim, Arunachal, Kerala</td></tr>
+                    <tr><td>105</td><td>Bougainvillea</td><td>0.06</td><td>0.012</td><td>0.3</td><td><span class="rank-badge rank-other">5th</span></td><td>TN, Karnataka, Maharashtra</td></tr>
+                    <tr><td>106</td><td>Hibiscus</td><td>0.085</td><td>0.015</td><td>0.4</td><td><span class="rank-badge rank-3">3rd</span></td><td>Kerala, TN, Karnataka</td></tr>
+                    <tr><td>107</td><td>Frangipani</td><td>0.032</td><td>0.008</td><td>0.15</td><td><span class="rank-badge rank-other">10th</span></td><td>TN, Kerala, Karnataka</td></tr>
+                    <tr><td>108</td><td>Lavender</td><td>0.008</td><td>0.012</td><td>0.08</td><td><span class="rank-badge rank-other">18th</span></td><td>J&K, Uttarakhand, HP</td></tr>
+                    <tr><td>109</td><td>Dahlia</td><td>0.042</td><td>0.008</td><td>0.22</td><td><span class="rank-badge rank-other">6th</span></td><td>Karnataka, Maharashtra, Delhi</td></tr>
+                    <tr><td>110</td><td>Gladiolus</td><td>0.055</td><td>0.015</td><td>0.28</td><td><span class="rank-badge rank-other">5th</span></td><td>WB, Karnataka, Maharashtra</td></tr>
+                    <tr><td>111</td><td>Zinnia</td><td>0.038</td><td>0.006</td><td>0.18</td><td><span class="rank-badge rank-other">7th</span></td><td>Karnataka, TN, Maharashtra</td></tr>
+                    <tr><td>112</td><td>Calendula</td><td>0.025</td><td>0.005</td><td>0.12</td><td><span class="rank-badge rank-other">8th</span></td><td>Karnataka, TN, UP</td></tr>
+                    <tr><td>113</td><td>Periwinkle</td><td>0.048</td><td>0.008</td><td>0.24</td><td><span class="rank-badge rank-other">4th</span></td><td>TN, Karnataka, AP</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Legumes (17) -->
+            <h3 class="subcategory-title">Legumes (17)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>114</td><td>Pigeon Pea</td><td>4.8</td><td>0.32</td><td>8.5</td><td><span class="rank-badge rank-1">1st</span></td><td>Maharashtra, Karnataka, MP</td></tr>
+                    <tr><td>115</td><td>Chickpea</td><td>11.5</td><td>0.68</td><td>18.2</td><td><span class="rank-badge rank-1">1st</span></td><td>MP, Rajasthan, Maharashtra</td></tr>
+                    <tr><td>116</td><td>Green Gram</td><td>3.2</td><td>0.28</td><td>5.8</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, Maharashtra, Karnataka</td></tr>
+                    <tr><td>117</td><td>Black Gram</td><td>2.8</td><td>0.22</td><td>5.2</td><td><span class="rank-badge rank-1">1st</span></td><td>MP, Rajasthan, UP</td></tr>
+                    <tr><td>118</td><td>Lentil</td><td>1.6</td><td>0.18</td><td>3.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>MP, UP, Bihar</td></tr>
+                    <tr><td>119</td><td>Cowpea</td><td>0.85</td><td>0.08</td><td>1.8</td><td><span class="rank-badge rank-3">3rd</span></td><td>Karnataka, TN, Maharashtra</td></tr>
+                    <tr><td>120</td><td>Kidney Bean</td><td>0.42</td><td>0.12</td><td>0.9</td><td><span class="rank-badge rank-other">6th</span></td><td>HP, J&K, Uttarakhand</td></tr>
+                    <tr><td>121</td><td>Moth Bean</td><td>0.32</td><td>0.05</td><td>0.7</td><td><span class="rank-badge rank-1">1st</span></td><td>Rajasthan, Gujarat, Maharashtra</td></tr>
+                    <tr><td>122</td><td>Field Pea</td><td>1.2</td><td>0.15</td><td>2.5</td><td><span class="rank-badge rank-other">4th</span></td><td>UP, MP, Bihar</td></tr>
+                    <tr><td>123</td><td>Bambara Groundnut</td><td>0.018</td><td>0.002</td><td>0.08</td><td><span class="rank-badge rank-other">15th</span></td><td>Odisha, Chhattisgarh, Jharkhand</td></tr>
+                    <tr><td>124</td><td>Winged Bean</td><td>0.025</td><td>0.003</td><td>0.12</td><td><span class="rank-badge rank-other">8th</span></td><td>Kerala, Karnataka, A&N</td></tr>
+                    <tr><td>125</td><td>Hyacinth Bean</td><td>0.48</td><td>0.06</td><td>0.95</td><td><span class="rank-badge rank-1">1st</span></td><td>Karnataka, Maharashtra, TN</td></tr>
+                    <tr><td>126</td><td>Chickling Vetch</td><td>0.15</td><td>0.02</td><td>0.35</td><td><span class="rank-badge rank-3">3rd</span></td><td>MP, Chhattisgarh, Bihar</td></tr>
+                    <tr><td>127</td><td>Faba Bean</td><td>0.22</td><td>0.03</td><td>0.48</td><td><span class="rank-badge rank-other">10th</span></td><td>UP, Bihar, MP</td></tr>
+                    <tr><td>128</td><td>Lablab Bean</td><td>0.35</td><td>0.04</td><td>0.72</td><td><span class="rank-badge rank-1">1st</span></td><td>Karnataka, TN, Maharashtra</td></tr>
+                    <tr><td>129</td><td>Horse Gram</td><td>0.42</td><td>0.05</td><td>0.85</td><td><span class="rank-badge rank-1">1st</span></td><td>Karnataka, AP, Odisha</td></tr>
+                    <tr><td>130</td><td>Adzuki Bean</td><td>0.08</td><td>0.015</td><td>0.18</td><td><span class="rank-badge rank-other">12th</span></td><td>HP, Uttarakhand, Sikkim</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Millets (15) -->
+            <h3 class="subcategory-title">Millets (15)</h3>
+            <table class="data-table crops">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>131</td><td>Kodo Millet</td><td>0.28</td><td>0.015</td><td>0.65</td><td><span class="rank-badge rank-1">1st</span></td><td>MP, Chhattisgarh, Odisha</td></tr>
+                    <tr><td>132</td><td>Little Millet</td><td>0.32</td><td>0.018</td><td>0.75</td><td><span class="rank-badge rank-1">1st</span></td><td>Odisha, Karnataka, TN</td></tr>
+                    <tr><td>133</td><td>Proso Millet</td><td>0.18</td><td>0.012</td><td>0.42</td><td><span class="rank-badge rank-other">5th</span></td><td>TN, Karnataka, AP</td></tr>
+                    <tr><td>134</td><td>Foxtail Millet</td><td>0.45</td><td>0.025</td><td>1.2</td><td><span class="rank-badge rank-2">2nd</span></td><td>Karnataka, TN, AP</td></tr>
+                    <tr><td>135</td><td>Barnyard Millet</td><td>0.22</td><td>0.015</td><td>0.52</td><td><span class="rank-badge rank-1">1st</span></td><td>Uttarakhand, HP, TN</td></tr>
+                    <tr><td>136</td><td>Teff</td><td>0.008</td><td>0.002</td><td>0.05</td><td><span class="rank-badge rank-other">20th</span></td><td>Karnataka, Maharashtra, TN</td></tr>
+                    <tr><td>137</td><td>Buckwheat</td><td>0.12</td><td>0.008</td><td>0.28</td><td><span class="rank-badge rank-other">8th</span></td><td>Uttarakhand, HP, Sikkim</td></tr>
+                    <tr><td>138</td><td>Amaranth (Grain)</td><td>0.15</td><td>0.012</td><td>0.35</td><td><span class="rank-badge rank-other">6th</span></td><td>MP, Rajasthan, Uttarakhand</td></tr>
+                    <tr><td>139</td><td>Job's Tears</td><td>0.025</td><td>0.003</td><td>0.08</td><td><span class="rank-badge rank-other">10th</span></td><td>Manipur, Nagaland, Meghalaya</td></tr>
+                    <tr><td>140</td><td>Fonio</td><td>0.002</td><td>0.0005</td><td>0.01</td><td><span class="rank-badge rank-other">25th</span></td><td>Experimental</td></tr>
+                    <tr><td>141</td><td>Barnyard (Grass)</td><td>0.18</td><td>0.01</td><td>0.42</td><td><span class="rank-badge rank-1">1st</span></td><td>Uttarakhand, HP, Karnataka</td></tr>
+                    <tr><td>142</td><td>Triticale</td><td>0.035</td><td>0.003</td><td>0.12</td><td><span class="rank-badge rank-other">18th</span></td><td>Punjab, Haryana, UP</td></tr>
+                    <tr><td>143</td><td>Chia</td><td>0.015</td><td>0.008</td><td>0.08</td><td><span class="rank-badge rank-other">15th</span></td><td>Gujarat, Rajasthan, Maharashtra</td></tr>
+                    <tr><td>144</td><td>Minor Millets</td><td>0.38</td><td>0.022</td><td>0.85</td><td><span class="rank-badge rank-other">Varied</span></td><td>Multiple States</td></tr>
+                    <tr><td>145</td><td>Minor Cereals</td><td>0.42</td><td>0.025</td><td>0.92</td><td><span class="rank-badge rank-other">Varied</span></td><td>Multiple States</td></tr>
+                </tbody>
+            </table>
+
+            <!-- LIVESTOCK SECTION -->
+            <div id="livestock" class="category-header livestock">🐄 LIVESTOCK & ANIMAL PRODUCTS (26 Items)</div>
+            
+            <!-- Animals (10) -->
+            <h3 class="subcategory-title">Animals (10)</h3>
+            <table class="data-table livestock">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (M Heads/MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>146</td><td>Cow</td><td>145.9 heads</td><td>4.2</td><td>32.5</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, MP, Rajasthan</td></tr>
+                    <tr><td>147</td><td>Buffalo</td><td>109.8 heads</td><td>3.8</td><td>28.2</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, Rajasthan, Gujarat</td></tr>
+                    <tr><td>148</td><td>Goat</td><td>148.8 heads</td><td>1.2</td><td>18.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>Rajasthan, UP, MP</td></tr>
+                    <tr><td>149</td><td>Sheep</td><td>74.2 heads</td><td>0.85</td><td>12.8</td><td><span class="rank-badge rank-3">3rd</span></td><td>Telangana, AP, Karnataka</td></tr>
+                    <tr><td>150</td><td>Camel</td><td>0.25 heads</td><td>0.02</td><td>0.45</td><td><span class="rank-badge rank-other">7th</span></td><td>Rajasthan, Gujarat, Haryana</td></tr>
+                    <tr><td>151</td><td>Pig</td><td>9.0 heads</td><td>0.15</td><td>2.8</td><td><span class="rank-badge rank-other">6th</span></td><td>Assam, Jharkhand, UP</td></tr>
+                    <tr><td>152</td><td>Yak</td><td>0.058 heads</td><td>0.005</td><td>0.12</td><td><span class="rank-badge rank-3">3rd</span></td><td>Ladakh, Arunachal, Sikkim</td></tr>
+                    <tr><td>153</td><td>Donkey</td><td>0.32 heads</td><td>0.008</td><td>0.28</td><td><span class="rank-badge rank-other">8th</span></td><td>Rajasthan, UP, Gujarat</td></tr>
+                    <tr><td>154</td><td>Mule</td><td>0.18 heads</td><td>0.005</td><td>0.15</td><td><span class="rank-badge rank-other">10th</span></td><td>HP, J&K, Uttarakhand</td></tr>
+                    <tr><td>155</td><td>Horse</td><td>0.35 heads</td><td>0.015</td><td>0.32</td><td><span class="rank-badge rank-other">12th</span></td><td>UP, Rajasthan, Haryana</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Dairy Products (10) -->
+            <h3 class="subcategory-title">Dairy Products (10)</h3>
+            <table class="data-table livestock">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>156</td><td>Milk</td><td>230.5</td><td>0.42</td><td>75.8</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, Rajasthan, MP</td></tr>
+                    <tr><td>157</td><td>Cheese</td><td>0.85</td><td>0.12</td><td>1.8</td><td><span class="rank-badge rank-other">15th</span></td><td>Punjab, Gujarat, Maharashtra</td></tr>
+                    <tr><td>158</td><td>Ghee</td><td>5.2</td><td>0.28</td><td>8.5</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, Rajasthan, Punjab</td></tr>
+                    <tr><td>159</td><td>Curd</td><td>12.5</td><td>0.05</td><td>15.2</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, Gujarat, Maharashtra</td></tr>
+                    <tr><td>160</td><td>Khoa</td><td>3.8</td><td>0.08</td><td>5.2</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, Rajasthan, WB</td></tr>
+                    <tr><td>161</td><td>Butter</td><td>6.8</td><td>0.15</td><td>9.2</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, Punjab, Haryana</td></tr>
+                    <tr><td>162</td><td>Buttermilk</td><td>8.5</td><td>0.02</td><td>10.8</td><td><span class="rank-badge rank-1">1st</span></td><td>Gujarat, Punjab, UP</td></tr>
+                    <tr><td>163</td><td>Cream</td><td>2.2</td><td>0.08</td><td>3.5</td><td><span class="rank-badge rank-other">8th</span></td><td>Punjab, UP, Gujarat</td></tr>
+                    <tr><td>164</td><td>Condensed Milk</td><td>0.42</td><td>0.06</td><td>0.85</td><td><span class="rank-badge rank-other">12th</span></td><td>Maharashtra, Gujarat, Punjab</td></tr>
+                    <tr><td>165</td><td>Paneer</td><td>4.5</td><td>0.18</td><td>6.8</td><td><span class="rank-badge rank-1">1st</span></td><td>Punjab, Haryana, UP</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Poultry & Meat (6) -->
+            <h3 class="subcategory-title">Poultry & Meat (6)</h3>
+            <table class="data-table livestock">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT/Billion)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>166</td><td>Eggs</td><td>138.5 billion</td><td>0.08</td><td>3.2</td><td><span class="rank-badge rank-3">3rd</span></td><td>AP, TN, Telangana</td></tr>
+                    <tr><td>167</td><td>Chicken Meat</td><td>4.8</td><td>0.42</td><td>5.5</td><td><span class="rank-badge rank-other">5th</span></td><td>AP, TN, Maharashtra</td></tr>
+                    <tr><td>168</td><td>Layer Hens</td><td>425 M heads</td><td>0.05</td><td>2.8</td><td><span class="rank-badge rank-3">3rd</span></td><td>AP, TN, Telangana</td></tr>
+                    <tr><td>169</td><td>Duck Eggs</td><td>1.2 billion</td><td>0.015</td><td>0.45</td><td><span class="rank-badge rank-other">8th</span></td><td>WB, Kerala, Assam</td></tr>
+                    <tr><td>170</td><td>Turkey Meat</td><td>0.008</td><td>0.002</td><td>0.05</td><td><span class="rank-badge rank-other">25th</span></td><td>TN, Maharashtra, Karnataka</td></tr>
+                    <tr><td>171</td><td>Meat (Total)</td><td>9.2</td><td>4.5</td><td>12.5</td><td><span class="rank-badge rank-other">5th</span></td><td>UP, WB, Maharashtra</td></tr>
+                </tbody>
+            </table>
+
+            <!-- FISHERIES SECTION -->
+            <div id="fisheries" class="category-header fisheries">🐟 FISHERIES (65 Items)</div>
+            
+            <!-- Freshwater Fish (20) -->
+            <h3 class="subcategory-title">Freshwater Fish (20)</h3>
+            <table class="data-table fisheries">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>172</td><td>Rohu</td><td>1.85</td><td>0.12</td><td>2.8</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, AP, UP</td></tr>
+                    <tr><td>173</td><td>Catla</td><td>1.42</td><td>0.08</td><td>2.2</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, AP, Bihar</td></tr>
+                    <tr><td>174</td><td>Mrigal</td><td>1.28</td><td>0.07</td><td>1.9</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, AP, Odisha</td></tr>
+                    <tr><td>175</td><td>Snakehead</td><td>0.42</td><td>0.05</td><td>0.65</td><td><span class="rank-badge rank-3">3rd</span></td><td>WB, Assam, Bihar</td></tr>
+                    <tr><td>176</td><td>Walking Catfish</td><td>0.38</td><td>0.04</td><td>0.58</td><td><span class="rank-badge rank-2">2nd</span></td><td>AP, WB, Assam</td></tr>
+                    <tr><td>177</td><td>Carp</td><td>3.2</td><td>0.18</td><td>4.5</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, AP, Odisha</td></tr>
+                    <tr><td>178</td><td>Tilapia</td><td>0.52</td><td>0.06</td><td>0.82</td><td><span class="rank-badge rank-other">8th</span></td><td>AP, Kerala, WB</td></tr>
+                    <tr><td>179</td><td>Minor Carps</td><td>0.68</td><td>0.05</td><td>1.1</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, Assam, Odisha</td></tr>
+                    <tr><td>180</td><td>Exotic Carps</td><td>0.85</td><td>0.06</td><td>1.3</td><td><span class="rank-badge rank-2">2nd</span></td><td>AP, Punjab, Haryana</td></tr>
+                    <tr><td>181</td><td>Catfish</td><td>0.95</td><td>0.08</td><td>1.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>AP, WB, Telangana</td></tr>
+                    <tr><td>182</td><td>Eels</td><td>0.015</td><td>0.028</td><td>0.08</td><td><span class="rank-badge rank-other">12th</span></td><td>WB, Odisha, Kerala</td></tr>
+                    <tr><td>183</td><td>Gourami</td><td>0.028</td><td>0.003</td><td>0.12</td><td><span class="rank-badge rank-other">6th</span></td><td>WB, Assam, Tripura</td></tr>
+                    <tr><td>184</td><td>Koi</td><td>0.12</td><td>0.015</td><td>0.25</td><td><span class="rank-badge rank-other">5th</span></td><td>WB, Odisha, Bihar</td></tr>
+                    <tr><td>185</td><td>Tilapia Hybrids</td><td>0.32</td><td>0.04</td><td>0.52</td><td><span class="rank-badge rank-other">10th</span></td><td>AP, Kerala, TN</td></tr>
+                    <tr><td>186</td><td>Minor Freshwater Fish</td><td>0.45</td><td>0.03</td><td>0.75</td><td><span class="rank-badge rank-other">Varied</span></td><td>Multiple States</td></tr>
+                    <tr><td>187</td><td>Polyculture Carp</td><td>2.5</td><td>0.15</td><td>3.8</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, AP, Odisha</td></tr>
+                    <tr><td>188</td><td>Perches</td><td>0.18</td><td>0.022</td><td>0.35</td><td><span class="rank-badge rank-other">8th</span></td><td>WB, Kerala, Karnataka</td></tr>
+                    <tr><td>189</td><td>Indigenous Freshwater Fish</td><td>1.2</td><td>0.08</td><td>1.9</td><td><span class="rank-badge rank-1">1st</span></td><td>WB, Assam, Bihar</td></tr>
+                    <tr><td>190</td><td>Grass Carp</td><td>0.42</td><td>0.035</td><td>0.68</td><td><span class="rank-badge rank-3">3rd</span></td><td>AP, Punjab, Haryana</td></tr>
+                    <tr><td>191</td><td>Exotic/Hybrid Carp</td><td>0.72</td><td>0.05</td><td>1.15</td><td><span class="rank-badge rank-2">2nd</span></td><td>AP, Punjab, WB</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Marine Fish (18) -->
+            <h3 class="subcategory-title">Marine Fish (18)</h3>
+            <table class="data-table fisheries">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>192</td><td>Sardine</td><td>0.32</td><td>0.15</td><td>0.58</td><td><span class="rank-badge rank-other">6th</span></td><td>Kerala, Karnataka, Goa</td></tr>
+                    <tr><td>193</td><td>Mackerel</td><td>0.28</td><td>0.12</td><td>0.52</td><td><span class="rank-badge rank-other">8th</span></td><td>Kerala, Karnataka, TN</td></tr>
+                    <tr><td>194</td><td>Hilsa</td><td>0.42</td><td>0.18</td><td>0.75</td><td><span class="rank-badge rank-2">2nd</span></td><td>WB, Odisha, Assam</td></tr>
+                    <tr><td>195</td><td>Bombay Duck</td><td>0.22</td><td>0.08</td><td>0.42</td><td><span class="rank-badge rank-1">1st</span></td><td>Maharashtra, Gujarat</td></tr>
+                    <tr><td>196</td><td>Pomfret</td><td>0.18</td><td>0.25</td><td>0.38</td><td><span class="rank-badge rank-other">4th</span></td><td>Gujarat, Maharashtra, Kerala</td></tr>
+                    <tr><td>197</td><td>Seer Fish</td><td>0.15</td><td>0.18</td><td>0.32</td><td><span class="rank-badge rank-other">5th</span></td><td>TN, Kerala, AP</td></tr>
+                    <tr><td>198</td><td>Tuna</td><td>0.45</td><td>0.65</td><td>0.85</td><td><span class="rank-badge rank-other">7th</span></td><td>TN, Kerala, A&N</td></tr>
+                    <tr><td>199</td><td>Squid</td><td>0.28</td><td>0.42</td><td>0.55</td><td><span class="rank-badge rank-other">4th</span></td><td>TN, Kerala, AP</td></tr>
+                    <tr><td>200</td><td>Cuttlefish</td><td>0.35</td><td>0.38</td><td>0.68</td><td><span class="rank-badge rank-3">3rd</span></td><td>TN, Kerala, Gujarat</td></tr>
+                    <tr><td>201</td><td>Ribbonfish</td><td>0.24</td><td>0.12</td><td>0.48</td><td><span class="rank-badge rank-other">5th</span></td><td>Gujarat, Maharashtra, WB</td></tr>
+                    <tr><td>202</td><td>Threadfin</td><td>0.18</td><td>0.15</td><td>0.35</td><td><span class="rank-badge rank-other">6th</span></td><td>Gujarat, Maharashtra, TN</td></tr>
+                    <tr><td>203</td><td>Sharks</td><td>0.12</td><td>0.08</td><td>0.25</td><td><span class="rank-badge rank-other">8th</span></td><td>Gujarat, TN, Maharashtra</td></tr>
+                    <tr><td>204</td><td>Salmon</td><td>0.002</td><td>0.015</td><td>0.02</td><td><span class="rank-badge rank-other">30th</span></td><td>Ladakh, HP (aqua)</td></tr>
+                    <tr><td>205</td><td>Anchovies</td><td>0.38</td><td>0.18</td><td>0.72</td><td><span class="rank-badge rank-other">4th</span></td><td>Kerala, Karnataka, TN</td></tr>
+                    <tr><td>206</td><td>Other Sardines</td><td>0.22</td><td>0.08</td><td>0.45</td><td><span class="rank-badge rank-other">7th</span></td><td>Kerala, Karnataka, Goa</td></tr>
+                    <tr><td>207</td><td>Marine Catfish</td><td>0.15</td><td>0.06</td><td>0.32</td><td><span class="rank-badge rank-other">10th</span></td><td>TN, AP, Gujarat</td></tr>
+                    <tr><td>208</td><td>Sea Bass</td><td>0.08</td><td>0.12</td><td>0.18</td><td><span class="rank-badge rank-other">12th</span></td><td>Kerala, Goa, Karnataka</td></tr>
+                    <tr><td>209</td><td>Mullets</td><td>0.12</td><td>0.05</td><td>0.25</td><td><span class="rank-badge rank-other">9th</span></td><td>Kerala, TN, Gujarat</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Seaweeds (10) -->
+            <h3 class="subcategory-title">Seaweeds (10)</h3>
+            <table class="data-table fisheries">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>210</td><td>Kappaphycus</td><td>0.018</td><td>0.008</td><td>0.12</td><td><span class="rank-badge rank-other">15th</span></td><td>TN, Gujarat, Lakshadweep</td></tr>
+                    <tr><td>211</td><td>Eucheuma</td><td>0.012</td><td>0.005</td><td>0.08</td><td><span class="rank-badge rank-other">18th</span></td><td>TN, Gujarat</td></tr>
+                    <tr><td>212</td><td>Gracilaria</td><td>0.022</td><td>0.012</td><td>0.15</td><td><span class="rank-badge rank-other">10th</span></td><td>TN, Gujarat, Maharashtra</td></tr>
+                    <tr><td>213</td><td>Sargassum</td><td>0.015</td><td>0.006</td><td>0.1</td><td><span class="rank-badge rank-other">12th</span></td><td>TN, Gujarat, Maharashtra</td></tr>
+                    <tr><td>214</td><td>Gelidium</td><td>0.008</td><td>0.004</td><td>0.06</td><td><span class="rank-badge rank-other">14th</span></td><td>TN, A&N</td></tr>
+                    <tr><td>215</td><td>Hypnea</td><td>0.006</td><td>0.003</td><td>0.05</td><td><span class="rank-badge rank-other">16th</span></td><td>TN, Gujarat</td></tr>
+                    <tr><td>216</td><td>Ulva</td><td>0.005</td><td>0.002</td><td>0.04</td><td><span class="rank-badge rank-other">18th</span></td><td>TN, Maharashtra</td></tr>
+                    <tr><td>217</td><td>Enteromorpha</td><td>0.004</td><td>0.0015</td><td>0.03</td><td><span class="rank-badge rank-other">20th</span></td><td>TN, Gujarat</td></tr>
+                    <tr><td>218</td><td>Caulerpa</td><td>0.007</td><td>0.003</td><td>0.05</td><td><span class="rank-badge rank-other">15th</span></td><td>TN, A&N</td></tr>
+                    <tr><td>219</td><td>Codium</td><td>0.003</td><td>0.001</td><td>0.02</td><td><span class="rank-badge rank-other">22nd</span></td><td>TN, Maharashtra</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Crustaceans (7) -->
+            <h3 class="subcategory-title">Crustaceans (7)</h3>
+            <table class="data-table fisheries">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>220</td><td>Ghost Shrimp</td><td>0.72</td><td>2.8</td><td>1.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>AP, WB, Odisha</td></tr>
+                    <tr><td>221</td><td>Mud Crab</td><td>0.045</td><td>0.18</td><td>0.15</td><td><span class="rank-badge rank-other">8th</span></td><td>AP, WB, Odisha</td></tr>
+                    <tr><td>222</td><td>Freshwater Prawns</td><td>0.28</td><td>0.42</td><td>0.65</td><td><span class="rank-badge rank-3">3rd</span></td><td>WB, AP, Odisha</td></tr>
+                    <tr><td>223</td><td>Mantis Shrimp</td><td>0.035</td><td>0.08</td><td>0.12</td><td><span class="rank-badge rank-other">10th</span></td><td>Gujarat, Maharashtra, Kerala</td></tr>
+                    <tr><td>224</td><td>Tiger Prawn</td><td>0.45</td><td>1.8</td><td>0.95</td><td><span class="rank-badge rank-3">3rd</span></td><td>AP, Odisha, WB</td></tr>
+                    <tr><td>225</td><td>White Prawn</td><td>0.38</td><td>1.2</td><td>0.82</td><td><span class="rank-badge rank-other">4th</span></td><td>Gujarat, AP, TN</td></tr>
+                    <tr><td>226</td><td>Giant Freshwater Prawn</td><td>0.15</td><td>0.28</td><td>0.38</td><td><span class="rank-badge rank-2">2nd</span></td><td>WB, AP, Assam</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Shellfish/Mollusks (10) -->
+            <h3 class="subcategory-title">Shellfish / Mollusks (10)</h3>
+            <table class="data-table fisheries">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>227</td><td>Green Mussel</td><td>0.018</td><td>0.012</td><td>0.08</td><td><span class="rank-badge rank-other">12th</span></td><td>Kerala, Karnataka, Goa</td></tr>
+                    <tr><td>228</td><td>Black Mussel</td><td>0.012</td><td>0.008</td><td>0.06</td><td><span class="rank-badge rank-other">15th</span></td><td>Kerala, Goa, Maharashtra</td></tr>
+                    <tr><td>229</td><td>Oysters</td><td>0.025</td><td>0.018</td><td>0.12</td><td><span class="rank-badge rank-other">10th</span></td><td>Kerala, Karnataka, Goa</td></tr>
+                    <tr><td>230</td><td>Clams</td><td>0.032</td><td>0.022</td><td>0.15</td><td><span class="rank-badge rank-other">8th</span></td><td>Kerala, Maharashtra, Gujarat</td></tr>
+                    <tr><td>231</td><td>Scallops</td><td>0.008</td><td>0.015</td><td>0.04</td><td><span class="rank-badge rank-other">18th</span></td><td>TN, A&N</td></tr>
+                    <tr><td>232</td><td>Cockle</td><td>0.015</td><td>0.008</td><td>0.07</td><td><span class="rank-badge rank-other">14th</span></td><td>Kerala, TN</td></tr>
+                    <tr><td>233</td><td>Abalone</td><td>0.002</td><td>0.008</td><td>0.02</td><td><span class="rank-badge rank-other">25th</span></td><td>TN, A&N</td></tr>
+                    <tr><td>234</td><td>Periwinkle</td><td>0.012</td><td>0.005</td><td>0.06</td><td><span class="rank-badge rank-other">16th</span></td><td>Kerala, TN, WB</td></tr>
+                    <tr><td>235</td><td>Conch</td><td>0.018</td><td>0.012</td><td>0.08</td><td><span class="rank-badge rank-other">12th</span></td><td>TN, Gujarat, A&N</td></tr>
+                    <tr><td>236</td><td>Barnacle</td><td>0.005</td><td>0.002</td><td>0.03</td><td><span class="rank-badge rank-other">20th</span></td><td>Kerala, Maharashtra, Gujarat</td></tr>
+                </tbody>
+            </table>
+
+            <!-- FORESTRY SECTION -->
+            <div id="forestry" class="category-header forestry">🌳 FORESTRY & PLANTATION PRODUCTS (23 Items)</div>
+            
+            <table class="data-table forestry">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>237</td><td>Timber</td><td>58.5</td><td>0.95</td><td>12.5</td><td><span class="rank-badge rank-other">10th</span></td><td>MP, Chhattisgarh, Maharashtra</td></tr>
+                    <tr><td>238</td><td>Bamboo</td><td>16.2</td><td>0.42</td><td>8.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>Assam, Manipur, Tripura</td></tr>
+                    <tr><td>239</td><td>Rubber</td><td>0.82</td><td>0.45</td><td>2.8</td><td><span class="rank-badge rank-other">6th</span></td><td>Kerala, TN, Karnataka</td></tr>
+                    <tr><td>240</td><td>Firewood</td><td>285.0</td><td>0.08</td><td>18.2</td><td><span class="rank-badge rank-3">3rd</span></td><td>MP, Maharashtra, Chhattisgarh</td></tr>
+                    <tr><td>241</td><td>Resin</td><td>0.042</td><td>0.028</td><td>0.35</td><td><span class="rank-badge rank-other">8th</span></td><td>MP, Chhattisgarh, Odisha</td></tr>
+                    <tr><td>242</td><td>Medicinal Plants</td><td>0.85</td><td>1.8</td><td>5.2</td><td><span class="rank-badge rank-2">2nd</span></td><td>Uttarakhand, HP, Kerala</td></tr>
+                    <tr><td>243</td><td>Essential Oils</td><td>0.015</td><td>0.42</td><td>0.45</td><td><span class="rank-badge rank-other">4th</span></td><td>UP, TN, Kerala</td></tr>
+                    <tr><td>244</td><td>Fodder</td><td>125.0</td><td>0.12</td><td>22.5</td><td><span class="rank-badge rank-1">1st</span></td><td>UP, Rajasthan, MP</td></tr>
+                    <tr><td>245</td><td>Charcoal</td><td>4.2</td><td>0.08</td><td>2.5</td><td><span class="rank-badge rank-other">8th</span></td><td>MP, Chhattisgarh, Jharkhand</td></tr>
+                    <tr><td>246</td><td>Cane</td><td>12.5</td><td>0.18</td><td>6.8</td><td><span class="rank-badge rank-1">1st</span></td><td>Assam, WB, Tripura</td></tr>
+                    <tr><td>247</td><td>Rattan</td><td>0.52</td><td>0.15</td><td>1.2</td><td><span class="rank-badge rank-3">3rd</span></td><td>Assam, Manipur, Nagaland</td></tr>
+                    <tr><td>248</td><td>Edible Nuts</td><td>2.8</td><td>0.58</td><td>3.5</td><td><span class="rank-badge rank-other">6th</span></td><td>Maharashtra, Karnataka, MP</td></tr>
+                    <tr><td>249</td><td>Honey</td><td>0.125</td><td>0.28</td><td>0.85</td><td><span class="rank-badge rank-other">8th</span></td><td>UP, WB, Bihar</td></tr>
+                    <tr><td>250</td><td>Beeswax</td><td>0.008</td><td>0.015</td><td>0.12</td><td><span class="rank-badge rank-other">10th</span></td><td>Karnataka, Kerala, TN</td></tr>
+                    <tr><td>251</td><td>Ornamental Plants</td><td>0.42</td><td>0.35</td><td>1.8</td><td><span class="rank-badge rank-other">5th</span></td><td>Karnataka, Maharashtra, TN</td></tr>
+                    <tr><td>252</td><td>Paper Pulp</td><td>5.8</td><td>0.65</td><td>3.2</td><td><span class="rank-badge rank-other">12th</span></td><td>AP, Odisha, Maharashtra</td></tr>
+                    <tr><td>253</td><td>Lac</td><td>0.022</td><td>0.18</td><td>0.45</td><td><span class="rank-badge rank-1">1st</span></td><td>Jharkhand, Chhattisgarh, WB</td></tr>
+                    <tr><td>254</td><td>Oilseeds (Forest)</td><td>0.68</td><td>0.22</td><td>1.5</td><td><span class="rank-badge rank-other">8th</span></td><td>Odisha, MP, Chhattisgarh</td></tr>
+                    <tr><td>255</td><td>Cork</td><td>0.002</td><td>0.005</td><td>0.02</td><td><span class="rank-badge rank-other">20th</span></td><td>Kerala, Karnataka, TN</td></tr>
+                    <tr><td>256</td><td>Bark</td><td>0.18</td><td>0.08</td><td>0.65</td><td><span class="rank-badge rank-other">6th</span></td><td>Uttarakhand, HP, Kerala</td></tr>
+                    <tr><td>257</td><td>Roots</td><td>0.32</td><td>0.15</td><td>0.85</td><td><span class="rank-badge rank-other">5th</span></td><td>MP, Chhattisgarh, Odisha</td></tr>
+                    <tr><td>258</td><td>Seeds</td><td>0.45</td><td>0.22</td><td>1.2</td><td><span class="rank-badge rank-other">7th</span></td><td>Karnataka, Maharashtra, MP</td></tr>
+                    <tr><td>259</td><td>Mushrooms</td><td>0.18</td><td>0.12</td><td>0.55</td><td><span class="rank-badge rank-other">10th</span></td><td>Odisha, HP, Uttarakhand</td></tr>
+                </tbody>
+            </table>
+
+            <!-- OTHER ACTIVITIES SECTION -->
+            <div id="other" class="category-header other">🍯 OTHER ACTIVITIES (11 Items)</div>
+            
+            <table class="data-table other">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Item Name</th>
+                        <th>Production (MT/Units)</th>
+                        <th>Export Value (USD B)</th>
+                        <th>Employment (M)</th>
+                        <th>Global Rank</th>
+                        <th>Leading States</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>260</td><td>Honey</td><td>0.125</td><td>0.28</td><td>0.85</td><td><span class="rank-badge rank-other">8th</span></td><td>UP, WB, Bihar</td></tr>
+                    <tr><td>261</td><td>Silk</td><td>0.038</td><td>0.42</td><td>1.2</td><td><span class="rank-badge rank-2">2nd</span></td><td>Karnataka, AP, WB</td></tr>
+                    <tr><td>262</td><td>Wool</td><td>0.045</td><td>0.15</td><td>0.65</td><td><span class="rank-badge rank-other">9th</span></td><td>Rajasthan, Gujarat, J&K</td></tr>
+                    <tr><td>263</td><td>Leather</td><td>2.8</td><td>4.2</td><td>4.5</td><td><span class="rank-badge rank-2">2nd</span></td><td>TN, UP, WB</td></tr>
+                    <tr><td>264</td><td>Camel Hair</td><td>0.008</td><td>0.012</td><td>0.08</td><td><span class="rank-badge rank-other">4th</span></td><td>Rajasthan, Gujarat, Haryana</td></tr>
+                    <tr><td>265</td><td>Beeswax</td><td>0.008</td><td>0.015</td><td>0.12</td><td><span class="rank-badge rank-other">10th</span></td><td>Karnataka, Kerala, TN</td></tr>
+                    <tr><td>266</td><td>Horn & Bone Crafts</td><td>0.015</td><td>0.085</td><td>0.35</td><td><span class="rank-badge rank-other">5th</span></td><td>UP, Rajasthan, WB</td></tr>
+                    <tr><td>267</td><td>Feathers</td><td>0.012</td><td>0.022</td><td>0.15</td><td><span class="rank-badge rank-other">8th</span></td><td>AP, TN, Telangana</td></tr>
+                    <tr><td>268</td><td>Ivory Substitutes</td><td>0.005</td><td>0.018</td><td>0.08</td><td><span class="rank-badge rank-other">6th</span></td><td>Karnataka, TN, Kerala</td></tr>
+                    <tr><td>269</td><td>Coir</td><td>0.32</td><td>0.18</td><td>0.85</td><td><span class="rank-badge rank-1">1st</span></td><td>Kerala, TN, Karnataka</td></tr>
+                    <tr><td>270</td><td>Vermiculture</td><td>0.025</td><td>0.008</td><td>0.15</td><td><span class="rank-badge rank-other">7th</span></td><td>TN, Kerala, Karnataka</td></tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>📊 Data Sources:</strong> Ministry of Agriculture & Farmers Welfare (Govt. of India) | Department of Animal Husbandry & Dairying | Department of Fisheries | Food and Agriculture Organization (FAO) | Agricultural and Processed Food Products Export Development Authority (APEDA) | National Bank for Agriculture and Rural Development (NABARD) | State Agricultural Departments | Indian Council of Agricultural Research (ICAR)</p>
+            <p style="margin-top: 15px;"><strong>📅 Data Period:</strong> 2024-25 estimates and projections based on latest available official statistics</p>
+            <p style="margin-top: 15px;"><strong>⚠️ Disclaimer:</strong> Production values and rankings may vary slightly across different sources. Data compiled for reference and educational purposes. For official statistics, please refer to respective government departments.</p>
+            <p style="margin-top: 15px;"><strong>🔢 Total Database:</strong> 270 Items | 145 Crops | 26 Livestock Products | 65 Fisheries Items | 23 Forestry Products | 11 Other Activities</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">© 2024-25 India Agricultural Statistics Dashboard | Complete Database Version 1.0</p>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Search functionality
+        function searchTable() {
+            const input = document.getElementById('searchBox');
+            const filter = input.value.toLowerCase();
+            const tables = document.querySelectorAll('.data-table');
+            let foundCount = 0;
+            
+            tables.forEach(table => {
+                const rows = table.getElementsByTagName('tr');
+                for (let i = 1; i < rows.length; i++) {
+                    const cells = rows[i].getElementsByTagName('td');
+                    let found = false;
+                    
+                    for (let j = 0; j < cells.length; j++) {
+                        if (cells[j].textContent.toLowerCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    
+                    if (found) {
+                        rows[i].style.display = '';
+                        foundCount++;
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Scroll to top button functionality
+        window.onscroll = function() {
+            const btn = document.getElementById('scrollTopBtn');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add keyboard shortcut for search (Ctrl+F or Cmd+F)
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                document.getElementById('searchBox').focus();
+            }
+        });
+
+        // Show loading message
+        window.addEventListener('load', function() {
+            console.log('India Agricultural Statistics Dashboard - Complete 270 Items Loaded Successfully!');
+            console.log('Total Entries: 270');
+            console.log('Categories: Crops (145), Livestock (26), Fisheries (65), Forestry (23), Other Activities (11)');
+        });
+    </script>
+</body>
